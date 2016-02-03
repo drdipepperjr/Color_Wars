@@ -2,15 +2,16 @@ package framework;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 
 public class Game implements Runnable {
 	JFrame window;
 	JPanel mainMenu;
-	JPanel PlayMenu;
+	Map PlayMenu;
 	JPanel LeaderBoard;	
 	private boolean isRunning= false;
 	private Thread thread;
@@ -126,11 +127,12 @@ public class Game implements Runnable {
 		stop();
 	}
 	private void render() {
-		//for graphic rendering 
+		PlayMenu.repaint();
 	}
 	private void tick() {
 		//for other stuff like movement 
 		// and stuff we want to go slower
+		PlayMenu.update();
 	}
 	
 

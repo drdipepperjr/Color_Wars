@@ -1,4 +1,4 @@
-package characters;
+package character;
 
 import java.awt.Color;
 
@@ -18,6 +18,18 @@ public abstract class Enemy {
 		this.color = color;
 		this.health = health;
 	}
+	/* dont work dont know why. worked around
+	public int getX(){
+		return this.x;
+	}
+	
+	public int getY(){
+		return this.y;
+	}
+	*/
+	public Color getColor(){
+		return color;
+	}
 	
 	abstract void attack(); //how the enemy will attempt to attack you
 	
@@ -29,6 +41,7 @@ public abstract class Enemy {
 	
 	public void update(){
 		//call attack method
+		attack();
 		//check if the enemy is still alive
 	}
 	
