@@ -26,13 +26,14 @@ public class Game implements Runnable {
 		window.setLocationRelativeTo(null); //centers window on middle of screen
 		window.setResizable(false);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
-		
+		//initial set up stuff
 		this.displayMainMenu();
 		
 		window.setVisible(true);
 		//start();
 	}
 	public void displayMainMenu(){
+		//Creates and displays the main menu
 		mainMenu = new JPanel(); 
 		JButton play = new JButton("Play Color Wars");
 		mainMenu.add(play);
@@ -46,7 +47,7 @@ public class Game implements Runnable {
 	}	
 	
 	class playListener implements ActionListener{
-
+//listens for play button
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			System.err.println("play pressed");
@@ -55,20 +56,23 @@ public class Game implements Runnable {
 			window.setVisible(false);
 			window.getContentPane().add(PlayMenu);
 			window.setVisible(true);
+			//the setVisible toggling makes it refresh the window
 			start();
 		}
 	}
 	
 	class leaderBoardListener implements ActionListener{
-
+//listens for leaderBoard button
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			System.err.println("LeaderBoard pressed");
 			//game.displayLeaderBoard();
+			//doesn't do anything yet
 		}
 	}
 	
 	private synchronized void start(){
+		//start() is the methed called to start run loop
 		if (isRunning==true){
 			return;
 		}
@@ -78,6 +82,7 @@ public class Game implements Runnable {
 	}
 	
 	private synchronized void stop(){
+		//stop() stops run loop
 		if (isRunning==false){
 			return;
 		}
@@ -85,7 +90,6 @@ public class Game implements Runnable {
 		try {
 			thread.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		System.exit(1);
@@ -93,12 +97,12 @@ public class Game implements Runnable {
 	
 	public void run(){
 		long lastTime= System.nanoTime();
-		final double ticks = 60.0;
+		final double ticks = 60.0;//time between doing things 
 		double ns = 1000000000 / ticks;
-		double delta = 0;
-		int updates=0;
-		int frames=0;
-		long timer = System.currentTimeMillis();
+		double delta = 0;//used to find time differences 
+		int updates=0;//debug variable 
+		int frames=0;//debug variable 
+		long timer = System.currentTimeMillis();//debug variable 
 		
 		while (isRunning){
 			long now = System.nanoTime();
@@ -111,7 +115,7 @@ public class Game implements Runnable {
 			}
 			render();
 			frames++;
-			
+			//debug code so we can see whats going on.  
 			if(System.currentTimeMillis()-timer > 1000){
 				timer += 1000;
 				System.err.println(updates + " ticks, fps " +frames);
