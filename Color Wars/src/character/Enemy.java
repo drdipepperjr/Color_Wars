@@ -47,4 +47,10 @@ public abstract class Enemy extends GeneralPathWrapper implements Shape{
 		//check if the enemy is still alive
 	}
 	
+	public String toString(Enemy e){
+		String result = "";
+		result += this.getClass() +", " + x + ", " + y + ", " + this.color;
+		return result;
+	}
+	
 }

@@ -9,7 +9,7 @@ import character.Circle;
 import character.Enemy;
 import character.Square;
 import character.Triangle;
-import character.debugEnemy;
+import character.Wave;
 
 
 @SuppressWarnings("serial")
@@ -17,33 +17,35 @@ public class Map extends JPanel{
 			
 	int currentWave = 0;
 	
-	debugEnemy e1=new debugEnemy(100,100, Color.CYAN);
+	//TEST ENEMIES
 	Enemy c1 = new Circle(300,300,Color.BLUE);
 	Enemy s1 = new Square(200,200,Color.RED);
 	Enemy t1 = new Triangle(100,100,Color.GREEN);
 	
+	//TEST WAVE
+	Wave wave1 = new Wave(2);
+	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
+		g.setColor(Color.WHITE);
+		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
 		
-		c1.spawn(g);	
-		s1.spawn(g);
-		t1.spawn(g);
-		/*
-		g.setColor(e1.getColor());
-		g.fillOval(e1.x, e1.y, 50, 50);
-		g.setColor(Color.red);
-		g.fillRect(100, 100, 60, 76);
-		*/
+		wave1.render(g);
+		
+		c1.render(g);	
+		s1.render(g);
+		t1.render(g);
+		
 	}
 	
+	//updates EVERYTHING
 	public void update(){
-		//updates EVERYTHING
-		e1.update();
+		wave1.update();
+		
 		c1.update();
 		s1.update();
 		t1.update();
-//		System.err.println("e1 cordinates are "+ e1.getX()+e1.getY());
 		
 	}
 }
