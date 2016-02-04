@@ -33,7 +33,7 @@ public abstract class Enemy extends GeneralPathWrapper implements Shape{
 	}
 	
 	
-	public abstract void spawn(Graphics g);
+	public abstract void render(Graphics g);
 	//draw the enemy with its initial color
 	//and set its position to x and y
 	

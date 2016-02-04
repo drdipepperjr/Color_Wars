@@ -30,7 +30,7 @@ public class debugEnemy extends Enemy{
 	}
 
 	@Override
-	public void spawn(Graphics g) {
+	public void render(Graphics g) {
 		// TODO Auto-generated method stub
 		
 	}

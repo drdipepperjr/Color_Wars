@@ -17,7 +17,7 @@ public class Triangle extends Enemy{
 	
 	
 	@Override
-	public void spawn(Graphics g) {
+	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
