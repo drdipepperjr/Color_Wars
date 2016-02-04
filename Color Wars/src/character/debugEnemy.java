@@ -1,6 +1,7 @@
 package character;
 
 import java.awt.Color;
+import java.awt.Graphics;
 import java.util.Random;
 
 
@@ -11,8 +12,8 @@ public class debugEnemy extends Enemy{
 	int size;
 	Color color;
 	Random random=new Random();
-	public debugEnemy(int x, int y, int size, int health, Color color) {
-		super(x, y, size, health, color);
+	public debugEnemy(int x, int y, Color color) {
+		super(x, y, color);
 	
 	}
 
@@ -26,5 +27,11 @@ public class debugEnemy extends Enemy{
 	//	System.err.println("attack "+ this.x+this.y);
 	x+=random.nextInt(5)-2;
 	y+=random.nextInt(5)-2;	
+	}
+
+	@Override
+	public void spawn(Graphics g) {
+		// TODO Auto-generated method stub
+		
 	}
 }

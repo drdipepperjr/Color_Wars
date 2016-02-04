@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 
 
 public class Game implements Runnable {
+	public static final int WIDTH = 1024;
+	public static final int HEIGHT = 768;
 	JFrame window;
 	JPanel mainMenu;
 	Map PlayMenu;
@@ -22,8 +24,10 @@ public class Game implements Runnable {
 	}
 	private void go() {
 		this.window = new JFrame();
+		
+		
 		window.setTitle("Color Wars");	
-		window.setSize(1024,768);
+		window.setSize(WIDTH,HEIGHT);
 		window.setLocationRelativeTo(null); //centers window on middle of screen
 		window.setResizable(false);
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
@@ -33,8 +37,9 @@ public class Game implements Runnable {
 		window.setVisible(true);
 		//start();
 	}
+	
+	//Creates and displays the main menu
 	public void displayMainMenu(){
-		//Creates and displays the main menu
 		mainMenu = new JPanel(); 
 		JButton play = new JButton("Play Color Wars");
 		mainMenu.add(play);
@@ -47,8 +52,8 @@ public class Game implements Runnable {
 		this.window.getContentPane().add(mainMenu);
 	}	
 	
+	//listens for play button
 	class playListener implements ActionListener{
-//listens for play button
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			System.err.println("play pressed");
@@ -62,8 +67,8 @@ public class Game implements Runnable {
 		}
 	}
 	
+	//listens for leaderBoard button
 	class leaderBoardListener implements ActionListener{
-//listens for leaderBoard button
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			System.err.println("LeaderBoard pressed");

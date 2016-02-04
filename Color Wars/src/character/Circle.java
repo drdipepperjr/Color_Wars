@@ -1,18 +1,35 @@
 package character;
 
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.awt.geom.Ellipse2D;
 
 public class Circle extends Enemy {
 
-	Circle(int x, int y, int size, int health, Color color) {
-		super(x, y, size, health, color);
-		// TODO Auto-generated constructor stub
+	public Circle(int x, int y, Color color) {
+		super(x, y, color);
+		
+	}
+	
+	@Override
+	public void spawn(Graphics g) {
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		Ellipse2D.Double circle = new Ellipse2D.Double(x,y,size,size);
+		g2d.setColor(this.color);
+		g2d.draw(circle);
+		g2d.fill(circle);
 	}
 
 	@Override
 	void attack() {
-		// TODO Auto-generated method stub
+		this.x++;
+		this.y++;
 		
 	}
 
+	
 }
