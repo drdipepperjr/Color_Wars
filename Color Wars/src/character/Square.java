@@ -25,7 +25,7 @@ public class Square extends Enemy {
 	}
 
 	@Override
-	void attack() {
+	void attack(double playerX, double playerY) {
 		this.y++;
 		
 	}

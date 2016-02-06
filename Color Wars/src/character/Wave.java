@@ -50,9 +50,9 @@ public class Wave extends ArrayList<Enemy> {
 	}
 	
 	//Updates the whole wave via a for loop
-	public void update(){
+	public void update(double playerX, double playerY){
 		for(int i=0;i<numEnemies;i++)
-			this.get(i).update();
+			this.get(i).update(playerX, playerY);
 		
 	}
 	

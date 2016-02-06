@@ -14,6 +14,8 @@ public class Map extends JPanel{
 		
 	//TEST PLAYER
 	Player player = new Player();
+	double pX = player.getX();
+	double pY = player.getY();
 	
 	//TEST ENEMIES
 	
@@ -33,7 +35,9 @@ public class Map extends JPanel{
 	//updates EVERYTHING
 	public void update(){
 		player.update();	
-		wave1.update();
+		pX = player.getX();
+		pY = player.getY();
+		wave1.update(pX, pY);
 	}
 
 	

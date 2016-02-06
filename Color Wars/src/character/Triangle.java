@@ -30,10 +30,13 @@ public class Triangle extends Enemy{
 		g2d.fill(triangle);
 	}
 	
-	@Override
-	void attack() {
-		this.x++;
+	@Override 
+	void attack(double playerX, double playerY) {
+		if (this.x < playerX) this.x++;
 		
+		if (this.x > playerX) this.x--;
+		if (this.y < playerY) this.y++;
+		if (this.y > playerY) this.y--;
 	}
 
 	

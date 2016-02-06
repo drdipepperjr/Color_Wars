@@ -38,12 +38,12 @@ public abstract class Enemy extends GeneralPathWrapper implements Shape{
 	//and set its position to x and y
 	
 	
-	abstract void attack(); //how the enemy will attempt to attack you	
+	abstract void attack(double playerX, double playerY); //how the enemy will attempt to attack you	
 	
 	
-	public void update(){
+	public void update(double playerX, double playerY){
 		//call attack method
-		attack();
+		attack(playerX, playerY);
 		//check if the enemy is still alive
 	}
 	

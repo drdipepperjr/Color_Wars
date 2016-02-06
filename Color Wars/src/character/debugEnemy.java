@@ -17,12 +17,12 @@ public class debugEnemy extends Enemy{
 	
 	}
 
-	public void update(){
-		attack();
+	public void update(double playerX, double playerY){
+		attack(playerX, playerY);
 		
 	}
 	@Override
-	void attack(){
+	void attack(double playerX, double playerY){
 		//this.x++;
 	//	System.err.println("attack "+ this.x+this.y);
 	x+=random.nextInt(5)-2;

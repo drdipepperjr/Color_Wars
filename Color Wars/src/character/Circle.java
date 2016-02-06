@@ -6,6 +6,7 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
 
+import java.lang.Math;
 public class Circle extends Enemy {
 
 	public Circle(int x, int y, Color color) {
@@ -25,9 +26,17 @@ public class Circle extends Enemy {
 	}
 
 	@Override
-	void attack() {
-		this.x++;
-		this.y++;
+	void attack(double playerX, double playerY) {
+		if(Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0)) > 100)
+			{
+			if (this.x < playerX) this.x++;
+			
+			if (this.x > playerX) this.x--;
+			if (this.y < playerY) this.y++;
+			if (this.y > playerY) this.y--;
+			}
+		//if(Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0)) > 100)
+			//this.y++;
 		
 	}
 
