@@ -8,8 +8,8 @@ import utilities.GeneralPathWrapper;
 
 public abstract class Enemy extends GeneralPathWrapper implements Shape{
 	
-	int x;
-	int y;
+	double x;
+	double y;
 	int health = 1;
 	int size = 30;
 	Color color;
