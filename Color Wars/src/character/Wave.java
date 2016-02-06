@@ -50,16 +50,13 @@ public class Wave extends ArrayList<Enemy> {
 	}
 	
 	//Updates the whole wave via a for loop
-
 	public void update(double playerX, double playerY){
 		for(int i=0;i<numEnemies;i++){
 			this.get(i).update(playerX, playerY);
-			this.get(i).destroy();
 			if(!this.get(i).isAlive){
 				this.remove(i);
 				numEnemies --;
 			}
-			System.out.println("Enemy " + i + " destroyed");
 		}
 				
 	}
