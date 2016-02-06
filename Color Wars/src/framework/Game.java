@@ -101,6 +101,7 @@ public class Game implements Runnable {
 		System.exit(1);
 	}
 	
+	@Override
 	public void run(){
 		long lastTime= System.nanoTime();
 		final double ticks = 60.0;//time between doing things 
