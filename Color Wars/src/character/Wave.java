@@ -45,14 +45,22 @@ public class Wave extends ArrayList<Enemy> {
 	
 	//Renders the whole wave via a for loop
 	public void render(Graphics g){
-		for(int i=0;i<numEnemies;i++){
-			this.get(i).render(g);}
+		for(int i=0;i<numEnemies;i++)
+			this.get(i).render(g);
 	}
 	
 	//Updates the whole wave via a for loop
 	public void update(){
-		for(int i=0;i<numEnemies;i++)
+		for(int i=0;i<numEnemies;i++){
 			this.get(i).update();
+			this.get(i).destroy();
+			if(!this.get(i).isAlive){
+				this.remove(i);
+				numEnemies --;
+			}
+			System.out.println("Enemy " + i + " destroyed");
+		}
+		
 		
 	}
 	

@@ -13,21 +13,15 @@ public abstract class Enemy extends GeneralPathWrapper implements Shape{
 	int health = 1;
 	int size = 30;
 	Color color;
+	boolean isAlive;
 
 	public Enemy(int x, int y, Color color) {
 		this.x = x;
 		this.y = y;
 		this.color = color;
+		this.isAlive = true;
 	}
-	/* dont work dont know why. worked around
-	public int getX(){
-		return this.x;
-	}
-	
-	public int getY(){
-		return this.y;
-	}
-	*/
+
 	public Color getColor(){
 		return color;
 	}
@@ -45,6 +39,11 @@ public abstract class Enemy extends GeneralPathWrapper implements Shape{
 		//call attack method
 		attack();
 		//check if the enemy is still alive
+		
+	}
+	
+	public void destroy(){
+		this.isAlive = false;
 	}
 	
 }
