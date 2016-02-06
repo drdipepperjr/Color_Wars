@@ -1,15 +1,13 @@
 package utilities;
 
-import java.awt.geom.GeneralPath; // combinations of lines and curves
-import java.awt.geom.AffineTransform; // translation, rotation, scale
-import java.awt.Shape; // general class for shapes
-
-// next five imports below this line needed if you are implementing Shape
-import java.awt.geom.Point2D; 
-import java.awt.geom.Rectangle2D;
 import java.awt.Rectangle;
+import java.awt.Shape; // general class for shapes
+import java.awt.geom.AffineTransform; // translation, rotation, scale
+import java.awt.geom.GeneralPath; // combinations of lines and curves
 import java.awt.geom.PathIterator;
-import java.awt.geom.AffineTransform;
+// next five imports below this line needed if you are implementing Shape
+import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 // end of list of imports needed for implementing Shape
 
 /**
