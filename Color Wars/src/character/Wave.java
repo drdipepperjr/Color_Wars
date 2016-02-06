@@ -21,6 +21,7 @@ public class Wave extends ArrayList<Enemy> {
 	 * Creates numEnemies Enemies
 	 */
 	public Wave(int numEnemies){
+		this.numEnemies = numEnemies;
 		Random random = new Random();
 		for(int i=0; i<numEnemies; i++){
 			int enemyType = random.nextInt(3);
@@ -42,24 +43,17 @@ public class Wave extends ArrayList<Enemy> {
 		}
 	}
 	
-	//Renders the whole wave via a for loop (hopefully...)
+	//Renders the whole wave via a for loop
 	public void render(Graphics g){
-		//SUPPOSED TO BE A FOR LOOP HERE. NOT WORKING.
-		//for(int i=0;i<numEnemies;i++)
-			//this.get(i).render(g);
-		 
-		this.get(0).render(g);
-		this.get(1).render(g);
+		for(int i=0;i<numEnemies;i++){
+			this.get(i).render(g);}
 	}
 	
-	//Updates the whole wave via a for loop (again, hopefully...) 
+	//Updates the whole wave via a for loop
 	public void update(){
-		//ALSO SUPPOSED TO BE A FOR LOOP. ALSO NOT WORKING
-		//for(int i=0;i<numEnemies;i++)
-			//this.get(i).update();
+		for(int i=0;i<numEnemies;i++)
+			this.get(i).update();
 		
-		this.get(0).update();
-		this.get(1).update();
 	}
 	
 }
