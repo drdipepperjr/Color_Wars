@@ -3,6 +3,7 @@ package framework;
 import java.awt.Color;
 import java.awt.Graphics;
 
+
 import javax.swing.JPanel;
 
 import java.util.Random;
@@ -14,7 +15,10 @@ import character.Projectile;
 
 @SuppressWarnings("serial")
 public class Map extends JPanel{
-		
+	
+	
+
+
 	//TEST PLAYER
 	Player player = new Player();
 	double pX = player.getX();
@@ -54,7 +58,9 @@ public class Map extends JPanel{
 		proj.update(pX,pY);
 	}
 
-	
-	
+	public void playerShoot(double x, double y){
+		proj = new Projectile(pX,pY,x,y, Color.MAGENTA);
+		
+	}
 	
 }

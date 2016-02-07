@@ -2,6 +2,9 @@ package framework;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -52,33 +55,20 @@ public class Game implements Runnable {
 		this.window.getContentPane().add(mainMenu);
 	}	
 	
-	//listens for play button
-	class playListener implements ActionListener{
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			System.err.println("play pressed");
-			window.getContentPane().remove(mainMenu);
-			PlayMenu= new Map();
-			window.setVisible(false);
-			window.getContentPane().add(PlayMenu);
-			window.setVisible(true);
-			//the setVisible toggling makes it refresh the window
-			start();
-		}
-	}
-	
-	//listens for leaderBoard button
-	class leaderBoardListener implements ActionListener{
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-			System.err.println("LeaderBoard pressed");
-			//game.displayLeaderBoard();
-			//doesn't do anything yet
-		}
+	public void playGame(){
+		window.getContentPane().remove(mainMenu);
+		PlayMenu= new Map();
+		window.setVisible(false);
+		window.getContentPane().add(PlayMenu);
+		window.addMouseListener(new shootListener());
+		window.setVisible(true);
+		//the setVisible toggling makes it refresh the window
+		
+		start();
 	}
 	
 	private synchronized void start(){
-		//start() is the methed called to start run loop
+		//start() is the method called to start run loop
 		if (isRunning==true){
 			return;
 		}
@@ -142,6 +132,34 @@ public class Game implements Runnable {
 	}
 	
 
+	//listens for play button
+	class playListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			playGame();
+			System.err.println("play pressed");
+		}
+	}
 	
+	//listens for leaderBoard button
+	class leaderBoardListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+			System.err.println("LeaderBoard pressed");
+			//game.displayLeaderBoard();
+			//doesn't do anything yet
+		}
+	}	
+	//listens for click
+	public class shootListener extends MouseAdapter{
+		public void mouseClicked(MouseEvent e){
+			double x=e.getX();
+			double y=e.getY();
+			System.err.println("click coord " +x +", "+y);
+			PlayMenu.playerShoot(x,y);
+		}
+		
+		
+	}
 
 }
