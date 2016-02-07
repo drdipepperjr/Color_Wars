@@ -82,10 +82,19 @@ public class Player extends GeneralPathWrapper implements Shape{
 	
 	public void update(){
 		move();
-		if(keys[0]){y -= 5;}
-		if(keys[1]){x -= 5;}
-		if(keys[2]){y += 5;}
-		if(keys[3]){x += 5;}
+		if(keys[0]){y -= 10;}
+		if(keys[1]){x -= 10;}
+		if(keys[2]){y += 10;}
+		if(keys[3]){x += 10;}
+		// hard coded boundaries
+		if(x>= Game.WIDTH-15)
+			x = Game.WIDTH-15;
+		if(x<=9)
+			x = 9;
+		if(y>=Game.HEIGHT-50)
+			y = Game.HEIGHT-50;
+		if(y<=16)
+			y = 16;
 		//rotate;
 		//shootprojectile
 	}

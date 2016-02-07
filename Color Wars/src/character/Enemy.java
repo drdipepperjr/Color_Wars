@@ -15,9 +15,10 @@ public abstract class Enemy extends GeneralPathWrapper implements Shape{
 	Color color;
 	boolean isAlive;
 
-	public Enemy(double x, double y, Color color) {
-		this.x = x;
-		this.y = y;
+	public Enemy(double xStart, double yStart, Color color) {
+		this.x = xStart;
+		this.y = yStart;
+
 		this.color = color;
 		this.isAlive = true;
 	}

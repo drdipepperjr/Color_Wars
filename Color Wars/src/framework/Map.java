@@ -5,8 +5,11 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
+import java.util.Random;
+
 import character.Player;
 import character.Wave;
+import character.Projectile;
 
 
 @SuppressWarnings("serial")
@@ -22,6 +25,15 @@ public class Map extends JPanel{
 	//TEST WAVE
 	Wave wave1 = new Wave(8);
 	
+	//TEST PROJECTILE
+	Random random= new Random();
+	double xStart= random.nextInt(Game.WIDTH);
+	double yStart=random.nextInt(Game.HEIGHT);
+	double xEnd =random.nextInt(Game.WIDTH);
+	double yEnd= random.nextInt(Game.HEIGHT);
+	Color color=Color.MAGENTA;
+	Projectile proj = new Projectile(xStart,yStart, xEnd, yEnd, color);
+	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -30,6 +42,7 @@ public class Map extends JPanel{
 		
 		player.render(g);
 		wave1.render(g);
+		proj.render(g);
 	}
 	
 	//updates EVERYTHING
@@ -38,6 +51,7 @@ public class Map extends JPanel{
 		pX = player.getX();
 		pY = player.getY();
 		wave1.update(pX, pY);
+		proj.update(pX,pY);
 	}
 
 	
