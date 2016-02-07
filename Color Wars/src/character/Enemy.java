@@ -3,23 +3,16 @@ package character;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
-import java.awt.Shape;
 
-import utilities.GeneralPathWrapper;
-
-public abstract class Enemy extends GeneralPathWrapper implements Shape{
+public abstract class Enemy extends GameObject{
 	
-	double x;
-	double y;
 	int health = 1;
 	int size = 30;
 	Color color;
 	boolean isAlive;
 
-	public Enemy(double xStart, double yStart, Color color) {
-		this.x = xStart;
-		this.y = yStart;
-
+	public Enemy(double x, double y, Color color) {
+		super(x,y,color);
 		this.color = color;
 		this.isAlive = true;
 	}

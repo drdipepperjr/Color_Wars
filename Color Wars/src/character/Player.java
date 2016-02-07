@@ -5,29 +5,22 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
-import java.awt.Rectangle;
 import java.awt.RenderingHints;
-import java.awt.Shape;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Path2D;
 
-import utilities.GeneralPathWrapper;
 import framework.Game;
 
-public class Player extends GeneralPathWrapper implements Shape{
+public class Player extends GameObject{
 
 	boolean[] keys = new boolean[4];
-	private double x;
-	private double y;
+	
 	int health = 1;
 	int size = 30;
-	Color color;
 	double sideLength = 2*size/Math.sqrt(3);
 	
-	public Player(){
-		this.x = Game.WIDTH/2;
-		this.y = Game.HEIGHT/2;
-		this.color = Color.BLACK;
+	public Player(double x, double y, Color color){
+		super(x,y,color);
 	}
 	
 	public void changeColor(){
@@ -113,29 +106,4 @@ public class Player extends GeneralPathWrapper implements Shape{
 		
 	}
 	
-	@Override
-	public Rectangle getBounds(){
-		Rectangle r =  new Rectangle((int)x,(int)y,size,size);
-		return r;
-	}
-	
-	public boolean isCollidedWith(Enemy e){
-		if(this.getBounds().intersects(e.getBounds()))
-			return true;
-		
-		return false;
-	}
-	
-	public double getX(){
-		return this.x;
-	}
-	public double getY(){
-		 return this.y;
-	}
-	public void setX(int x){
-		 this.x = x;
-	}
-	public void setY(int y){
-		this.y = y;
-	}
 }

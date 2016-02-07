@@ -6,10 +6,11 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
 
-public class Projectile extends Enemy{
+public class Projectile extends GameObject{
 	double xMove;
 	double yMove;
 	int size =10;
+	
 	public Projectile(double xStart, double yStart, double xEnd, double yEnd,  Color color) {
 		super(xStart, yStart, color);
 		double xLength = xEnd-xStart;
@@ -20,7 +21,6 @@ public class Projectile extends Enemy{
 		
 	}
 
-	@Override
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -31,8 +31,7 @@ public class Projectile extends Enemy{
 		g2d.fill(circle);
 	}
 
-	@Override
-	void attack(double playerX, double playerY) {
+	public void update(double playerX, double playerY) {
 		x+=xMove;
 		y+=yMove;
 	}
