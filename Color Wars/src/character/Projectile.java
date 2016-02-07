@@ -6,6 +6,8 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
 
+import framework.Game;
+
 public class Projectile extends GameObject{
 	double xMove;
 	double yMove;
@@ -34,6 +36,15 @@ public class Projectile extends GameObject{
 	public void update(double playerX, double playerY) {
 		x+=xMove;
 		y+=yMove;
+		if(outOfBounds())
+			destroy();
+	}
+	
+	//if the projectile leaves the boundaries of the game
+	public boolean outOfBounds(){
+		if((this.x > Game.WIDTH)||(this.x < 0)||(this.y > Game.HEIGHT)||(this.y < 0))
+			return true;
+		return false;
 	}
 
 }

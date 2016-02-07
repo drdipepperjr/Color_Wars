@@ -21,27 +21,32 @@ public class GameObject extends GeneralPathWrapper implements Shape{
 		isAlive = true;
 	}
 	
+	//Returns a rectangle that we use for getBounds()
 	@Override
 	public Rectangle getBounds(){
 		Rectangle r =  new Rectangle((int)x,(int)y,size,size);
 		return r;
 	}
 	
-	public boolean isCollidedWith(Enemy e){
-		if(this.getBounds().intersects(e.getBounds()))
+	//Returns true if this gameObject collides with another GameObject
+	public boolean isCollidedWith(GameObject o){
+		if(this.getBounds().intersects(o.getBounds()))
 			return true;
 		
 		return false;
 	}
 	
+	//Check if the GameObject is still alive
 	public boolean isAlive(){
 		return this.isAlive;
 	}
 	
+	//Sets isAlive to false, other methods actually remove the object from memory
 	public void destroy(){
 		isAlive = false;
 	}
 	
+	//LE GETTERS AND SETTERS
 	public double getX(){
 		return this.x;
 	}
