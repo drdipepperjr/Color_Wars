@@ -15,8 +15,8 @@ public class Projectile extends Enemy{
 		double xLength = xEnd-xStart;
 		double yLength = yEnd-yStart;
 		double length= Math.sqrt(Math.pow(xLength, 2)+Math.pow(yLength, 2));
-		this.xMove=xLength/length;
-		this.yMove=yLength/length;
+		this.xMove=xLength/length*2;
+		this.yMove=yLength/length*2;
 		
 	}
 
@@ -34,7 +34,7 @@ public class Projectile extends Enemy{
 	@Override
 	void attack(double playerX, double playerY) {
 		x+=xMove;
-		y-=yMove;
+		y+=yMove;
 	}
 
 }
