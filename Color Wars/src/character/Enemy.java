@@ -2,6 +2,7 @@ package character;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.Shape;
 
 import utilities.GeneralPathWrapper;
@@ -43,8 +44,20 @@ public abstract class Enemy extends GeneralPathWrapper implements Shape{
 		
 	}
 	
+	@Override
+	public Rectangle getBounds(){
+		Rectangle r =  new Rectangle((int)x,(int)y,size,size);
+		return r;
+	}
+	
 	public void destroy(){
 		this.isAlive = false;
 	}
 	
+	public boolean isCollidedWith(Enemy e){
+		if(this.getBounds().intersects(e.getBounds()))
+			return true;
+		
+		return false;
+	}
 }

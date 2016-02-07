@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.Shape;
 import java.awt.event.KeyEvent;
@@ -110,6 +111,19 @@ public class Player extends GeneralPathWrapper implements Shape{
 		 	g2d.draw(triangle);
 		 	g2d.fill(triangle);
 		
+	}
+	
+	@Override
+	public Rectangle getBounds(){
+		Rectangle r =  new Rectangle((int)x,(int)y,size,size);
+		return r;
+	}
+	
+	public boolean isCollidedWith(Enemy e){
+		if(this.getBounds().intersects(e.getBounds()))
+			return true;
+		
+		return false;
 	}
 	
 	public double getX(){
