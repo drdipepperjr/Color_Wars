@@ -1,11 +1,13 @@
 package character;
 
 import java.awt.Color;
+
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Rectangle2D;
-
+import java.lang.Math;
+import java.util.Random;
 public class Square extends Enemy {
 
 	public Square(int x, int y, Color color) {
@@ -26,7 +28,20 @@ public class Square extends Enemy {
 
 	@Override
 	void attack(double playerX, double playerY) {
-		this.y++;
+		if(Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0)) > 300)
+			{
+				Random randomNum = new Random();
+				int ranNum = randomNum.nextInt(4);
+				int ranNum2 = randomNum.nextInt(50) +100;
+				if(ranNum==0)
+					this.x = playerX+ranNum2;
+				if(ranNum==1)
+					this.y = playerY+ranNum2;
+				if(ranNum==2)
+					this.x = playerX-ranNum2;
+				if(ranNum==3)
+					this.y = playerY-ranNum2;
+			};
 		
 	}
 

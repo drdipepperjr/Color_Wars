@@ -27,17 +27,21 @@ public class Circle extends Enemy {
 
 	@Override
 	void attack(double playerX, double playerY) {
-		if(Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0)) > 100)
+		if(Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0)) > 300)
 			{
-			if (this.x < playerX) this.x++;
+			if (this.x < playerX) this.x+=3;
 			
-			if (this.x > playerX) this.x--;
-			if (this.y < playerY) this.y++;
-			if (this.y > playerY) this.y--;
+			if (this.x > playerX) this.x-=3;
+			if (this.y < playerY) this.y+=3;
+			if (this.y > playerY) this.y-=3;
 			}
-		//if(Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0)) > 100)
-			//this.y++;
+		if(Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0)) < 300)
+			{if (this.x < playerX) this.x-=3;
 		
+			if (this.x > playerX) this.x+=3;
+			if (this.y < playerY) this.y-=3;
+			if (this.y > playerY) this.y+=3;	
+			}
 	}
 
 	
