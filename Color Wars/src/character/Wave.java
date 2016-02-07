@@ -13,7 +13,7 @@ public class Wave extends ArrayList<Enemy> {
 	Color color;
 	int x;
 	int y;
-	int numEnemies;
+	public int numEnemies;
 	
 	/*
 	 * This creates a wave of enemies
@@ -21,7 +21,7 @@ public class Wave extends ArrayList<Enemy> {
 	 * Creates numEnemies Enemies
 	 */
 	public Wave(int numEnemies){
-		this.numEnemies = numEnemies;
+		//this.numEnemies = numEnemies;
 		Random random = new Random();
 		for(int i=0; i<numEnemies; i++){
 			int enemyType = random.nextInt(3);
@@ -41,10 +41,11 @@ public class Wave extends ArrayList<Enemy> {
 			this.add(e);
 			
 		}
+		this.numEnemies=this.size();
 	}
 	
 	//Renders the whole wave via a for loop
-	public void render(Graphics g){
+	public void render(Graphics g){	
 		for(int i=0;i<numEnemies;i++)
 			this.get(i).render(g);
 	}
