@@ -50,6 +50,32 @@ public class Wave extends ArrayList<Enemy> {
 			this.get(i).render(g);
 	}
 	
+	//Checks for collisions with the player
+	//Currently destroys all enemis that come in contact with the player
+	public void checkForCollisions(Player p){
+		for(int i=0;i<numEnemies;i++){
+			if(this.get(i).isCollidedWith(p)){
+				System.out.println("COLLISION DETECTED");
+				this.remove(i);
+				numEnemies--;
+			}
+		}
+	}
+	
+	//Checks for collisions with projectiles
+	public void checkForCollisions(ArrayList<Projectile> a){
+		for(int i=0;i<numEnemies;i++){
+			for(int j=0;j<a.size();j++){
+				if(this.get(i).isCollidedWith(a.get(j))){
+					System.out.println("COLLISION DETECTED");
+					a.get(j).destroy();
+					this.remove(i);
+					numEnemies--;
+				}
+			}
+		}
+	}
+	
 	//Updates the whole wave via a for loop
 	public void update(double playerX, double playerY){
 		for(int i=0;i<numEnemies;i++){

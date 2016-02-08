@@ -2,6 +2,7 @@ package character;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Rectangle;
 
 public abstract class Enemy extends GameObject{
 	
@@ -34,6 +35,12 @@ public abstract class Enemy extends GameObject{
 		attack(playerX, playerY);
 		//check if the enemy is still alive
 		
+	}
+	
+	@Override
+	public Rectangle getBounds(){
+		Rectangle r =  new Rectangle((int)this.getX(),(int)this.getY(),this.size,this.size);
+		return r;
 	}
 	
 }

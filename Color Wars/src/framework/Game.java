@@ -150,6 +150,7 @@ public class Game implements Runnable {
 			//doesn't do anything yet
 		}
 	}	
+	
 	//listens for click
 	public class shootListener extends MouseAdapter{
 		public void mouseClicked(MouseEvent e){

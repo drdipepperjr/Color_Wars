@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Path2D;
@@ -67,6 +68,8 @@ public class Player extends GameObject{
 		 KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
 	        manager.addKeyEventDispatcher(new MyDispatcher());
 	}
+	
+	
 			
 		
 	public void shoot(){
@@ -104,6 +107,12 @@ public class Player extends GameObject{
 		 	g2d.draw(triangle);
 		 	g2d.fill(triangle);
 		
+	}
+	
+	@Override
+	public Rectangle getBounds(){
+		Rectangle r =  new Rectangle((int)this.getX(),(int)this.getY(),this.size,this.size);
+		return r;
 	}
 	
 }

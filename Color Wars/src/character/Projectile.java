@@ -3,6 +3,7 @@ package character;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
 
@@ -45,6 +46,12 @@ public class Projectile extends GameObject{
 		if((this.x > Game.WIDTH)||(this.x < 0)||(this.y > Game.HEIGHT)||(this.y < 0))
 			return true;
 		return false;
+	}
+	
+	@Override
+	public Rectangle getBounds(){
+		Rectangle r =  new Rectangle((int)this.getX(),(int)this.getY(),this.size,this.size);
+		return r;
 	}
 
 }

@@ -1,7 +1,6 @@
 package character;
 
 import java.awt.Color;
-import java.awt.Rectangle;
 import java.awt.Shape;
 
 import utilities.GeneralPathWrapper;
@@ -10,7 +9,7 @@ public class GameObject extends GeneralPathWrapper implements Shape{
 
 	double x;
 	double y;
-	int size;
+	int size = 30;
 	Color color;
 	boolean isAlive;
 	
@@ -19,13 +18,6 @@ public class GameObject extends GeneralPathWrapper implements Shape{
 		this.y = y;
 		this.color = color;
 		isAlive = true;
-	}
-	
-	//Returns a rectangle that we use for getBounds()
-	@Override
-	public Rectangle getBounds(){
-		Rectangle r =  new Rectangle((int)x,(int)y,size,size);
-		return r;
 	}
 	
 	//Returns true if this gameObject collides with another GameObject

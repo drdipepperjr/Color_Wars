@@ -3,24 +3,17 @@ package framework;
 import java.awt.Color;
 import java.awt.Graphics;
 
-
 import javax.swing.JPanel;
 
-import java.util.ArrayList;
-import java.util.Random;
-
 import character.Player;
-import character.Wave;
 import character.Projectile;
 import character.Projectiles;
+import character.Wave;
 
 
 @SuppressWarnings("serial")
 public class Map extends JPanel{
 	
-	
-
-
 	//TEST PLAYER
 	Player player = new Player(Game.WIDTH, Game.HEIGHT, Color.black);
 	double pX = player.getX();
@@ -29,7 +22,7 @@ public class Map extends JPanel{
 	//TEST ENEMIES
 	
 	//TEST WAVE
-	Wave wave1 = new Wave(8);
+	Wave wave1 = new Wave(10);
 	
 	//TEST PROJECTILE
 	Projectiles proj=new Projectiles();
@@ -37,9 +30,6 @@ public class Map extends JPanel{
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
-		g.setColor(Color.WHITE);
-		g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
-		
 		player.render(g);
 		wave1.render(g);
 		proj.render(g);
@@ -50,8 +40,11 @@ public class Map extends JPanel{
 		player.update();	
 		pX = player.getX();
 		pY = player.getY();
+		wave1.checkForCollisions(player);
+		wave1.checkForCollisions(proj);
 		wave1.update(pX, pY);
 		proj.update(pX,pY);
+		
 	}
 
 	public void playerShoot(double x, double y){
