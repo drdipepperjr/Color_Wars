@@ -69,8 +69,7 @@ public class Wave extends ArrayList<Enemy> {
 				if(this.get(i).isCollidedWith(a.get(j))){
 					System.out.println("COLLISION DETECTED");
 					a.get(j).destroy();
-					this.remove(i);
-					numEnemies--;
+					this.get(i).destroy();
 				}
 			}
 		}
@@ -80,7 +79,7 @@ public class Wave extends ArrayList<Enemy> {
 	public void update(double playerX, double playerY){
 		for(int i=0;i<numEnemies;i++){
 			this.get(i).update(playerX, playerY);
-			if(!this.get(i).isAlive){
+			if(!this.get(i).isAlive()){
 				this.remove(i);
 				numEnemies --;
 			}

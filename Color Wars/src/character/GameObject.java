@@ -11,13 +11,13 @@ public class GameObject extends GeneralPathWrapper implements Shape{
 	double y;
 	int size = 30;
 	Color color;
-	boolean isAlive;
+	boolean isAlive = true;
 	
 	public GameObject(double x, double y, Color color){
 		this.x = x;
 		this.y = y;
 		this.color = color;
-		isAlive = true;
+		this.isAlive = true;
 	}
 	
 	//Returns true if this gameObject collides with another GameObject
