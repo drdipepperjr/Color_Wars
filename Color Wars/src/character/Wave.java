@@ -50,25 +50,38 @@ public class Wave extends ArrayList<Enemy> {
 			this.get(i).render(g);
 	}
 	
+	//Checks for collisions with other enemies
+	public void checkForCollisions(Wave w){
+		for(int i=0;i<numEnemies;i++){
+			for(int j=0;j<numEnemies;j++){
+				if(i!=j){
+					if(this.get(i).isCollidedWith(this.get(j))){
+						//Attempt to move away
+						System.out.println("COLLISION DETECTED BETWEEN ENEMIES");
+					}
+				}
+			}
+		}
+	}
+	
 	//Checks for collisions with the player
-	//Currently destroys all enemis that come in contact with the player
+	//Currently destroys all enemies that come in contact with the player
 	public void checkForCollisions(Player p){
 		for(int i=0;i<numEnemies;i++){
 			if(this.get(i).isCollidedWith(p)){
-				System.out.println("COLLISION DETECTED");
-				this.remove(i);
-				numEnemies--;
+				System.out.println("COLLISION DETECTED WITH PLAYER. ENEMY DESTROYED");
+				this.get(i).destroy();
 			}
 		}
 	}
 	
 	//Checks for collisions with projectiles
-	public void checkForCollisions(ArrayList<Projectile> a){
+	public void checkForCollisions(Projectiles p){
 		for(int i=0;i<numEnemies;i++){
-			for(int j=0;j<a.size();j++){
-				if(this.get(i).isCollidedWith(a.get(j))){
-					System.out.println("COLLISION DETECTED");
-					a.get(j).destroy();
+			for(int j=0;j<p.size();j++){
+				if(this.get(i).isCollidedWith(p.get(j))){
+					System.out.println("COLLISION DETECTED WITH PROJECTILE. ENEMY DESTROYED");
+					p.get(j).destroy();
 					this.get(i).destroy();
 				}
 			}

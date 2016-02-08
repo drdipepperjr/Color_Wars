@@ -39,11 +39,13 @@ public class Map extends JPanel{
 	public void update(){
 		player.update();	
 		pX = player.getX();
-		pY = player.getY();
+		pY = player.getY();		
+		wave1.update(player.getX(), player.getY());
+		proj.update(player.getX(),player.getY());
+		
+		wave1.checkForCollisions(wave1);
 		wave1.checkForCollisions(player);
 		wave1.checkForCollisions(proj);
-		wave1.update(pX, pY);
-		proj.update(pX,pY);
 		
 	}
 
