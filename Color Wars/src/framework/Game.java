@@ -153,7 +153,7 @@ public class Game implements Runnable {
 	
 	//listens for click
 	public class shootListener extends MouseAdapter{
-		public void mouseClicked(MouseEvent e){
+		public void mousePressed(MouseEvent e){
 			double x=e.getX();
 			double y=e.getY();
 			System.err.println("click coord " +x +", "+y);

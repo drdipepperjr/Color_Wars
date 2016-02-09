@@ -51,13 +51,14 @@ public class Wave extends ArrayList<Enemy> {
 	}
 	
 	//Checks for collisions with other enemies
+	//Currently does nothing
 	public void checkForCollisions(Wave w){
 		for(int i=0;i<numEnemies;i++){
 			for(int j=0;j<numEnemies;j++){
 				if(i!=j){
 					if(this.get(i).isCollidedWith(this.get(j))){
-						//Attempt to move away
-						System.out.println("COLLISION DETECTED BETWEEN ENEMIES");
+						//Attempt to move away from other enemy
+						//System.out.println("COLLISION DETECTED BETWEEN ENEMIES");
 					}
 				}
 			}
