@@ -21,14 +21,18 @@ public class Wave extends ArrayList<Enemy> {
 	 * Creates numEnemies Enemies
 	 */
 	public Wave(int numEnemies){
-		//this.numEnemies = numEnemies;
 		Random random = new Random();
 		for(int i=0; i<numEnemies; i++){
 			int enemyType = random.nextInt(3);
 			int enemyColor = random.nextInt(4);
-			int x = random.nextInt(Game.WIDTH);
-			int y = random.nextInt(Game.HEIGHT);
+			int xpos = random.nextInt(2);
+			int ypos = random.nextInt(2);
 			
+			if(xpos==0) x = 0-random.nextInt(Game.WIDTH);
+			if(xpos==1) x = Game.WIDTH + random.nextInt(Game.WIDTH);
+			if(ypos==0) y = 0-random.nextInt(Game.HEIGHT);
+			if(ypos==1) x = Game.HEIGHT + random.nextInt(Game.HEIGHT);
+	
 			if(enemyColor==0) color = Color.RED;
 			if(enemyColor==1) color = Color.BLUE;
 			if(enemyColor==2) color = Color.GREEN;
@@ -98,7 +102,5 @@ public class Wave extends ArrayList<Enemy> {
 				numEnemies --;
 			}
 		}
-				
 	}
-	
 }

@@ -21,6 +21,5 @@ public class Projectiles extends ArrayList<Projectile> {
 				System.out.println("Clip size is " + this.size());
 			}
 		}
-
 	}
 }

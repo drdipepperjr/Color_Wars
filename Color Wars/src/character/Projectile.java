@@ -53,5 +53,10 @@ public class Projectile extends GameObject{
 		Rectangle r =  new Rectangle((int)this.getX(),(int)this.getY(),this.size,this.size);
 		return r;
 	}
+	
+	@Override
+	public String getType(){
+		return "Projectile";
+	}
 
 }

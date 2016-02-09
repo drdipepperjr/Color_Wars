@@ -39,6 +39,9 @@ public class Triangle extends Enemy{
 		if (this.y > playerY) this.y--;
 	}
 
-	
+	@Override
+	public String getType(){
+		return "Triangle";
+	}
 
 }

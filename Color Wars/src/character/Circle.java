@@ -24,25 +24,28 @@ public class Circle extends Enemy {
 		g2d.draw(circle);
 		g2d.fill(circle);
 	}
-
+	
 	@Override
 	void attack(double playerX, double playerY) {
 		if(Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0)) > 300)
 			{
-			if (this.x < playerX) this.x+=3;
-			
+			if (this.x < playerX) this.x+=3;			
 			if (this.x > playerX) this.x-=3;
 			if (this.y < playerY) this.y+=3;
 			if (this.y > playerY) this.y-=3;
 			}
 		if(Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0)) < 300)
-			{if (this.x < playerX) this.x-=3;
-		
+			{
+			if (this.x < playerX) this.x-=3;
 			if (this.x > playerX) this.x+=3;
 			if (this.y < playerY) this.y-=3;
 			if (this.y > playerY) this.y+=3;	
 			}
 	}
 
+	@Override
+	public String getType(){
+		return "Circle";
+	}
 	
 }

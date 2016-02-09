@@ -115,4 +115,9 @@ public class Player extends GameObject{
 		return r;
 	}
 	
+	@Override
+	public String getType(){
+		return "Player";
+	}
+	
 }
