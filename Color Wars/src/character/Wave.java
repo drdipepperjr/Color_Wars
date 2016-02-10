@@ -74,6 +74,8 @@ public class Wave extends ArrayList<Enemy> {
 		for(int i=0;i<numEnemies;i++){
 			if(this.get(i).isCollidedWith(p)){
 				this.get(i).destroy();
+				p.health--;
+				System.out.println("PlayerHealth = " + p.health);
 			}
 		}
 	}
@@ -84,7 +86,9 @@ public class Wave extends ArrayList<Enemy> {
 			for(int j=0;j<p.size();j++){
 				if(this.get(i).isCollidedWith(p.get(j))){
 					p.get(j).destroy();
-					this.get(i).destroy();
+					this.get(i).health--;
+					if(this.get(i).health == 0)
+						this.get(i).destroy();
 				}
 			}
 		}

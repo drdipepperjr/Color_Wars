@@ -12,6 +12,7 @@ public class Triangle extends Enemy{
 	
 	public Triangle(int x, int y, Color color) {
 		super(x, y, color);
+		this.health = 1;
 	}
 
 	
@@ -32,11 +33,10 @@ public class Triangle extends Enemy{
 	
 	@Override 
 	void attack(double playerX, double playerY) {
-		if (this.x < playerX) this.x++;
-		
-		if (this.x > playerX) this.x--;
-		if (this.y < playerY) this.y++;
-		if (this.y > playerY) this.y--;
+		if (this.x < playerX) this.x+=3;
+		if (this.x > playerX) this.x-=3;
+		if (this.y < playerY) this.y+=3;
+		if (this.y > playerY) this.y-=3;
 	}
 
 	@Override

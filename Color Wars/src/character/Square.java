@@ -11,7 +11,7 @@ public class Square extends Enemy {
 
 	public Square(int x, int y, Color color) {
 		super(x, y, color);
-		
+		this.health = 10;
 	}
 	
 	@Override

@@ -5,13 +5,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
-
-import java.lang.Math;
+import java.util.Random;
 public class Circle extends Enemy {
 
+	Random random = new Random();
 	public Circle(int x, int y, Color color) {
 		super(x, y, color);
-		
+		this.health = 2;
+		this.delay = random.nextInt(100);
 	}
 	
 	@Override
