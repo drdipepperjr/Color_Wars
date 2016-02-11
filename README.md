@@ -37,7 +37,7 @@ Mostly self explanatory
 * Projectile.java handles the projectiles, essentially an object is created that takes 4 inputs, (x,y) for where the projectile starts and ends
 * Enemy.java is the base class for Square.java, Circle.java, and Triangle.java
 * Wave.java generates enemies
-* 
+
 ####Future implementations
 * Color feature
 * Leaderboard
