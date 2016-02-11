@@ -30,6 +30,7 @@ Actual gameplay files are located in the "Color_Wars/src" folder
 * Map.java is the JPanel for the game. It generate and take action listeners for the Player and Enemies
 * Leaderboard.java needs to be implemented
 * MainMenu.java is a JPanel that the user can use to play the game or check out the leaderboard
+
 ####Characters
 Mostly self explanatory
 * GameObject.java has core methods for all objects and is the base class for player, enemy and projectile
