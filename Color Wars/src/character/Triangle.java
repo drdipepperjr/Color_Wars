@@ -8,15 +8,20 @@ import java.awt.geom.Path2D;
 
 public class Triangle extends Enemy{
 
-	double sideLength = 2*size/Math.sqrt(3);
+	private double sideLength = 2*size/Math.sqrt(3);
 	
+	/*
+	 * Constructor for objects of class Triangle
+	 */
 	public Triangle(int x, int y, Color color) {
 		super(x, y, color);
 		this.health = 1;
 	}
-
 	
-	
+	/*
+	 * Draws a triangle to the screen at the current position
+	 * and with the Triangle's color
+	 */
 	@Override
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
@@ -31,6 +36,9 @@ public class Triangle extends Enemy{
 		g2d.fill(triangle);
 	}
 	
+	/*
+	 * The triangle will attempt to move to the player's coordinates
+	 */
 	@Override 
 	void attack(double playerX, double playerY) {
 		if (this.x < playerX) this.x+=3;

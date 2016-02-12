@@ -8,13 +8,21 @@ import java.awt.geom.Ellipse2D;
 import java.util.Random;
 public class Circle extends Enemy {
 
-	Random random = new Random();
+	private Random random = new Random();
+	
+	/*
+	 * Constructor for objects of class Circle
+	 */
 	public Circle(int x, int y, Color color) {
 		super(x, y, color);
 		this.health = 2;
 		this.delay = random.nextInt(100);
 	}
 	
+	/*
+	 * Draws a circle to the screen at the current position
+	 * and with the Circle's color
+	 */
 	@Override
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
@@ -26,6 +34,9 @@ public class Circle extends Enemy {
 		g2d.fill(circle);
 	}
 	
+	/*
+	 * The circle will attempt to stay at a certain distance from the player
+	 */
 	@Override
 	void attack(double playerX, double playerY) {
 		if(Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0)) > 300)

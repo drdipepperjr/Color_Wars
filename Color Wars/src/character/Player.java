@@ -12,27 +12,34 @@ import java.awt.geom.Path2D;
 
 import framework.Game;
 
-public class Player extends GameObject{
+/*
+ * A GameObject that is controlled by the User
+ */
+public class Player extends GameObject{	
+	
+	/*
+	 * a variable that represents how many hits the player can take before it is destroyed
+	 */
+	int health = 10; 
+	
+	private int size = 30;
+	private double sideLength = 2*size/Math.sqrt(3);
+	private boolean[] keys = new boolean[4];
 
-	boolean[] keys = new boolean[4];
 	
-	int health = 10;
-	int size = 30;
-	double sideLength = 2*size/Math.sqrt(3);
-	
+	/*
+	 * Constructor for objects of class Player
+	 */
 	public Player(double x, double y, Color color){
 		super(x,y,color);
 	}
 	
-	public void changeColor(){
-		//if a button is pressed
-		//change color of projectile (and possibly player, not sure if we're still doing that)
-	}
-	
-	public void rotate(){
-		//have the player point towards the mouse
-	}
-	
+	/*
+	 * Adds an inner class that listens for key inputs.
+	 * Moves the player a certain direction based on which keys are currently being pressed
+	 * ex. "a" will make the player move left on the screen
+	 * Will prevent the player from leaving the window.
+	 */
 	public void move(){
 		
 		//if (KEY.pressed) move in a certain direction
@@ -67,35 +74,39 @@ public class Player extends GameObject{
 		    }
 		 KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
 	        manager.addKeyEventDispatcher(new MyDispatcher());
-	}
+	        
+	    	if(keys[0]){y -= 10;}
+			if(keys[1]){x -= 10;}
+			if(keys[2]){y += 10;}
+			if(keys[3]){x += 10;}
 			
-		
-	public void shoot(){
-		//if left mouse down(or spacebar or whatever)
-		//shoot projectile
+			// hard coded boundaries
+			if(x>= Game.WIDTH-15)
+				x = Game.WIDTH-15;
+			if(x<=9)
+				x = 9;
+			if(y>=Game.HEIGHT-50)
+				y = Game.HEIGHT-50;
+			if(y<=16)
+				y = 16;
 	}
 	
+	/*
+	 * Called when the master update() method is called.
+	 * Destroys the player when its health reaches 0
+	 * and calls its move() method
+	 */
 	public void update(){
 		if(this.health == 0){
 			this.destroy();
 		}
 		move();
-		if(keys[0]){y -= 10;}
-		if(keys[1]){x -= 10;}
-		if(keys[2]){y += 10;}
-		if(keys[3]){x += 10;}
-		// hard coded boundaries
-		if(x>= Game.WIDTH-15)
-			x = Game.WIDTH-15;
-		if(x<=9)
-			x = 9;
-		if(y>=Game.HEIGHT-50)
-			y = Game.HEIGHT-50;
-		if(y<=16)
-			y = 16;
-		//rotate;
-		//shootprojectile
 	}
+	
+	/*
+	 * Called when the master render() method is called.
+	 * Draws a black triangle to the screen which represents the player
+	 */
 	public void render(Graphics g){
 		Graphics2D g2d = (Graphics2D)g;
 		 	g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -107,12 +118,11 @@ public class Player extends GameObject{
 		 	g2d.setColor(this.color);
 		 	g2d.draw(triangle);
 		 	g2d.fill(triangle);
-		
 	}
 	
 	@Override
 	public Rectangle getBounds(){
-		Rectangle r =  new Rectangle((int)this.getX(),(int)this.getY(),this.size,this.size);
+		Rectangle r =  new Rectangle((int)this.getX(),(int)this.getY(),this.size,this.size*2);
 		return r;
 	}
 	

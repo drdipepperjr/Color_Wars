@@ -9,11 +9,26 @@ import java.awt.geom.Ellipse2D;
 
 import framework.Game;
 
+/*
+ * A class that represents projectiles which are shot out of the
+ * Player or enemies
+ */
 public class Projectile extends GameObject{
-	double xMove;
-	double yMove;
-	int size =10;
+	private double xMove;
+	private double yMove;
+	private int size = 10;
 	
+	/*
+	 * Constructor for objects of class projectile
+	 * NOTE: xEnd and yEnd are not the ending coordinates. They are used to calculate
+	 * a line on which the projectile will move and at what speed.
+	 * 
+	 * @param xStart the starting x-coordinate
+	 * @param yStart the starting x-coordinate
+	 * @param xEnd the x-position that the porectile will move to
+	 * @param yEnd the y-position that the porectile will move to
+	 * @param color color of the object
+	 */
 	public Projectile(double xStart, double yStart, double xEnd, double yEnd,  Color color) {
 		super(xStart, yStart, color);
 		double xLength = xEnd-xStart;
@@ -24,6 +39,10 @@ public class Projectile extends GameObject{
 		
 	}
 
+	/*
+	 * Draws a circle representing the projectile at the current position
+	 * and with the projectile's color
+	 */
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -34,6 +53,14 @@ public class Projectile extends GameObject{
 		g2d.fill(circle);
 	}
 
+	/*
+	 * Makes the Projectile move and destroys it if it becomes out of bounds
+	 * NOTE: playerX and playerY are the starting coordinates for the Player's projectiles,
+	 * but are the ending coordinates for Enemy projectiles
+	 * 
+	 * @param playerX the player's current x-coordinate
+	 * @param playerY the player's current y-coordinate
+	 */
 	public void update(double playerX, double playerY) {
 		x+=xMove;
 		y+=yMove;
@@ -41,13 +68,20 @@ public class Projectile extends GameObject{
 			destroy();
 	}
 	
-	//if the projectile leaves the boundaries of the game
+	/*
+	 * checks to see if the projectile has left the screen.
+	 * 
+	 * @return true if the projectile has left the screen. False otherwise.
+	 */
 	public boolean outOfBounds(){
 		if((this.x > Game.WIDTH)||(this.x < 0)||(this.y > Game.HEIGHT)||(this.y < 0))
 			return true;
 		return false;
 	}
 	
+	/*
+	 * @return a Rectangle object which is used for detecting collisions
+	 */
 	@Override
 	public Rectangle getBounds(){
 		Rectangle r =  new Rectangle((int)this.getX(),(int)this.getY(),this.size,this.size);

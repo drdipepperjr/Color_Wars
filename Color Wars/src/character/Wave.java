@@ -6,19 +6,28 @@ import java.util.Random;
 
 import framework.Game;
 
+/*
+ * A class used for handling all current insatnces of enemies.
+ * Each instance of wave represents a new horde of enemies
+ */
 @SuppressWarnings("serial")
 public class Wave extends ArrayList<Enemy> {
 
-	Enemy e;
-	Color color;
-	int x;
-	int y;
+	/*
+	 * The number of enemies that are currently alive
+	 */
 	public int numEnemies;
 	
+	private Enemy e;
+	private Color color;
+	private int x;
+	private int y;
+	
 	/*
+	 * Constructor for objects of class Wave
 	 * This creates a wave of enemies
 	 * All of them are randomly generated
-	 * Creates numEnemies Enemies
+	 * @param numEnemies the number of enemies in the current wave
 	 */
 	public Wave(int numEnemies){
 		Random random = new Random();
@@ -48,14 +57,19 @@ public class Wave extends ArrayList<Enemy> {
 		this.numEnemies=this.size();
 	}
 	
-	//Renders the whole wave via a for loop
+	/*
+	 * Calls the render method for each Enemy in the Wave
+	 */
 	public void render(Graphics g){	
 		for(int i=0;i<numEnemies;i++)
 			this.get(i).render(g);
 	}
 	
-	//Checks for collisions with other enemies
-	//Currently does nothing
+	/*
+	 * Checks for collisions between each Enemy in the Wave
+	 * 
+	 * @param the current wave
+	 */
 	public void checkForCollisions(Wave w){
 		for(int i=0;i<numEnemies;i++){
 			for(int j=0;j<numEnemies;j++){
@@ -68,8 +82,13 @@ public class Wave extends ArrayList<Enemy> {
 		}
 	}
 	
-	//Checks for collisions with the player
-	//Currently destroys all enemies that come in contact with the player
+	/*
+	 * Checks for collisions between the Player and each Enemy
+	 * If an Enemy isCollidedWith the Player, destroy the enemy
+	 * and reduce the Player's health by 1
+	 * 
+	 * @param the player
+	 */
 	public void checkForCollisions(Player p){
 		for(int i=0;i<numEnemies;i++){
 			if(this.get(i).isCollidedWith(p)){
@@ -80,7 +99,14 @@ public class Wave extends ArrayList<Enemy> {
 		}
 	}
 	
-	//Checks for collisions with projectiles
+	/*
+	 * Checks for collisions between each Enemy and each
+	 * projectile inside a Projectiles object.
+	 * Reduces the enemy's health if it does collide, and destroys it when
+	 * it's health reaches 0.
+	 * 
+	 * @param a Projectiles object
+	 */
 	public void checkForCollisions(Projectiles p){
 		for(int i=0;i<numEnemies;i++){
 			for(int j=0;j<p.size();j++){
@@ -94,7 +120,13 @@ public class Wave extends ArrayList<Enemy> {
 		}
 	}
 	
-	//Updates the whole wave via a for loop
+	/*
+	 * Calls the update method on each Enemy and checks to see if it is still alive.
+	 * If not, the Enemy is removed from the Wave and numEnemies decreases by 1
+	 * 
+	 * @param the player's current x-coordinate
+	 * @param the player's current y-coordinate
+	 */
 	public void update(double playerX, double playerY){
 		for(int i=0;i<numEnemies;i++){
 			this.get(i).update(playerX, playerY);
