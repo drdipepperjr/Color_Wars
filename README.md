@@ -12,7 +12,7 @@ The user will be brought to a screen that will direct them to either the leaderb
 * a work in process (unimplemented)
 
 ####Game
-The user controls the black triangle and must take down enemies by shooting them. The player can die and then lose should the player's HP reach 0. The player's HP is decremented by one for every enemy collision (including enemy projectiles)
+The user controls the black triangle and must take down enemies by shooting them. The player can die and then lose should the player's health reach 0. The player's health is decremented by one for every enemy collision (including enemy projectiles)
 
 #####Player
 * Takes WASD for movement
