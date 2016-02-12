@@ -26,6 +26,9 @@ public class Game implements Runnable {
 	private JPanel mainMenu;
 	private Map PlayMenu;
 	private JPanel LeaderBoard; //TO BE IMPLEMENTED AT A LATER TIME
+
+	public static boolean DebugEnviorment=true;
+
 	private boolean isRunning= false;
 	private Thread thread;
 	
@@ -33,6 +36,8 @@ public class Game implements Runnable {
 	 * Creates the Game object on which everything depends on and calls it's go method
 	 */
 	public static void main(String args[]){
+		if(args.length!=0 && args[0]== "Debug")
+			DebugEnviorment=true;
 		Game game=new Game();
 		game.go();
 	}
@@ -138,11 +143,13 @@ public class Game implements Runnable {
 			render();
 			frames++;
 			//debug code so we can see whats going on.  
-			if(System.currentTimeMillis()-timer > 1000){
-				timer += 1000;
-				System.err.println(updates + " ticks, fps " +frames);
-				updates = 0;
-				frames = 0;
+			if(DebugEnviorment==true){
+				if(System.currentTimeMillis()-timer > 1000){
+					timer += 1000;
+					System.err.println(updates + " ticks, fps " +frames);
+					updates = 0;
+					frames = 0;
+				}
 			}
 		}
 		stop();
@@ -172,7 +179,8 @@ public class Game implements Runnable {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			playGame();
-			System.err.println("play pressed");
+			if(DebugEnviorment==true)
+				System.err.println("play pressed");
 		}
 	}
 	
@@ -183,7 +191,14 @@ public class Game implements Runnable {
 	class leaderBoardListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
+
 			System.err.println("LeaderBoard pressed");
+
+			if(DebugEnviorment==true)
+				System.err.println("LeaderBoard pressed");
+			//game.displayLeaderBoard();
+			//doesn't do anything yet
+
 		}
 	}	
 	
@@ -194,6 +209,9 @@ public class Game implements Runnable {
 		public void mousePressed(MouseEvent e){
 			double x=e.getX();
 			double y=e.getY();
+
+			if(DebugEnviorment==true)
+				System.err.println("click coord " +x +", "+y);
 			PlayMenu.playerShoot(x,y);
 		}	
 	}

@@ -3,6 +3,8 @@ package character;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
+import framework.Game;
+
 /*
  * A class used for handling projectiles.
  * A Projectiles object can be used by the Player or by Enemies
@@ -29,6 +31,9 @@ public class Projectiles extends ArrayList<Projectile> {
 			if(this.get(i).isCollidedWith(p)){
 				this.get(i).destroy();
 				p.health --;
+				if(Game.DebugEnviorment==true){
+					System.err.println("Projectile "+ i+ " colided with player");
+				}
 				System.out.println("Player health = " + p.health);
 			}
 		}

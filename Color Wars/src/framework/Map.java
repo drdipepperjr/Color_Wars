@@ -84,6 +84,10 @@ public class Map extends JPanel{
 	 */
 	public void playerShoot(double x, double y){
 		proj.add( new Projectile(pX,pY,x,y, Color.MAGENTA));
+
+		if(Game.DebugEnviorment==true)
+			System.err.println("proj size "+ proj.size());
+
 	}
 	
 	/*
