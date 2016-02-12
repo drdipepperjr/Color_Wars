@@ -6,11 +6,12 @@ import java.awt.Rectangle;
 
 public abstract class Enemy extends GameObject{
 	
-	int health = 1;
+	int health;
 	int size = 30;
 	Color color;
 	boolean isAlive;
-
+	int delay;
+	
 	public Enemy(double x, double y, Color color) {
 		super(x,y,color);
 		this.color = color;
@@ -43,4 +44,10 @@ public abstract class Enemy extends GameObject{
 		return r;
 	}
 	
+	public int getDelay(){
+		return this.delay;
+	}
+	public void setDelay(int delay){
+		this.delay = delay;
+	}
 }

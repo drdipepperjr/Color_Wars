@@ -5,7 +5,7 @@ import java.awt.Shape;
 
 import utilities.GeneralPathWrapper;
 
-public class GameObject extends GeneralPathWrapper implements Shape{
+public abstract class GameObject extends GeneralPathWrapper implements Shape{
 
 	double x;
 	double y;
@@ -51,4 +51,5 @@ public class GameObject extends GeneralPathWrapper implements Shape{
 	public void setY(int y){
 		this.y = y;
 	}
+	public abstract String getType();
 }

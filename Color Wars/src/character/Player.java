@@ -16,7 +16,7 @@ public class Player extends GameObject{
 
 	boolean[] keys = new boolean[4];
 	
-	int health = 1;
+	int health = 10;
 	int size = 30;
 	double sideLength = 2*size/Math.sqrt(3);
 	
@@ -68,8 +68,6 @@ public class Player extends GameObject{
 		 KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
 	        manager.addKeyEventDispatcher(new MyDispatcher());
 	}
-	
-	
 			
 		
 	public void shoot(){
@@ -78,6 +76,9 @@ public class Player extends GameObject{
 	}
 	
 	public void update(){
+		if(this.health == 0){
+			this.destroy();
+		}
 		move();
 		if(keys[0]){y -= 10;}
 		if(keys[1]){x -= 10;}
@@ -113,6 +114,11 @@ public class Player extends GameObject{
 	public Rectangle getBounds(){
 		Rectangle r =  new Rectangle((int)this.getX(),(int)this.getY(),this.size,this.size);
 		return r;
+	}
+	
+	@Override
+	public String getType(){
+		return "Player";
 	}
 	
 }

@@ -14,8 +14,10 @@ import character.Wave;
 @SuppressWarnings("serial")
 public class Map extends JPanel{
 	
+	
+	int shootDelay = 0;
 	//TEST PLAYER
-	Player player = new Player(Game.WIDTH, Game.HEIGHT, Color.black);
+	Player player = new Player(Game.WIDTH/2, Game.HEIGHT/2, Color.black);
 	double pX = player.getX();
 	double pY = player.getY();
 	
@@ -25,7 +27,8 @@ public class Map extends JPanel{
 	Wave wave1 = new Wave(10);
 	
 	//TEST PROJECTILE
-	Projectiles proj=new Projectiles();
+	Projectiles proj = new Projectiles();
+	Projectiles proj2 = new Projectiles();
 	
 	@Override
 	public void paint(Graphics g) {
@@ -33,16 +36,23 @@ public class Map extends JPanel{
 		player.render(g);
 		wave1.render(g);
 		proj.render(g);
+		proj2.render(g);
 	}
 	
 	//updates EVERYTHING
 	public void update(){
-		player.update();	
+		player.update();
+		if(!player.isAlive()){
+			System.exit(1);
+		}
 		pX = player.getX();
 		pY = player.getY();		
-		wave1.update(player.getX(), player.getY());
-		proj.update(player.getX(),player.getY());
+		wave1.update(pX, pY);
+		proj.update(pX,pY);
+		proj2.update(pX,pY);		
+		circleShoot(wave1);
 		
+		proj2.checkForCollisions(player);
 		wave1.checkForCollisions(wave1);
 		wave1.checkForCollisions(player);
 		wave1.checkForCollisions(proj);
@@ -51,8 +61,20 @@ public class Map extends JPanel{
 
 	public void playerShoot(double x, double y){
 		proj.add( new Projectile(pX,pY,x,y, Color.MAGENTA));
-		System.err.println("proj size "+ proj.size());
-		
+		//System.err.println("proj size "+ proj.size());
 	}
 	
+	//Makes the circles shoot at constant intervals
+	//Each one begins firing at a random time 
+	public void circleShoot(Wave wave){
+		for(int i=0;i<wave.numEnemies;i++){
+			if(wave.get(i).getType() == "Circle"){
+				if(wave.get(i).getDelay() == 100){
+					proj2.add( new Projectile(wave.get(i).getX(),wave.get(i).getY(),pX,pY, Color.CYAN));
+					wave.get(i).setDelay(0);
+				}
+				wave.get(i).setDelay(wave.get(i).getDelay() + 1);
+			}
+		}
+	}
 }

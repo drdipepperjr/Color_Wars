@@ -34,4 +34,9 @@ public class debugEnemy extends Enemy{
 		// TODO Auto-generated method stub
 		
 	}
+	
+	@Override
+	public String getType(){
+		return "debugEnemy";
+	}
 }

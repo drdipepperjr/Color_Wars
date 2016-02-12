@@ -19,8 +19,8 @@ public class Projectile extends GameObject{
 		double xLength = xEnd-xStart;
 		double yLength = yEnd-yStart;
 		double length= Math.sqrt(Math.pow(xLength, 2)+Math.pow(yLength, 2));
-		this.xMove=xLength/length*2;
-		this.yMove=yLength/length*2;
+		this.xMove=xLength/length*3;
+		this.yMove=yLength/length*3;
 		
 	}
 
@@ -52,6 +52,11 @@ public class Projectile extends GameObject{
 	public Rectangle getBounds(){
 		Rectangle r =  new Rectangle((int)this.getX(),(int)this.getY(),this.size,this.size);
 		return r;
+	}
+	
+	@Override
+	public String getType(){
+		return "Projectile";
 	}
 
 }

@@ -156,7 +156,7 @@ public class Game implements Runnable {
 		public void mousePressed(MouseEvent e){
 			double x=e.getX();
 			double y=e.getY();
-			System.err.println("click coord " +x +", "+y);
+			//System.err.println("click coord " +x +", "+y);
 			PlayMenu.playerShoot(x,y);
 		}
 		

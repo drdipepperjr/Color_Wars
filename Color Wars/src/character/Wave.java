@@ -21,14 +21,18 @@ public class Wave extends ArrayList<Enemy> {
 	 * Creates numEnemies Enemies
 	 */
 	public Wave(int numEnemies){
-		//this.numEnemies = numEnemies;
 		Random random = new Random();
 		for(int i=0; i<numEnemies; i++){
 			int enemyType = random.nextInt(3);
 			int enemyColor = random.nextInt(4);
-			int x = random.nextInt(Game.WIDTH);
-			int y = random.nextInt(Game.HEIGHT);
+			int xpos = random.nextInt(2);
+			int ypos = random.nextInt(2);
 			
+			if(xpos==0) x = 0-random.nextInt(Game.WIDTH);
+			if(xpos==1) x = Game.WIDTH + random.nextInt(Game.WIDTH);
+			if(ypos==0) y = 0-random.nextInt(Game.HEIGHT);
+			if(ypos==1) y = Game.HEIGHT + random.nextInt(Game.HEIGHT);
+	
 			if(enemyColor==0) color = Color.RED;
 			if(enemyColor==1) color = Color.BLUE;
 			if(enemyColor==2) color = Color.GREEN;
@@ -58,7 +62,6 @@ public class Wave extends ArrayList<Enemy> {
 				if(i!=j){
 					if(this.get(i).isCollidedWith(this.get(j))){
 						//Attempt to move away from other enemy
-						//System.out.println("COLLISION DETECTED BETWEEN ENEMIES");
 					}
 				}
 			}
@@ -70,8 +73,9 @@ public class Wave extends ArrayList<Enemy> {
 	public void checkForCollisions(Player p){
 		for(int i=0;i<numEnemies;i++){
 			if(this.get(i).isCollidedWith(p)){
-				System.out.println("COLLISION DETECTED WITH PLAYER. ENEMY DESTROYED");
 				this.get(i).destroy();
+				p.health--;
+				System.out.println("PlayerHealth = " + p.health);
 			}
 		}
 	}
@@ -81,9 +85,10 @@ public class Wave extends ArrayList<Enemy> {
 		for(int i=0;i<numEnemies;i++){
 			for(int j=0;j<p.size();j++){
 				if(this.get(i).isCollidedWith(p.get(j))){
-					System.out.println("COLLISION DETECTED WITH PROJECTILE. ENEMY DESTROYED");
 					p.get(j).destroy();
-					this.get(i).destroy();
+					this.get(i).health--;
+					if(this.get(i).health == 0)
+						this.get(i).destroy();
 				}
 			}
 		}
@@ -98,7 +103,5 @@ public class Wave extends ArrayList<Enemy> {
 				numEnemies --;
 			}
 		}
-				
 	}
-	
 }

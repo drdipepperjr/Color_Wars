@@ -1,7 +1,6 @@
 package character;
 
 import java.awt.Color;
-
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -12,7 +11,7 @@ public class Square extends Enemy {
 
 	public Square(int x, int y, Color color) {
 		super(x, y, color);
-		
+		this.health = 10;
 	}
 	
 	@Override
@@ -45,5 +44,8 @@ public class Square extends Enemy {
 		
 	}
 
-	
+	@Override
+	public String getType(){
+		return "Square";
+	}
 }
