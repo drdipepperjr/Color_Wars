@@ -6,8 +6,8 @@ Domenic Dipeppe, Andrew Huang, Jackey Lau, Alex Thielk
 
 ##User View
 ####How To Play
-1) Use Eclipse to pull from this repo. Open the Game.java file and press Eclipse's "Run as..." and the game will start.
-2) Run our executable .jar file located here: https://www.dropbox.com/s/1o0gjgwh7dbe6pl/ColorWars.jar?dl=0
+1. Use Eclipse to pull from this repo. Open the Game.java file and press Eclipse's "Run as..." and the game will start.
+2. Run our executable .jar file located here: https://www.dropbox.com/s/1o0gjgwh7dbe6pl/ColorWars.jar?dl=0
 Note: You'll need java to execute it 
 
 ####Main Menu
