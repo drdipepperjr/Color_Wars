@@ -1,13 +1,20 @@
 package utilities;
 
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 import java.awt.Color;
 
 import org.junit.Test;
 
-import character.*;
+import character.Circle;
+import character.GameObject;
+import character.Player;
+import character.Projectile;
+import character.Projectiles;
+import character.Square;
+import character.Triangle;
+import character.Wave;
 
 public class UnitTests {
 	
@@ -51,6 +58,6 @@ public class UnitTests {
 		assertEquals(1,p.size(),0);
 	}
 	
-	
+
 }
 

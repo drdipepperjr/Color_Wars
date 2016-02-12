@@ -10,26 +10,38 @@ import character.Projectile;
 import character.Projectiles;
 import character.Wave;
 
-
+/*
+ * A class that represents the environment in which the player attempts to survive.
+ * Handles all rendering methods and update methods for each current instance of GameObject
+ * Handles checking for collisions and removing GameObjects from the game.
+ */
 @SuppressWarnings("serial")
 public class Map extends JPanel{
 	
-	
-	int shootDelay = 0;
-	//TEST PLAYER
+	/*
+	 * Creates the one and only instance of Player
+	 */
 	Player player = new Player(Game.WIDTH/2, Game.HEIGHT/2, Color.black);
-	double pX = player.getX();
-	double pY = player.getY();
+	private double pX;
+	private double pY;
 	
-	//TEST ENEMIES
-	
-	//TEST WAVE
+	/*
+	 * Creates the Wave of Enemies
+	 */
 	Wave wave1 = new Wave(10);
 	
-	//TEST PROJECTILE
+	/*
+	 * Creates the Projectiles objects.
+	 * proj represents the player's projectiles
+	 * proj2 represents the Enemies' projectiles
+	 */
 	Projectiles proj = new Projectiles();
 	Projectiles proj2 = new Projectiles();
 	
+	/*
+	 * Overridden paint method
+	 * Calls render methods for Player, Wave, and projectiles
+	 */
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -39,7 +51,11 @@ public class Map extends JPanel{
 		proj2.render(g);
 	}
 	
-	//updates EVERYTHING
+	/*
+	 * Calls update methods for Player, Wave, and Projectiles
+	 * Also checks for all collisions between all GameObjects
+	 * Currently ends the game if the Player is no longer alive
+	 */
 	public void update(){
 		player.update();
 		if(!player.isAlive()){
@@ -59,13 +75,22 @@ public class Map extends JPanel{
 		
 	}
 
+	/*
+	 * Creates a new projectile that will travel from the player
+	 * to the position specifieed by a mouse click
+	 * 
+	 * @param x the x-coordinate of the mouse
+	 * @param y the y-coordinate of the mouse
+	 */
 	public void playerShoot(double x, double y){
 		proj.add( new Projectile(pX,pY,x,y, Color.MAGENTA));
-		//System.err.println("proj size "+ proj.size());
 	}
 	
-	//Makes the circles shoot at constant intervals
-	//Each one begins firing at a random time 
+	/*
+	 * Makes the circles shoot at the player in random intervals
+	 *
+	 * @param wave the current wave
+	 */
 	public void circleShoot(Wave wave){
 		for(int i=0;i<wave.numEnemies;i++){
 			if(wave.get(i).getType() == "Circle"){

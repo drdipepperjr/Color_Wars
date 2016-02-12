@@ -10,21 +10,36 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
-
+/*
+ * A class that initializes the game window and creates the game loop
+ * upon which the whole game is based. 
+ */
 public class Game implements Runnable {
+	
+	/*
+	 * Variables that represent the height and width of the screen
+	 */
 	public static final int WIDTH = 1024;
 	public static final int HEIGHT = 768;
-	JFrame window;
-	JPanel mainMenu;
-	Map PlayMenu;
-	JPanel LeaderBoard;	
+
+	private JFrame window;
+	private JPanel mainMenu;
+	private Map PlayMenu;
+	private JPanel LeaderBoard; //TO BE IMPLEMENTED AT A LATER TIME
 	private boolean isRunning= false;
 	private Thread thread;
 	
+	/*
+	 * Creates the Game object on which everything depends on and calls it's go method
+	 */
 	public static void main(String args[]){
 		Game game=new Game();
 		game.go();
 	}
+	
+	/*
+	 * Creates the window and displays the main menu on the window
+	 */
 	private void go() {
 		this.window = new JFrame();
 		
@@ -38,10 +53,11 @@ public class Game implements Runnable {
 		this.displayMainMenu();
 		
 		window.setVisible(true);
-		//start();
 	}
 	
-	//Creates and displays the main menu
+	/*
+	 * Displays the main menu and creates buttons to access various parts of the game.
+	 */
 	public void displayMainMenu(){
 		mainMenu = new JPanel(); 
 		JButton play = new JButton("Play Color Wars");
@@ -55,6 +71,9 @@ public class Game implements Runnable {
 		this.window.getContentPane().add(mainMenu);
 	}	
 	
+	/*
+	 * Self-explanatory. Starts the gameplay aspect of the game.
+	 */
 	public void playGame(){
 		window.getContentPane().remove(mainMenu);
 		PlayMenu= new Map();
@@ -91,6 +110,12 @@ public class Game implements Runnable {
 		System.exit(1);
 	}
 	
+	/*
+	 * The game loop.
+	 * Creates "ticks" that occur 60 times a second. Each tick calls the master update method in Map
+	 * Also calls the master render method.
+	 * Creates debug information that gives us the number of ticks per second and frames per second
+	 */
 	@Override
 	public void run(){
 		long lastTime= System.nanoTime();
@@ -122,17 +147,27 @@ public class Game implements Runnable {
 		}
 		stop();
 	}
+	
+	/*
+	 * The master render method.
+	 * Calls the repaint method in Map
+	 */
 	private void render() {
 		PlayMenu.repaint();
 	}
+	
+	/*
+	 * The master update method
+	 * Calls the update method of a Map instance
+	 */
 	private void tick() {
-		//for other stuff like movement 
-		// and stuff we want to go slower
 		PlayMenu.update();
 	}
 	
-
-	//listens for play button
+	/*
+	 * A class that listens for the play button to be pressed.
+	 * Calls playGame() when it is pressed
+	 */
 	class playListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
@@ -141,26 +176,25 @@ public class Game implements Runnable {
 		}
 	}
 	
-	//listens for leaderBoard button
+	/*
+	 * A class that listens for the leaderBoard button to be pressed
+	 * Currently does nothing
+	 */
 	class leaderBoardListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			System.err.println("LeaderBoard pressed");
-			//game.displayLeaderBoard();
-			//doesn't do anything yet
 		}
 	}	
 	
-	//listens for click
+	/*
+	 * A class that listens for mouse input from the player during the game.
+	 */
 	public class shootListener extends MouseAdapter{
 		public void mousePressed(MouseEvent e){
 			double x=e.getX();
 			double y=e.getY();
-			//System.err.println("click coord " +x +", "+y);
 			PlayMenu.playerShoot(x,y);
-		}
-		
-		
+		}	
 	}
-
 }
