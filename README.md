@@ -35,7 +35,8 @@ Actual gameplay files are located in the "Color_Wars/src" folder
 Mostly self explanatory
 * GameObject.java has core methods for all objects and is the base class for player, enemy and projectile
 * Player.java creates a class for the player to have various methods such as shoot, move etc
-* Projectile.java handles the projectiles, essentially an object is created that takes 4 inputs, (x,y) for where the projectile starts and ends
+* Projectile.java is essentially an object that takes 4 inputs, (xStart,yStart,xEnd,yEnd) to calculate a line on which the projectile will move.
+* Projectiles.java (with an s at the end) is an array of projectiles. Currently, there are two Projectiles instances: one for the player, and one for circles.
 * Enemy.java is the base class for Square.java, Circle.java, and Triangle.java
 * Wave.java generates enemies
 
