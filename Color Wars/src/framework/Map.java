@@ -61,7 +61,8 @@ public class Map extends JPanel{
 
 	public void playerShoot(double x, double y){
 		proj.add( new Projectile(pX,pY,x,y, Color.MAGENTA));
-		//System.err.println("proj size "+ proj.size());
+		if(Game.DebugEnviorment==true)
+			System.err.println("proj size "+ proj.size());
 	}
 	
 	//Makes the circles shoot at constant intervals
