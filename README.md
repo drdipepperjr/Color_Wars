@@ -19,7 +19,7 @@ The user controls the black triangle and must take down enemies by shooting them
 * Shoots projectiles at the mouse location
 
 #####Enemies
-* Triangle Enemy - Kamikaze's straight into the player
+* Triangle Enemy - Runs straight into the player
 * Square Enemey - Randomly teleports near player's location
 * Circle Enemy - Stays away and shoots at player
 
