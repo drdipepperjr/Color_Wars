@@ -25,13 +25,6 @@ public abstract class Enemy extends GameObject{
 		super(x,y,color);
 		this.color = color;
 	}
-
-	/*
-	 * @return the color of the Enemy
-	 */
-	public Color getColor(){
-		return color;
-	}
 	
 	/*
 	 * Draws the enemy to the screen

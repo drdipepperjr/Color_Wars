@@ -20,11 +20,11 @@ public class Player extends GameObject{
 	/*
 	 * a variable that represents how many hits the player can take before it is destroyed
 	 */
-	int health = 10; 
+	int health = 100; 
 	
 	private int size = 30;
 	private double sideLength = 2*size/Math.sqrt(3);
-	private boolean[] keys = new boolean[4];
+	private boolean[] keys = new boolean[6];
 
 	
 	/*
@@ -65,6 +65,11 @@ public class Player extends GameObject{
 							keys[2] = false;
 						else if(e.getKeyChar() == 'd')
 							keys[3] = false;
+		            	
+						else if(e.getKeyChar() == 'q')
+							keys[4] = true;
+						else if(e.getKeyChar() == 'e')
+							keys[5] = true;
 		            } 
 		            else if (e.getID() == KeyEvent.KEY_TYPED) {
 		                
@@ -80,6 +85,15 @@ public class Player extends GameObject{
 			if(keys[2]){y += 10;}
 			if(keys[3]){x += 10;}
 			
+			if(keys[4]) {
+				changeColorForward();
+				keys[4] = false;
+			}
+			
+			if(keys[5]) {
+				changeColorBackwards();
+				keys[5] = false;
+			}
 			// hard coded boundaries
 			if(x>= Game.WIDTH-15)
 				x = Game.WIDTH-15;
@@ -129,6 +143,29 @@ public class Player extends GameObject{
 	@Override
 	public String getType(){
 		return "Player";
+	}
+	
+	
+	private void changeColorForward(){
+		if(this.color == Color.RED)
+			this.color = Color.BLUE;
+		else if(this.color == Color.BLUE)
+			this.color = Color.GREEN;
+		else if(this.color == Color.GREEN)
+			this.color = Color.YELLOW;
+		else if(this.color == Color.YELLOW)
+			this.color = Color.RED;
+	}
+	
+	private void changeColorBackwards(){
+		if(this.color == Color.RED)
+			this.color = Color.YELLOW;
+		else if(this.color == Color.YELLOW)
+			this.color = Color.GREEN;
+		else if(this.color == Color.GREEN)
+			this.color = Color.BLUE;
+		else if(this.color == Color.BLUE)
+			this.color = Color.RED;
 	}
 	
 }

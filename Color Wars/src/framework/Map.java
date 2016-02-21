@@ -21,7 +21,7 @@ public class Map extends JPanel{
 	/*
 	 * Creates the one and only instance of Player
 	 */
-	Player player = new Player(Game.WIDTH/2, Game.HEIGHT/2, Color.black);
+	Player player = new Player(Game.WIDTH/2, Game.HEIGHT/2, Color.RED);
 	private double pX;
 	private double pY;
 	
@@ -83,7 +83,7 @@ public class Map extends JPanel{
 	 * @param y the y-coordinate of the mouse
 	 */
 	public void playerShoot(double x, double y){
-		proj.add( new Projectile(pX,pY,x,y, Color.MAGENTA));
+		proj.add( new Projectile(pX,pY,x,y, player.getColor()));
 
 		if(Game.DebugEnviorment==true)
 			System.err.println("proj size "+ proj.size());

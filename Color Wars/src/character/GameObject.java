@@ -64,7 +64,7 @@ public abstract class GameObject extends GeneralPathWrapper implements Shape{
 	}
 	
 	/*
-	 * @ return the current y-value of the GameObject as a double
+	 * @return the current y-value of the GameObject as a double
 	 */
 	public double getY(){
 		 return this.y;
@@ -91,4 +91,11 @@ public abstract class GameObject extends GeneralPathWrapper implements Shape{
 	 * ex. a triangle returns "Triangle"
 	 */
 	public abstract String getType();
+	
+	/*
+	 * @return the color of the GameObject
+	 */
+	public Color getColor(){
+		return this.color;
+	}
 }

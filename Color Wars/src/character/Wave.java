@@ -120,9 +120,13 @@ public class Wave extends ArrayList<Enemy> {
 						System.err.println("Enemy "+ this.get(i).getType()+ " colided with projectile "+ j);
 					}
 					p.get(j).destroy();
-					this.get(i).health--;
-					if(this.get(i).health == 0)
-						this.get(i).destroy();
+					
+					//now that it's collided, check to see if the color matches
+					if(this.get(i).getColor()==p.get(j).getColor()){
+						this.get(i).health--;
+						if(this.get(i).health == 0)
+							this.get(i).destroy();
+					}
 				}
 			}
 		}
