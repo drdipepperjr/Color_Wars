@@ -7,9 +7,11 @@ import java.awt.KeyEventDispatcher;
 import java.awt.KeyboardFocusManager;
 import java.awt.Rectangle;
 import java.awt.RenderingHints;
+import java.awt.Shape;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Path2D;
 
+import utilities.ShapeTransforms;
 import framework.Game;
 
 /*
@@ -20,7 +22,8 @@ public class Player extends GameObject{
 	/*
 	 * a variable that represents how many hits the player can take before it is destroyed
 	 */
-	int health = 100; 
+	int health = 1000; 
+	public int delay = 0;
 	
 	private int size = 30;
 	private double sideLength = 2*size/Math.sqrt(3);
@@ -114,6 +117,7 @@ public class Player extends GameObject{
 		if(this.health == 0){
 			this.destroy();
 		}
+		this.delay++;
 		move();
 	}
 	
@@ -126,12 +130,26 @@ public class Player extends GameObject{
 		 	g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		 			RenderingHints.VALUE_ANTIALIAS_ON);
 		 	Path2D.Double triangle = new Path2D.Double();
-		 	triangle.moveTo(x,y-size/2);
-		 	triangle.lineTo(x+sideLength/4,y+size/1.5);
-		 	triangle.lineTo(x-sideLength/4, y+size/1.5);
+		 	triangle.moveTo(x,y);
+		 	triangle.lineTo(x+sideLength/4,y+size);
+		 	triangle.lineTo(x-sideLength/4, y+size);
 		 	g2d.setColor(this.color);
-		 	g2d.draw(triangle);
-		 	g2d.fill(triangle);
+		 	
+		 	//Variables used for rotating
+		 	double xLength = x-Game.mouseX;
+		 	double yLength = y-Game.mouseY;
+		 	double hyp = Math.sqrt(Math.pow(xLength, 2)+Math.pow(yLength,2));
+		 	double theta = 0;
+		 	
+		 	if(xLength > 0)
+		 		theta = Math.asin(yLength/hyp);
+		 	if(xLength <= 0)
+		 		theta = Math.PI - Math.asin(yLength/hyp);
+		 	
+		 	
+		 	Shape t2 = ShapeTransforms.rotatedCopyOf(triangle, theta-Math.PI/2);
+		 	g2d.draw(t2);
+		 	g2d.fill(t2);
 	}
 	
 	@Override
@@ -140,12 +158,47 @@ public class Player extends GameObject{
 		return r;
 	}
 	
+	/*
+	 * @return the current delay
+	 */
+	public int getDelay(){
+		return this.delay;
+	}
+	
+	/*
+	 * Sets the delay of the player
+	 * @param delay the delay of the player
+	 */
+	public void setDelay(int delay){
+		this.delay = delay;
+	}
+	
 	@Override
 	public String getType(){
 		return "Player";
 	}
 	
 	
+	/*
+	 * Creates a new projectile that will travel from the player
+	 * to the position specified by the current mouse position
+	 * 
+	 * @param x the x-coordinate of the mouse
+	 * @param y the y-coordinate of the mouse
+	 */
+	public void playerShoot(double x, double y, Projectiles p){
+		if(this.getDelay()==20){
+			p.add(new Projectile(this.x-5,this.y-5,x,y, this.color));
+			this.setDelay(0);
+			
+			if(Game.DebugEnviorment==true)
+				System.err.println("proj size "+ p.size());
+		}
+	}
+	
+	/*
+	 * Methods for changing the color of the player
+	 */
 	private void changeColorForward(){
 		if(this.color == Color.RED)
 			this.color = Color.BLUE;

@@ -28,7 +28,7 @@ public class Map extends JPanel{
 	/*
 	 * Creates the Wave of Enemies
 	 */
-	Wave wave1 = new Wave(10);
+	Wave wave1 = new Wave(1);
 	
 	/*
 	 * Creates the Projectiles objects.
@@ -63,10 +63,14 @@ public class Map extends JPanel{
 		}
 		pX = player.getX();
 		pY = player.getY();		
+		
+		player.playerShoot(Game.mouseX,Game.mouseY,proj);
+		circleShoot(wave1);
+		
 		wave1.update(pX, pY);
 		proj.update(pX,pY);
 		proj2.update(pX,pY);		
-		circleShoot(wave1);
+		
 		
 		proj2.checkForCollisions(player);
 		wave1.checkForCollisions(wave1);
@@ -75,20 +79,7 @@ public class Map extends JPanel{
 		
 	}
 
-	/*
-	 * Creates a new projectile that will travel from the player
-	 * to the position specifieed by a mouse click
-	 * 
-	 * @param x the x-coordinate of the mouse
-	 * @param y the y-coordinate of the mouse
-	 */
-	public void playerShoot(double x, double y){
-		proj.add( new Projectile(pX,pY,x,y, player.getColor()));
-
-		if(Game.DebugEnviorment==true)
-			System.err.println("proj size "+ proj.size());
-
-	}
+	
 	
 	/*
 	 * Makes the circles shoot at the player in random intervals
@@ -99,7 +90,7 @@ public class Map extends JPanel{
 		for(int i=0;i<wave.numEnemies;i++){
 			if(wave.get(i).getType() == "Circle"){
 				if(wave.get(i).getDelay() == 100){
-					proj2.add( new Projectile(wave.get(i).getX(),wave.get(i).getY(),pX,pY, Color.CYAN));
+					proj2.add( new Projectile(wave.get(i).getX(),wave.get(i).getY(),pX,pY, wave.get(i).getColor()));
 					wave.get(i).setDelay(0);
 				}
 				wave.get(i).setDelay(wave.get(i).getDelay() + 1);

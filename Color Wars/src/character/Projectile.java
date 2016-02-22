@@ -34,9 +34,9 @@ public class Projectile extends GameObject{
 		double xLength = xEnd-xStart;
 		double yLength = yEnd-yStart;
 		double length= Math.sqrt(Math.pow(xLength, 2)+Math.pow(yLength, 2));
-		this.xMove=xLength/length*3;
-		this.yMove=yLength/length*3;
-		
+		this.xMove=xLength/length;
+		this.yMove=yLength/length;
+	
 	}
 
 	/*
@@ -62,8 +62,8 @@ public class Projectile extends GameObject{
 	 * @param playerY the player's current y-coordinate
 	 */
 	public void update(double playerX, double playerY) {
-		x+=xMove;
-		y+=yMove;
+		x+=xMove*3;
+		y+=yMove*3;
 		if(outOfBounds())
 			destroy();
 	}
