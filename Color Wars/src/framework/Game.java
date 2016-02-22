@@ -8,6 +8,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import java.io.File;
+import java.io.IOException;
 
 
 /*
@@ -22,6 +27,7 @@ public class Game implements Runnable {
 	public static final int WIDTH = 1024;
 	public static final int HEIGHT = 768;
 
+	Sound soundPlayer;
 	private JFrame window;
 	private JPanel mainMenu;
 	private Map PlayMenu;
@@ -56,6 +62,10 @@ public class Game implements Runnable {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		//initial set up stuff
 		this.displayMainMenu();
+		//plays horribile music
+		soundPlayer = new Sound();
+		soundPlayer.setClip("res/UpbeatFunk.wav");
+		soundPlayer.loop();
 		
 		window.setVisible(true);
 	}
@@ -80,6 +90,9 @@ public class Game implements Runnable {
 	 * Self-explanatory. Starts the gameplay aspect of the game.
 	 */
 	public void playGame(){
+		soundPlayer.stop();
+		soundPlayer.setClip("res/MoodyLoop.wav");
+		soundPlayer.loop();
 		window.getContentPane().remove(mainMenu);
 		PlayMenu= new Map();
 		window.setVisible(false);
@@ -215,4 +228,55 @@ public class Game implements Runnable {
 			PlayMenu.playerShoot(x,y);
 		}	
 	}
+	
+	  public class Sound {
+	        private Clip clip;
+	        public Sound(){
+	        }
+	        public Sound(String fileName) {
+	            try {
+	                File file = new File(fileName);
+	                if (file.exists()) {
+	                    AudioInputStream sound = AudioSystem.getAudioInputStream(file);
+	                    clip = AudioSystem.getClip();
+	                    clip.open(sound);
+	                }
+	                else {
+	                    throw new RuntimeException("Sound: file not found: " + fileName);
+	                }
+	            }
+	            catch (Exception e){
+	            	System.out.println("R I P");
+	            }
+	        }
+	        
+	        public void setClip(String fileName)
+	        {
+	        	try {
+	                File file = new File(fileName);
+	                if (file.exists()) {
+	                    AudioInputStream sound = AudioSystem.getAudioInputStream(file);
+	                    clip = AudioSystem.getClip();
+	                    clip.open(sound);
+	                }
+	                else {
+	                    throw new RuntimeException("Sound: file not found: " + fileName);
+	                }
+	            }
+	            catch (Exception e){
+	            	System.out.println("R I P");
+	            }
+	        }
+	        public void play(){
+	            clip.setFramePosition(0);
+	            clip.start();
+	        }
+	        public void loop(){
+	            clip.loop(Clip.LOOP_CONTINUOUSLY);
+	        }
+	        public void stop(){
+	            clip.stop();
+	        }
+	    }
+
 }
