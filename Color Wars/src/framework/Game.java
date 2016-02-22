@@ -2,17 +2,16 @@ package framework;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionAdapter;
+import java.io.File;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import java.io.File;
-import java.io.IOException;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 
 /*
@@ -26,14 +25,17 @@ public class Game implements Runnable {
 	 */
 	public static final int WIDTH = 1024;
 	public static final int HEIGHT = 768;
+	public static double mouseX;
+	public static double mouseY;
 
-	Sound soundPlayer;
 	private JFrame window;
 	private JPanel mainMenu;
 	private Map PlayMenu;
+	
+	@SuppressWarnings("unused")
 	private JPanel LeaderBoard; //TO BE IMPLEMENTED AT A LATER TIME
 
-	public static boolean DebugEnviorment=true;
+	public static boolean DebugEnviorment =false;
 
 	private boolean isRunning= false;
 	private Thread thread;
@@ -62,10 +64,6 @@ public class Game implements Runnable {
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		//initial set up stuff
 		this.displayMainMenu();
-		//plays horribile music
-		soundPlayer = new Sound();
-		soundPlayer.setClip("res/UpbeatFunk.wav");
-		soundPlayer.loop();
 		
 		window.setVisible(true);
 	}
@@ -90,14 +88,11 @@ public class Game implements Runnable {
 	 * Self-explanatory. Starts the gameplay aspect of the game.
 	 */
 	public void playGame(){
-		soundPlayer.stop();
-		soundPlayer.setClip("res/MoodyLoop.wav");
-		soundPlayer.loop();
 		window.getContentPane().remove(mainMenu);
 		PlayMenu= new Map();
 		window.setVisible(false);
 		window.getContentPane().add(PlayMenu);
-		window.addMouseListener(new shootListener());
+		window.addMouseMotionListener(new shootListener());
 		window.setVisible(true);
 		//the setVisible toggling makes it refresh the window
 		
@@ -215,20 +210,24 @@ public class Game implements Runnable {
 		}
 	}	
 	
+
 	/*
 	 * A class that listens for mouse input from the player during the game.
 	 */
-	public class shootListener extends MouseAdapter{
-		public void mousePressed(MouseEvent e){
-			double x=e.getX();
-			double y=e.getY();
+	public class shootListener extends MouseMotionAdapter{
+		
+		//Aims for the tip of the mouse
+		public void mouseMoved(MouseEvent e){
+
+			mouseX=e.getX() - 5;
+			mouseY=e.getY() - 38;
 
 			if(DebugEnviorment==true)
-				System.err.println("click coord " +x +", "+y);
-			PlayMenu.playerShoot(x,y);
+				System.err.println("click coord " +mouseX +", "+mouseY);
+			
 		}	
 	}
-	
+
 	  public class Sound {
 	        private Clip clip;
 	        public Sound(){
