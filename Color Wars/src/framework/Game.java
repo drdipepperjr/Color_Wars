@@ -28,6 +28,7 @@ public class Game implements Runnable {
 	public static double mouseX;
 	public static double mouseY;
 
+	Sound soundPlayer;
 	private JFrame window;
 	private JPanel mainMenu;
 	private Map PlayMenu;
@@ -65,6 +66,11 @@ public class Game implements Runnable {
 		//initial set up stuff
 		this.displayMainMenu();
 		
+		//plays horribile music
+		 soundPlayer = new Sound();
+		 soundPlayer.setClip("res/UpbeatFunk.wav");
+		 soundPlayer.loop();
+		
 		window.setVisible(true);
 	}
 	
@@ -88,6 +94,11 @@ public class Game implements Runnable {
 	 * Self-explanatory. Starts the gameplay aspect of the game.
 	 */
 	public void playGame(){
+		
+		soundPlayer.stop();
+		soundPlayer.setClip("res/MoodyLoop.wav");
+		soundPlayer.loop();
+		 
 		window.getContentPane().remove(mainMenu);
 		PlayMenu= new Map();
 		window.setVisible(false);

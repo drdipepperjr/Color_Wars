@@ -28,7 +28,7 @@ public class Map extends JPanel{
 	/*
 	 * Creates the Wave of Enemies
 	 */
-	Wave wave1 = new Wave(1);
+	Wave wave1 = new Wave(4);
 	
 	/*
 	 * Creates the Projectiles objects.
