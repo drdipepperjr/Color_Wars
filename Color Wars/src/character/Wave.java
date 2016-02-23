@@ -92,12 +92,12 @@ public class Wave extends ArrayList<Enemy> {
 	public void checkForCollisions(Player p){
 		for(int i=0;i<numEnemies;i++){
 			if(this.get(i).isCollidedWith(p)){
-				if(Game.DebugEnviorment==true){
+				if(Game.DebugEnvironment==true){
 					System.err.println("Enemy "+ this.get(i).getType()+ " colided with player");
 				}
 				this.get(i).destroy();
 				p.health--;
-				if(Game.DebugEnviorment==true){
+				if(Game.DebugEnvironment==true){
 					System.err.println("PlayerHealth = " + p.health);
 				}
 			}
@@ -116,7 +116,7 @@ public class Wave extends ArrayList<Enemy> {
 		for(int i=0;i<numEnemies;i++){
 			for(int j=0;j<p.size();j++){
 				if(this.get(i).isCollidedWith(p.get(j))){
-					if(Game.DebugEnviorment==true){
+					if(Game.DebugEnvironment==true){
 						System.err.println("Enemy "+ this.get(i).getType()+ " colided with projectile "+ j);
 					}
 					p.get(j).destroy();

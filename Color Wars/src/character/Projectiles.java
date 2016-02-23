@@ -31,7 +31,7 @@ public class Projectiles extends ArrayList<Projectile> {
 			if(this.get(i).isCollidedWith(p)){
 				this.get(i).destroy();
 				p.health --;
-				if(Game.DebugEnviorment==true){
+				if(Game.DebugEnvironment==true){
 					System.err.println("Projectile "+ i+ " colided with player");
 				}
 				System.out.println("Player health = " + p.health);

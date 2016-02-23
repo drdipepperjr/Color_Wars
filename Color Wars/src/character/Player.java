@@ -191,7 +191,7 @@ public class Player extends GameObject{
 			p.add(new Projectile(this.x-5,this.y-5,x,y, this.color));
 			this.setDelay(0);
 			
-			if(Game.DebugEnviorment==true)
+			if(Game.DebugEnvironment==true)
 				System.err.println("proj size "+ p.size());
 		}
 	}

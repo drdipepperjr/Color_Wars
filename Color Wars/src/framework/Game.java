@@ -4,18 +4,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
-import java.io.File;
-import java.io.IOException;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
-import framework.Game.leaderBoardListener;
-import framework.Game.playListener;
 
 
 /*
@@ -40,7 +31,7 @@ public class Game implements Runnable {
 	@SuppressWarnings("unused")
 	private JPanel LeaderBoard; //TO BE IMPLEMENTED AT A LATER TIME
 
-	public static boolean DebugEnviorment =false;
+	public static boolean DebugEnvironment =false;
 
 	private boolean isRunning= false;
 	private Thread thread;
@@ -50,7 +41,7 @@ public class Game implements Runnable {
 	 */
 	public static void main(String args[]){
 		if(args.length!=0 && args[0]== "Debug")
-			DebugEnviorment=true;
+			DebugEnvironment=true;
 		Game game=new Game();
 		game.go();
 	}
@@ -160,7 +151,7 @@ public class Game implements Runnable {
 			render();
 			frames++;
 			//debug code so we can see whats going on.  
-			if(DebugEnviorment==true){
+			if(DebugEnvironment==true){
 				if(System.currentTimeMillis()-timer > 1000){
 					timer += 1000;
 					System.err.println(updates + " ticks, fps " +frames);
@@ -196,7 +187,7 @@ public class Game implements Runnable {
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			playGame();
-			if(DebugEnviorment==true)
+			if(DebugEnvironment==true)
 				System.err.println("play pressed");
 		}
 	}
@@ -211,7 +202,7 @@ public class Game implements Runnable {
 
 			System.err.println("LeaderBoard pressed");
 
-			if(DebugEnviorment==true)
+			if(DebugEnvironment==true)
 				System.err.println("LeaderBoard pressed");
 			//game.displayLeaderBoard();
 			//doesn't do anything yet
@@ -219,7 +210,6 @@ public class Game implements Runnable {
 		}
 	}	
 	
-
 	/*
 	 * A class that listens for mouse input from the player during the game.
 	 */
@@ -229,62 +219,12 @@ public class Game implements Runnable {
 		public void mouseMoved(MouseEvent e){
 
 			mouseX=e.getX() - 5;
-			mouseY=e.getY() - 38;
+			mouseY=e.getY() - 34;
 
-			if(DebugEnviorment==true)
+			if(DebugEnvironment==true)
 				System.err.println("click coord " +mouseX +", "+mouseY);
 			
 		}	
 	}
-
-	  public class Sound {
-	        private Clip clip;
-	        public Sound(){
-	        }
-	        public Sound(String fileName) {
-	            try {
-	                File file = new File(fileName);
-	                if (file.exists()) {
-	                    AudioInputStream sound = AudioSystem.getAudioInputStream(file);
-	                    clip = AudioSystem.getClip();
-	                    clip.open(sound);
-	                }
-	                else {
-	                    throw new RuntimeException("Sound: file not found: " + fileName);
-	                }
-	            }
-	            catch (Exception e){
-	            	System.out.println("R I P");
-	            }
-	        }
-	        
-	        public void setClip(String fileName)
-	        {
-	        	try {
-	                File file = new File(fileName);
-	                if (file.exists()) {
-	                    AudioInputStream sound = AudioSystem.getAudioInputStream(file);
-	                    clip = AudioSystem.getClip();
-	                    clip.open(sound);
-	                }
-	                else {
-	                    throw new RuntimeException("Sound: file not found: " + fileName);
-	                }
-	            }
-	            catch (Exception e){
-	            	e.getStackTrace();
-	            }
-	        }
-	        public void play(){
-	            clip.setFramePosition(0);
-	            clip.start();
-	        }
-	        public void loop(){
-	            clip.loop(Clip.LOOP_CONTINUOUSLY);
-	        }
-	        public void stop(){
-	            clip.stop();
-	        }
-	    }
 
 }
