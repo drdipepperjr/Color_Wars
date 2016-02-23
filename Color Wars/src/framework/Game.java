@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.io.File;
+import java.io.IOException;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -12,6 +13,9 @@ import javax.sound.sampled.Clip;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import framework.Game.leaderBoardListener;
+import framework.Game.playListener;
 
 
 /*
@@ -30,7 +34,7 @@ public class Game implements Runnable {
 
 	Sound soundPlayer;
 	private JFrame window;
-	private JPanel mainMenu;
+	private MainMenu mainMenu;
 	private Map PlayMenu;
 	
 	@SuppressWarnings("unused")
@@ -78,16 +82,10 @@ public class Game implements Runnable {
 	 * Displays the main menu and creates buttons to access various parts of the game.
 	 */
 	public void displayMainMenu(){
-		mainMenu = new JPanel(); 
-		JButton play = new JButton("Play Color Wars");
-		mainMenu.add(play);
-		play.addActionListener(new playListener());
-	
-		JButton leaderBoard = new JButton("LeaderBoard");
-		mainMenu.add(leaderBoard);
-		leaderBoard.addActionListener(new leaderBoardListener());
-	
-		this.window.getContentPane().add(mainMenu);
+		mainMenu = new MainMenu(window); 
+		mainMenu.play.addActionListener(new playListener());
+		mainMenu.leaderBoard.addActionListener(new leaderBoardListener());
+		//this.window.getContentPane().add(mainMenu);
 	}	
 	
 	/*
@@ -274,7 +272,7 @@ public class Game implements Runnable {
 	                }
 	            }
 	            catch (Exception e){
-	            	System.out.println("R I P");
+	            	e.getStackTrace();
 	            }
 	        }
 	        public void play(){
