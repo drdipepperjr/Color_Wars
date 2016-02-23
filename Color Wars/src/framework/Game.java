@@ -219,7 +219,7 @@ public class Game implements Runnable {
 		public void mouseMoved(MouseEvent e){
 
 			mouseX=e.getX() - 5;
-			mouseY=e.getY() - 34;
+			mouseY=e.getY() - 30;
 
 			if(DebugEnvironment==true)
 				System.err.println("click coord " +mouseX +", "+mouseY);

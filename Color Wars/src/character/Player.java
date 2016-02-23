@@ -22,7 +22,7 @@ public class Player extends GameObject{
 	/*
 	 * a variable that represents how many hits the player can take before it is destroyed
 	 */
-	int health = 10; 
+	int health = 1000; 
 	public int delay = 0;
 	
 	private int size = 30;
@@ -146,7 +146,6 @@ public class Player extends GameObject{
 		 	if(xLength <= 0)
 		 		theta = Math.PI - Math.asin(yLength/hyp);
 		 	
-		 	
 		 	Shape t2 = ShapeTransforms.rotatedCopyOf(triangle, theta-Math.PI/2);
 		 	g2d.draw(t2);
 		 	g2d.fill(t2);
@@ -188,7 +187,23 @@ public class Player extends GameObject{
 	 */
 	public void playerShoot(double x, double y, Projectiles p){
 		if(this.getDelay()==20){
-			p.add(new Projectile(this.x-5,this.y-5,x,y, this.color));
+			
+			//Variables used for rotating
+		 	double xLength = this.x-Game.mouseX;
+		 	double yLength = this.y-Game.mouseY;
+		 	double hyp = Math.sqrt(Math.pow(xLength, 2)+Math.pow(yLength,2));
+		 	double theta = 0;
+		 	
+		 	//variables used to rotate
+		 	if(xLength > 0)
+		 		theta = Math.asin(yLength/hyp);
+		 	if(xLength <= 0)
+		 		theta = Math.PI - Math.asin(yLength/hyp);
+			
+		 	double xStart = 8*Math.cos(theta);
+		 	double yStart = 8*Math.sin(theta);
+		 	
+			p.add(new Projectile(this.x-xStart-5,this.y-yStart+9,x,y, this.color));
 			this.setDelay(0);
 			
 			if(Game.DebugEnvironment==true)
