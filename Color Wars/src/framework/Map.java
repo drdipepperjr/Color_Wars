@@ -17,6 +17,7 @@ import character.Wave;
  */
 @SuppressWarnings("serial")
 public class Map extends JPanel{
+	public static int score=0;
 	
 	/*
 	 * Creates the one and only instance of Player
@@ -74,9 +75,10 @@ public class Map extends JPanel{
 		circleShoot(wave1);
 		
 		wave1.update(pX, pY);
+		//updateScore(wave1.points);
 		proj.update(pX,pY);
 		proj2.update(pX,pY);	
-		hub.update(player.health);
+		hub.update(player.health,score);
 		
 		
 		proj2.checkForCollisions(player);
@@ -103,5 +105,8 @@ public class Map extends JPanel{
 				wave.get(i).setDelay(wave.get(i).getDelay() + 1);
 			}
 		}
+	}
+	public void updateScore(int points){
+		score+= points;
 	}
 }

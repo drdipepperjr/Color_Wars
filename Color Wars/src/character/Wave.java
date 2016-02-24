@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import framework.Game;
+import framework.Map;
 
 /*
  * A class used for handling all current insatnces of enemies.
@@ -17,7 +18,6 @@ public class Wave extends ArrayList<Enemy> {
 	 * The number of enemies that are currently alive
 	 */
 	public int numEnemies;
-	
 	private Enemy e;
 	private Color color;
 	private int x;
@@ -143,6 +143,7 @@ public class Wave extends ArrayList<Enemy> {
 		for(int i=0;i<numEnemies;i++){
 			this.get(i).update(playerX, playerY);
 			if(!this.get(i).isAlive()){
+				Map.score+=this.get(i).getPoints();
 				this.remove(i);
 				numEnemies --;
 			}

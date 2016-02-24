@@ -14,7 +14,7 @@ public abstract class Enemy extends GameObject{
 	 * a variable that represents how many hits the enemy can take before it is destroyed
 	 */
 	int health; 
-	
+	int points=10;
 	protected int size = 30;
 	protected int delay;
 	
@@ -70,5 +70,12 @@ public abstract class Enemy extends GameObject{
 	 */
 	public void setDelay(int delay){
 		this.delay = delay;
+	}
+	
+	/*
+	 * gets points for killing enemy
+	 */
+	public int getPoints(){
+		return points;
 	}
 }
