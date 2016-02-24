@@ -35,6 +35,8 @@ public class Hub extends GeneralPathWrapper implements Shape{
 		g2d.setPaint(gp);
 		g2d.draw(healthbar);
 		g2d.fill(healthbar);
+		g2d.setColor(Color.black);
+		g2d.drawString("Remaining Enemies " + wave.numEnemies, 0, 25);
 	}
 
 	public void update(int playerHealth) {
