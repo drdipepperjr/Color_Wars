@@ -30,7 +30,6 @@ public class Hub extends GeneralPathWrapper implements Shape{
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 				RenderingHints.VALUE_ANTIALIAS_ON);
 		Rectangle healthbar = new Rectangle( playerHealth*10, 10);
-
 		GradientPaint gp = new GradientPaint(0, 10, Color.red,
 				 maxHealth*10,10, Color.green, true);
 		g2d.setPaint(gp);
