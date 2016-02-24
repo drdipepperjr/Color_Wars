@@ -22,7 +22,7 @@ public class Player extends GameObject{
 	/*
 	 * a variable that represents how many hits the player can take before it is destroyed
 	 */
-	int health = 1000; 
+	public int health = 10; 
 	public int delay = 0;
 	
 	private int size = 30;

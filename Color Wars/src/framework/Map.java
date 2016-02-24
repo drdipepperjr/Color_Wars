@@ -38,6 +38,11 @@ public class Map extends JPanel{
 	Projectiles proj = new Projectiles();
 	Projectiles proj2 = new Projectiles();
 	
+	
+	/*
+	 * creates player hub
+	 */
+	Hub hub = new Hub(player.health, wave1);
 	/*
 	 * Overridden paint method
 	 * Calls render methods for Player, Wave, and projectiles
@@ -49,6 +54,7 @@ public class Map extends JPanel{
 		wave1.render(g);
 		proj.render(g);
 		proj2.render(g);
+		hub.render(g);
 	}
 	
 	/*
@@ -69,7 +75,8 @@ public class Map extends JPanel{
 		
 		wave1.update(pX, pY);
 		proj.update(pX,pY);
-		proj2.update(pX,pY);		
+		proj2.update(pX,pY);	
+		hub.update(player.health);
 		
 		
 		proj2.checkForCollisions(player);
