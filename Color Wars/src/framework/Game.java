@@ -29,7 +29,7 @@ public class Game implements Runnable {
 	private Map PlayMenu;
 	
 	@SuppressWarnings("unused")
-	private JPanel LeaderBoard; //TO BE IMPLEMENTED AT A LATER TIME
+	private LeaderBoard leaderBoard; //TO BE IMPLEMENTED AT A LATER TIME
 
 	public static boolean DebugEnvironment =false;
 
@@ -73,12 +73,23 @@ public class Game implements Runnable {
 	 * Displays the main menu and creates buttons to access various parts of the game.
 	 */
 	public void displayMainMenu(){
+		window.getContentPane().removeAll();
 		mainMenu = new MainMenu(window); 
 		mainMenu.play.addActionListener(new playListener());
-		mainMenu.leaderBoard.addActionListener(new leaderBoardListener());
+		mainMenu.leaderBoard.addActionListener(new LeaderBoardListener());
+		window.setVisible(true);
 		//this.window.getContentPane().add(mainMenu);
 	}	
-	
+	/*
+	 * Displays the leader board 
+	 */
+	public void displayLeaderBoard(){
+		window.getContentPane().removeAll();
+		leaderBoard = new LeaderBoard(window); 
+		leaderBoard.mainMenu.addActionListener(new MainMenuListener());
+		window.setVisible(true);
+		//this.window.getContentPane().add(mainMenu);
+	}
 	/*
 	 * Self-explanatory. Starts the gameplay aspect of the game.
 	 */
@@ -88,9 +99,8 @@ public class Game implements Runnable {
 		soundPlayer.setClip("res/MoodyLoop.wav");
 		soundPlayer.loop();
 		 
-		window.getContentPane().remove(mainMenu);
+		window.getContentPane().removeAll();
 		PlayMenu= new Map();
-		window.setVisible(false);
 		window.getContentPane().add(PlayMenu);
 		window.addMouseMotionListener(new shootListener());
 		window.setVisible(true);
@@ -196,20 +206,32 @@ public class Game implements Runnable {
 	 * A class that listens for the leaderBoard button to be pressed
 	 * Currently does nothing
 	 */
-	class leaderBoardListener implements ActionListener{
+	class LeaderBoardListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 
-			System.err.println("LeaderBoard pressed");
+			displayLeaderBoard();
 
 			if(DebugEnvironment==true)
 				System.err.println("LeaderBoard pressed");
-			//game.displayLeaderBoard();
-			//doesn't do anything yet
 
 		}
 	}	
-	
+	/*
+	 * A class that listens for the leaderBoard button to be pressed
+	 * Currently does nothing
+	 */
+	class MainMenuListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+
+			displayMainMenu();
+
+			if(DebugEnvironment==true)
+				System.err.println("MainMenu pressed");
+
+		}
+	}	
 	/*
 	 * A class that listens for mouse input from the player during the game.
 	 */

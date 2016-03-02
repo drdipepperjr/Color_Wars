@@ -1,5 +1,7 @@
 package framework;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /*
@@ -7,9 +9,15 @@ import javax.swing.JPanel;
  */
 @SuppressWarnings("serial")
 public class LeaderBoard extends JPanel{
-
-	/*
-	 * TODO: IMPLEMENT LEADERBOARD
-	 */
-	
+	JButton mainMenu;
+	JButton leaderBoard;
+	JFrame window;
+	public LeaderBoard(JFrame window){
+		this.window=window;
+		mainMenu = new JButton("Main Menu");
+		this.add(mainMenu);
+		
+		window.getContentPane().add(this);
+		}
+		
 }
