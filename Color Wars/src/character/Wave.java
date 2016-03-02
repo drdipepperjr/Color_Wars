@@ -127,6 +127,9 @@ public class Wave extends ArrayList<Enemy> {
 						if(this.get(i).health == 0)
 							this.get(i).destroy();
 					}
+					else{
+						p.get(j).blockedAudio();
+					}
 				}
 			}
 		}

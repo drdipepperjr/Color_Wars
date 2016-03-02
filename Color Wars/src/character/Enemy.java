@@ -3,6 +3,14 @@ package character;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
 /*
  * An abstract class that represents all characters that try to
@@ -77,5 +85,26 @@ public abstract class Enemy extends GameObject{
 	 */
 	public int getPoints(){
 		return points;
+	}
+	public void deathAudio(){
+		Clip clip;
+		String soundName="res/explosion.wav";  
+		AudioInputStream audioInputStream;	    		
+		try {
+			audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile());			clip = AudioSystem.getClip();
+			clip.open(audioInputStream);
+			clip.start();
+			} 
+		catch (UnsupportedAudioFileException | IOException e) {
+			e.printStackTrace();
+		} 
+		catch (LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void destroy(){
+		deathAudio();
+		super.destroy();
 	}
 }
