@@ -29,6 +29,13 @@ public class Player extends GameObject{
 	private double sideLength = 2*size/Math.sqrt(3);
 	private boolean[] keys = new boolean[6];
 
+	private double vX = 0;
+	private double vY = 0;
+	
+	private double xMax = 7;
+	private double yMax = 7;
+	
+	private double accel = 0.3;
 	
 	/*
 	 * Constructor for objects of class Player
@@ -82,11 +89,58 @@ public class Player extends GameObject{
 		    }
 		 KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
 	        manager.addKeyEventDispatcher(new MyDispatcher());
-	        
-	    	if(keys[0]){y -= 10;}
-			if(keys[1]){x -= 10;}
-			if(keys[2]){y += 10;}
-			if(keys[3]){x += 10;}
+	        //if w pressed
+	    	if(keys[0]){
+	    		if(vY >= -yMax)
+	    			vY = vY - accel;
+	    		y += vY;
+	    	}
+	    	else{
+	    		if(vY < 0){
+	    			vY = vY + accel;
+	    			if(vY > 0) vY = 0;
+	    		}
+	    		y += vY;
+	    	}
+	    	//if a pressed
+			if(keys[1]){
+				if(vX >= -xMax)
+					vX = vX - accel;
+				x += vX;
+			}
+			else{
+				if(vX < 0){
+					vX = vX + accel;
+					if(vX > 0) vX = 0;
+				}
+				x += vX;
+			}
+			//if s pressed
+			if(keys[2]){
+				if(vY <= yMax)
+	    			vY = vY + accel;
+	    		y += vY;
+			}
+			else{
+				if(vY > 0){
+	    			vY = vY - accel;
+	    			if(vY < 0) vY = 0;
+				}
+	    		y += vY;
+			}
+			//if d pressed	
+			if(keys[3]){
+				if(vX <= xMax)
+					vX = vX + accel;
+				x += vX;
+			}
+			else{
+				if(vX > 0){
+					vX = vX - accel;
+					if(vX < 0) vX = 0;
+				}
+				x += vX;
+			}
 			
 			if(keys[4]) {
 				changeColorForward();

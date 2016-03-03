@@ -70,8 +70,8 @@ public class Projectile extends GameObject{
 	 * @param playerY the player's current y-coordinate
 	 */
 	public void update(double playerX, double playerY) {
-		x+=xMove*3;
-		y+=yMove*3;
+		x+=xMove*5;
+		y+=yMove*5;
 		if(outOfBounds())
 			destroy();
 	}
