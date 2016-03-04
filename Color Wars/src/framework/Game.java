@@ -6,7 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 
 import javax.swing.JFrame;
-import javax.swing.JPanel;
+
 
 
 /*
@@ -77,8 +77,10 @@ public class Game implements Runnable {
 		mainMenu = new MainMenu(window); 
 		mainMenu.play.addActionListener(new playListener());
 		mainMenu.leaderBoard.addActionListener(new LeaderBoardListener());
+
 		window.setVisible(true);
 		//this.window.getContentPane().add(mainMenu);
+
 	}	
 	/*
 	 * Displays the leader board 
@@ -100,7 +102,7 @@ public class Game implements Runnable {
 		soundPlayer.loop();
 		 
 		window.getContentPane().removeAll();
-		PlayMenu= new Map();
+		PlayMenu= new Map(window);
 		window.getContentPane().add(PlayMenu);
 		window.addMouseMotionListener(new shootListener());
 		window.setVisible(true);
