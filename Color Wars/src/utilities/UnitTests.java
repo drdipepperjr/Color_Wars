@@ -15,6 +15,7 @@ import character.Projectiles;
 import character.Square;
 import character.Triangle;
 import character.Wave;
+import framework.HighScores;
 
 public class UnitTests {
 	
@@ -58,6 +59,15 @@ public class UnitTests {
 		assertEquals(1,p.size(),0);
 	}
 	
-
+	@Test public void testHighScores(){
+		HighScores hs= new HighScores();
+		hs.add("alex", 1);
+		assertEquals("alex",hs.getName(0));
+		assertEquals(1, hs.getScore(0));
+		hs.add("dom", 2);
+		assertEquals("dom",hs.getName(0));
+		assertEquals(2, hs.getScore(0));
+		
+	}
 }
 
