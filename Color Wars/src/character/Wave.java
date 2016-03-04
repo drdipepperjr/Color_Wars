@@ -17,6 +17,7 @@ public class Wave extends ArrayList<Enemy> {
 	/*
 	 * The number of enemies that are currently alive
 	 */
+	Random random = new Random();
 	public int numEnemies;
 	private Enemy e;
 	private Color color;
@@ -71,11 +72,14 @@ public class Wave extends ArrayList<Enemy> {
 	 * @param the current wave
 	 */
 	public void checkForCollisions(Wave w){
+		int z = random.nextInt(50);
 		for(int i=0;i<numEnemies;i++){
 			for(int j=0;j<numEnemies;j++){
 				if(i!=j){
 					if(this.get(i).isCollidedWith(this.get(j))){
 						//Attempt to move away from other enemy
+						if (this.get(i).getType()=="Square") {this.get(i).x+=z; this.get(i).y+=z; }
+						if (this.get(i).getType()=="Circle") {this.get(i).x ++; this.get(i).y++;}
 					}
 				}
 			}

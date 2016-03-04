@@ -112,6 +112,13 @@ public class Map extends JPanel{
 				}
 				wave.get(i).setDelay(wave.get(i).getDelay() + 1);
 			}
+			if(wave.get(i).getType() == "Square"){
+				if(wave.get(i).getDelay() > 150){
+					//proj2.add( new Projectile(wave.get(i).getX(),wave.get(i).getY(),pX,pY, wave.get(i).getColor()));
+					wave.get(i).setDelay(0);
+				}
+				wave.get(i).setDelay(wave.get(i).getDelay() + 1);
+			}
 		}
 	}
 	public void updateScore(int points){
