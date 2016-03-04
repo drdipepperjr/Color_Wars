@@ -2,6 +2,7 @@ package framework;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -31,10 +32,13 @@ public class Map extends JPanel{
 	private double pY;
 	
 	/*
-	 * Creates the Wave of Enemies
+	 * Creates the Waves of Enemies
 	 */
+	ArrayList<Wave> waveList = new ArrayList<Wave>();
 	Wave wave1 = new Wave(4);
+	Wave wave2 = new Wave(10);
 	
+	int currentWave = 0;
 	/*
 	 * Creates the Projectiles objects.
 	 * proj represents the player's projectiles
@@ -54,13 +58,15 @@ public class Map extends JPanel{
 	 */
 	public Map(JFrame window){
 		this.window = window;
+		waveList.add(wave1);
+		waveList.add(wave2);
 	}
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.drawImage(img.getImage(),0,0,window.getWidth(),window.getHeight(),this);
 		player.render(g);
-		wave1.render(g);
+		waveList.get(currentWave).render(g);
 		proj.render(g);
 		proj2.render(g);
 		hub.render(g);
@@ -82,18 +88,17 @@ public class Map extends JPanel{
 		player.playerShoot(Game.mouseX,Game.mouseY,proj);
 		circleShoot(wave1);
 		
-		wave1.update(pX, pY);
-		//updateScore(wave1.points);
+		waveList.get(currentWave).update(pX, pY);
 		proj.update(pX,pY);
 		proj2.update(pX,pY);	
 		hub.update(player.health,score);
 		
-		
 		proj2.checkForCollisions(player);
-		wave1.checkForCollisions(wave1);
-		wave1.checkForCollisions(player);
-		wave1.checkForCollisions(proj);
+		waveList.get(currentWave).checkForCollisions(wave1);
+		waveList.get(currentWave).checkForCollisions(player);
+		waveList.get(currentWave).checkForCollisions(proj);
 		
+		if(waveList.get(currentWave).size() == 0) currentWave++;
 	}
 
 	
@@ -108,6 +113,13 @@ public class Map extends JPanel{
 			if(wave.get(i).getType() == "Circle"){
 				if(wave.get(i).getDelay() == 100){
 					proj2.add( new Projectile(wave.get(i).getX(),wave.get(i).getY(),pX,pY, wave.get(i).getColor()));
+					wave.get(i).setDelay(0);
+				}
+				wave.get(i).setDelay(wave.get(i).getDelay() + 1);
+			}
+			if(wave.get(i).getType() == "Square"){
+				if(wave.get(i).getDelay() > 150){
+					//proj2.add( new Projectile(wave.get(i).getX(),wave.get(i).getY(),pX,pY, wave.get(i).getColor()));
 					wave.get(i).setDelay(0);
 				}
 				wave.get(i).setDelay(wave.get(i).getDelay() + 1);
