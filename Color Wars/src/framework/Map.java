@@ -3,6 +3,8 @@ package framework;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import character.Player;
@@ -18,6 +20,8 @@ import character.Wave;
 @SuppressWarnings("serial")
 public class Map extends JPanel{
 	public static int score=0;
+	JFrame window;
+	ImageIcon img = new ImageIcon("res/Map.png");
 	
 	/*
 	 * Creates the one and only instance of Player
@@ -48,9 +52,13 @@ public class Map extends JPanel{
 	 * Overridden paint method
 	 * Calls render methods for Player, Wave, and projectiles
 	 */
+	public Map(JFrame window){
+		this.window = window;
+	}
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
+		g.drawImage(img.getImage(),0,0,window.getWidth(),window.getHeight(),this);
 		player.render(g);
 		wave1.render(g);
 		proj.render(g);
