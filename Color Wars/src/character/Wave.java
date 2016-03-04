@@ -31,7 +31,14 @@ public class Wave extends ArrayList<Enemy> {
 	 * @param numEnemies the number of enemies in the current wave
 	 */
 	public Wave(int numEnemies){
-		Random random = new Random();
+		
+		this.numEnemies = numEnemies;
+	}
+	
+	/*
+	 * Fills the wave with random enemies
+	 */
+	public void autoPopulate(){
 		for(int i=0; i<numEnemies; i++){
 			int enemyType = random.nextInt(3);
 			int enemyColor = random.nextInt(4);
@@ -55,9 +62,25 @@ public class Wave extends ArrayList<Enemy> {
 			this.add(e);
 			
 		}
-		this.numEnemies=this.size();
 	}
 	
+	public void addTriangle(){
+		int enemyColor = random.nextInt(4);
+		int xpos = random.nextInt(2);
+		int ypos = random.nextInt(2);
+		
+		if(xpos==0) x = 0-random.nextInt(Game.WIDTH);
+		if(xpos==1) x = Game.WIDTH + random.nextInt(Game.WIDTH);
+		if(ypos==0) y = 0-random.nextInt(Game.HEIGHT);
+		if(ypos==1) y = Game.HEIGHT + random.nextInt(Game.HEIGHT);
+		
+		if(enemyColor==0) color = Color.RED;
+		if(enemyColor==1) color = Color.BLUE;
+		if(enemyColor==2) color = Color.GREEN;
+		if(enemyColor==3) color = Color.YELLOW;
+		
+		e = new Triangle(x,y,color);
+	}
 	/*
 	 * Calls the render method for each Enemy in the Wave
 	 */

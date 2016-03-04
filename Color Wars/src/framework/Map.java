@@ -60,6 +60,9 @@ public class Map extends JPanel{
 		this.window = window;
 		waveList.add(wave1);
 		waveList.add(wave2);
+		
+		wave1.autoPopulate();
+		wave2.autoPopulate();
 	}
 	@Override
 	public void paint(Graphics g) {
@@ -86,7 +89,7 @@ public class Map extends JPanel{
 		pY = player.getY();		
 		
 		player.playerShoot(Game.mouseX,Game.mouseY,proj);
-		circleShoot(wave1);
+		circleShoot(waveList.get(currentWave));
 		
 		waveList.get(currentWave).update(pX, pY);
 		proj.update(pX,pY);
