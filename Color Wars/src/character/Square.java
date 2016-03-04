@@ -15,6 +15,7 @@ public class Square extends Enemy {
 	public Square(int x, int y, Color color) {
 		super(x, y, color);
 		this.health = 10;
+		this.delay = 149;
 	}
 	
 	/*
@@ -38,7 +39,8 @@ public class Square extends Enemy {
 	 */
 	@Override
 	void attack(double playerX, double playerY) {
-		if(Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0)) > 300)
+		double distanceFromPlayer = Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0));
+		if(this.getDelay()==150)
 			{
 				Random randomNum = new Random();
 				int ranNum = randomNum.nextInt(4);
@@ -51,7 +53,7 @@ public class Square extends Enemy {
 					this.x = playerX-ranNum2;
 				if(ranNum==3)
 					this.y = playerY-ranNum2;
-			};
+			}
 		
 	}
 
