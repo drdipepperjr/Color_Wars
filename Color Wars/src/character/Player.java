@@ -184,10 +184,13 @@ public class Player extends GameObject{
 		 	g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 		 			RenderingHints.VALUE_ANTIALIAS_ON);
 		 	Path2D.Double triangle = new Path2D.Double();
+		 	
 		 	triangle.moveTo(x,y);
 		 	triangle.lineTo(x+sideLength/4,y+size);
 		 	triangle.lineTo(x-sideLength/4, y+size);
 		 	g2d.setColor(this.color);
+		 	
+		 	
 		 	
 		 	//Variables used for rotating
 		 	double xLength = x-Game.mouseX;

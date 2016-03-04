@@ -27,7 +27,7 @@ public class Map extends JPanel{
 	/*
 	 * Creates the one and only instance of Player
 	 */
-	Player player = new Player(Game.WIDTH/2, Game.HEIGHT/2, Color.RED);
+	public Player player = new Player(Game.WIDTH/2, Game.HEIGHT/2, Color.RED);
 	private double pX;
 	private double pY;
 	
@@ -36,8 +36,8 @@ public class Map extends JPanel{
 	 */
 	ArrayList<Wave> waveList = new ArrayList<Wave>();
 	Wave wave1 = new Wave(4);
-	Wave wave2 = new Wave(7);
-	Wave wave3 = new Wave(7);
+	Wave wave2 = new Wave(4);
+	Wave wave3 = new Wave(4);
 	
 	private int currentWave = 0;
 	/*
@@ -66,7 +66,7 @@ public class Map extends JPanel{
 		/*
 		 * HARD CODE WAVES HERE
 		 */
-		for(int i=0;i<wave1.numEnemies;i++) wave1.addTriangle();
+		for(int i=0;i<wave1.numEnemies;i++) wave1.addCircle();
 		wave2.autoPopulate();
 		wave3.autoPopulate();
 	}
@@ -90,7 +90,7 @@ public class Map extends JPanel{
 	public void update(){
 		player.update();
 		if(!player.isAlive()){
-			System.exit(1);
+			//System.exit(1);
 		}
 		pX = player.getX();
 		pY = player.getY();		
