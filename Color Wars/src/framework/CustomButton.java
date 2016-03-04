@@ -1,11 +1,13 @@
 package framework;
 import java.awt.geom.Ellipse2D;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -13,9 +15,6 @@ import javax.swing.JButton;
 
 
 public class CustomButton extends JButton implements MouseListener{
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	Dimension size;
 	private String name;
@@ -92,17 +91,21 @@ public class CustomButton extends JButton implements MouseListener{
 	@Override
 	public void paint(Graphics g)
 	{
+
 		Graphics2D g2d = (Graphics2D) g;
-		Ellipse2D.Double circle = new Ellipse2D.Double(0,0,25,25);
+		Ellipse2D.Double circle = new Ellipse2D.Double(10,7,25,25);
 		super.paint(g2d);
-		if(click){
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setStroke(new BasicStroke(2));
+		if(hover){
 			g2d.setColor(Color.WHITE);
-			g2d.fillRect(0, 0, width, height);
+			g2d.draw(circle);
 		}
-		g2d.setColor(new Color(0,50,hover ? 255:180));
-		g2d.drawRect(0, 0, width, height);
-		g2d.setColor(Color.red);
-		g2d.draw(circle);
-		//g2d.fill(circle);
+
+		if(click)
+		{
+			g2d.fill(circle);
+		}
 	}
 }
