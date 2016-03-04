@@ -1,9 +1,14 @@
 package framework;
 
+import java.awt.Cursor;
+import java.awt.Image;
+import java.awt.Point;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JFrame;
 
@@ -36,6 +41,7 @@ public class Game implements Runnable {
 	private boolean isRunning= false;
 	private Thread thread;
 	
+
 	/*
 	 * Creates the Game object on which everything depends on and calls it's go method
 	 */
@@ -103,6 +109,29 @@ public class Game implements Runnable {
 		 
 		window.getContentPane().removeAll();
 		PlayMenu= new Map(window);
+		Toolkit toolkit = Toolkit.getDefaultToolkit();
+		//ClassLoader classLoader = Thread.currentThread().getContextClassLoader();
+		//String path = classLoader.getResource("/src/Resources/cursor.png").getPath();
+		Image image = toolkit.getImage("res/cursor.png");
+		Cursor c = toolkit.createCustomCursor(image , new Point(16,16), "img");
+		
+		window.addMouseMotionListener(new MouseMotionListener() {
+		    @Override
+		    public void mouseMoved(MouseEvent e) {
+		        final int x = e.getX();
+		        final int y = e.getY();
+		    //displays the cursor if inside the window
+		        if (x>0 && y >0 && y<Game.HEIGHT && x < Game.WIDTH) {
+		            window.setCursor(c);
+		        } else {
+		            window.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+		        }
+		    }
+
+		    @Override
+		    public void mouseDragged(MouseEvent e) {
+		    }
+		});
 		window.getContentPane().add(PlayMenu);
 		window.addMouseMotionListener(new shootListener());
 		window.setVisible(true);
