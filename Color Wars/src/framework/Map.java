@@ -36,9 +36,10 @@ public class Map extends JPanel{
 	 */
 	ArrayList<Wave> waveList = new ArrayList<Wave>();
 	Wave wave1 = new Wave(4);
-	Wave wave2 = new Wave(10);
+	Wave wave2 = new Wave(7);
+	Wave wave3 = new Wave(7);
 	
-	int currentWave = 0;
+	private int currentWave = 0;
 	/*
 	 * Creates the Projectiles objects.
 	 * proj represents the player's projectiles
@@ -60,10 +61,16 @@ public class Map extends JPanel{
 		this.window = window;
 		waveList.add(wave1);
 		waveList.add(wave2);
+		waveList.add(wave3);
 		
-		wave1.autoPopulate();
+		/*
+		 * HARD CODE WAVES HERE
+		 */
+		for(int i=0;i<wave1.numEnemies;i++) wave1.addTriangle();
 		wave2.autoPopulate();
+		wave3.autoPopulate();
 	}
+	
 	@Override
 	public void paint(Graphics g) {
 		super.paint(g);
@@ -88,8 +95,11 @@ public class Map extends JPanel{
 		pX = player.getX();
 		pY = player.getY();		
 		
+		
 		player.playerShoot(Game.mouseX,Game.mouseY,proj);
 		circleShoot(waveList.get(currentWave));
+		
+		if(waveList.get(currentWave).numEnemies == 0) currentWave++;
 		
 		waveList.get(currentWave).update(pX, pY);
 		proj.update(pX,pY);
@@ -97,15 +107,12 @@ public class Map extends JPanel{
 		hub.update(player.health,score);
 		
 		proj2.checkForCollisions(player);
-		waveList.get(currentWave).checkForCollisions(wave1);
+		waveList.get(currentWave).checkForCollisions(waveList.get(currentWave));
 		waveList.get(currentWave).checkForCollisions(player);
 		waveList.get(currentWave).checkForCollisions(proj);
 		
-		if(waveList.get(currentWave).size() == 0) currentWave++;
 	}
 
-	
-	
 	/*
 	 * Makes the circles shoot at the player in random intervals
 	 *
@@ -129,6 +136,10 @@ public class Map extends JPanel{
 			}
 		}
 	}
+	
+	/*
+	 * updates the score on the Hub
+	 */
 	public void updateScore(int points){
 		score+= points;
 	}
