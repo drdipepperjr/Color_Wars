@@ -7,7 +7,11 @@ import java.awt.RenderingHints;
 import java.awt.geom.Path2D;
 
 public class Triangle extends Enemy{
-
+	double xLength;
+ 	double yLength;
+ 	double hyp;
+ 	double theta;
+	
 	private double sideLength = 2*size/Math.sqrt(3);
 	
 	/*
@@ -32,8 +36,9 @@ public class Triangle extends Enemy{
 		triangle.lineTo(x+sideLength/2,y+size/2);
 		triangle.lineTo(x-sideLength/2, y+size/2);
 		g2d.setColor(this.color);
-		g2d.draw(triangle);
-		g2d.fill(triangle);
+		Shape t2 = ShapeTransforms.rotatedCopyOf(triangle, theta-Math.PI/2);
+	 	g2d.draw(t2);
+	 	g2d.fill(t2);
 	}
 	
 	/*
@@ -45,6 +50,15 @@ public class Triangle extends Enemy{
 		if (this.x > playerX) this.x-=3;
 		if (this.y < playerY) this.y+=3;
 		if (this.y > playerY) this.y-=3;
+		xLength = x-playerX;
+	 	yLength = y-playerY;
+	 	hyp = Math.sqrt(Math.pow(xLength, 2)+Math.pow(yLength,2));
+	 	theta = 0;
+	 	
+	 	if(xLength > 0)
+	 		theta = Math.asin(yLength/hyp);
+	 	if(xLength <= 0)
+	 		theta = Math.PI - Math.asin(yLength/hyp);
 	}
 
 	@Override
