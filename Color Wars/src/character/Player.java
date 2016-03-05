@@ -1,5 +1,6 @@
 package character;
 
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -22,7 +23,7 @@ public class Player extends GameObject{
 	/*
 	 * a variable that represents how many hits the player can take before it is destroyed
 	 */
-	public int health = 1000; 
+	public int health = 1; 
 	public int delay = 0;
 	
 	private int size = 40;
@@ -167,7 +168,7 @@ public class Player extends GameObject{
 	 * and calls its move() method
 	 */
 	public void update(){
-		if(this.health == 0){
+		if(this.health <= 0){
 			this.destroy();
 		}
 		this.delay++;
@@ -207,8 +208,11 @@ public class Player extends GameObject{
 		 		theta = Math.PI - Math.asin(yLength/hyp);
 		 	
 		 	Shape p2 = ShapeTransforms.rotatedCopyOf(player, theta-Math.PI/2);
-		 	g2d.draw(p2);
+		 	g2d.setColor(Color.black);
 		 	g2d.fill(p2);
+		 	g2d.setColor(this.color);
+		 	g2d.setStroke(new BasicStroke(2));
+		 	g2d.draw(p2);
 	}
 	
 	@Override
