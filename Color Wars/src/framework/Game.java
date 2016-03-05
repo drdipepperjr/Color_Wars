@@ -27,6 +27,7 @@ public class Game implements Runnable {
 	private JFrame window;
 	private MainMenu mainMenu;
 	private Map PlayMenu;
+	private GameOver gameover;
 	
 	@SuppressWarnings("unused")
 	private LeaderBoard leaderBoard; //TO BE IMPLEMENTED AT A LATER TIME
@@ -82,6 +83,7 @@ public class Game implements Runnable {
 		//this.window.getContentPane().add(mainMenu);
 
 	}	
+	
 	/*
 	 * Displays the leader board 
 	 */
@@ -92,11 +94,20 @@ public class Game implements Runnable {
 		window.setVisible(true);
 		//this.window.getContentPane().add(mainMenu);
 	}
+	
+	public void displayGameOver(){
+		window.getContentPane().removeAll();
+		gameover = new GameOver(window);
+		gameover.mainmenu.addActionListener(new MainMenuListener());
+		gameover.leaderboard.addActionListener(new LeaderBoardListener());
+		gameover.replay.addActionListener(new playListener());
+		window.setVisible(true);
+		
+	}
 	/*
 	 * Self-explanatory. Starts the gameplay aspect of the game.
 	 */
 	public void playGame(){
-		
 		soundPlayer.stop();
 		soundPlayer.setClip("res/MoodyLoop.wav");
 		soundPlayer.loop();
@@ -175,7 +186,7 @@ public class Game implements Runnable {
 				}
 			}
 		}
-		displayMainMenu();
+		displayGameOver();
 	}
 	
 	/*
