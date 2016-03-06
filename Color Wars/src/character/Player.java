@@ -193,7 +193,8 @@ public class Player extends GameObject{
 		 	player.lineTo(x-size/6, y-size/2);  //6
 		 	player.lineTo(x-size/8, y+size/4);  //7
 		 	player.lineTo(x+size/8, y+size/4);  //8
-		 	//player.lineTo(x+size/6, y-size/2);  //1
+		 	player.lineTo(x+size/6, y-size/2); //1
+		 	player.lineTo(x+size/2.5, y+size/3);//2
 			g2d.setColor(this.color);
 		 	
 		 	//Variables used for rotating

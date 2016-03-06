@@ -36,8 +36,8 @@ public class Map extends JPanel{
 	 */
 	ArrayList<Wave> waveList = new ArrayList<Wave>();
 	Wave wave1 = new Wave(4);
-	Wave wave2 = new Wave(4);
-	Wave wave3 = new Wave(4);
+	Wave wave2 = new Wave(7);
+	Wave wave3 = new Wave(10);
 	
 	private int currentWave = 0;
 	/*
@@ -59,16 +59,29 @@ public class Map extends JPanel{
 	 */
 	public Map(JFrame window){
 		this.window = window;
+		initializeWaves();
+	}
+	
+	public void initializeWaves(){
 		waveList.add(wave1);
 		waveList.add(wave2);
 		waveList.add(wave3);
 		
-		/*
-		 * HARD CODE WAVES HERE
-		 */
-		for(int i=0;i<wave1.numEnemies;i++) wave1.addCircle();
-		wave2.autoPopulate();
-		wave3.autoPopulate();
+		//WAVE 1
+		for(int i=0;i<wave1.numEnemies;i++) wave1.addTriangle();
+		//WAVE 2
+		for(int i=0;i<3;i++) wave2.addTriangle();
+		for(int i=3;i<wave2.numEnemies;i++) wave2.addSquare();
+		//WAVE 3
+		for(int i=0;i<3;i++) wave3.addTriangle();
+		for(int i=3;i<7;i++) wave3.addCircle();
+		for(int i=0;i<wave3.numEnemies;i++) wave3.addSquare();
+	}
+	
+	public void addWave(int currentWave){
+		Wave newWave = new Wave(currentWave);
+		newWave.autoPopulate();
+		waveList.add(newWave);
 	}
 	
 	@Override
@@ -99,7 +112,10 @@ public class Map extends JPanel{
 		player.playerShoot(Game.mouseX,Game.mouseY,proj);
 		circleShoot(waveList.get(currentWave));
 		
-		if(waveList.get(currentWave).numEnemies == 0) currentWave++;
+		if(waveList.get(currentWave).numEnemies == 0){
+			currentWave++;
+			if(currentWave > 2) addWave((currentWave+1)*3+1);
+		}
 		
 		waveList.get(currentWave).update(pX, pY);
 		proj.update(pX,pY);
