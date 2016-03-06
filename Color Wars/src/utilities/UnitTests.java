@@ -1,11 +1,9 @@
 package utilities;
 
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.awt.Color;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import org.junit.Test;
 
