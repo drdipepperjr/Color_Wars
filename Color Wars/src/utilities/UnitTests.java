@@ -4,6 +4,8 @@ package utilities;
 import static org.junit.Assert.*;
 
 import java.awt.Color;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import org.junit.Test;
 
@@ -61,12 +63,13 @@ public class UnitTests {
 	
 	@Test public void testHighScores(){
 		HighScores hs= new HighScores();
-		hs.add("alex", 1);
+		hs.add( 1);
 		assertEquals("alex",hs.getName(0));
 		assertEquals(1, hs.getScore(0));
-		hs.add("dom", 2);
+		hs.add( 2);
 		assertEquals("dom",hs.getName(0));
 		assertEquals(2, hs.getScore(0));
+
 		
 	}
 }

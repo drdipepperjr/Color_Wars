@@ -9,6 +9,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 
 import javax.swing.JFrame;
 
@@ -33,11 +37,10 @@ public class Game implements Runnable {
 	private MainMenu mainMenu;
 	private Map PlayMenu;
 	private GameOver gameover;
-	
-	@SuppressWarnings("unused")
+	private HighScores highScores;
 	private LeaderBoard leaderBoard; //TO BE IMPLEMENTED AT A LATER TIME
 
-	public static boolean DebugEnvironment =true;
+	public static boolean DebugEnvironment =false;
 
 	private boolean isRunning= false;
 	private Thread thread;
@@ -73,6 +76,23 @@ public class Game implements Runnable {
 		 soundPlayer.setClip("res/UpbeatFunk.wav");
 		 soundPlayer.loop();
 		
+		 //loads highscores
+		 try {
+				FileInputStream fileStream = new FileInputStream("res/HighScores.ser");
+				ObjectInputStream os = new ObjectInputStream(fileStream);
+				Object one = os.readObject();
+				highScores=(HighScores)one;
+				os.close();
+				
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (FileNotFoundException e) {
+				highScores= new HighScores();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		window.setVisible(true);
 	}
 	
@@ -95,13 +115,14 @@ public class Game implements Runnable {
 	 */
 	public void displayLeaderBoard(){
 		window.getContentPane().removeAll();
-		leaderBoard = new LeaderBoard(window); 
+		leaderBoard = new LeaderBoard(window,highScores); 
 		leaderBoard.mainMenu.addActionListener(new MainMenuListener());
 		window.setVisible(true);
 		//this.window.getContentPane().add(mainMenu);
 	}
 	
 	public void displayGameOver(){
+		highScores.add(PlayMenu.score);
 		window.getContentPane().removeAll();
 		gameover = new GameOver(window);
 		gameover.mainmenu.addActionListener(new MainMenuListener());
@@ -215,6 +236,7 @@ public class Game implements Runnable {
 				}
 			}
 		}
+		
 		displayGameOver();
 	}
 	
