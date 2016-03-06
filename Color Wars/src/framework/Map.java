@@ -104,7 +104,7 @@ public class Map extends JPanel{
 		waveList.get(currentWave).update(pX, pY);
 		proj.update(pX,pY);
 		proj2.update(pX,pY);	
-		hub.update(player.health,score);
+		hub.update(player.health,score, waveList.get(currentWave));
 		
 		proj2.checkForCollisions(player);
 		waveList.get(currentWave).checkForCollisions(waveList.get(currentWave));

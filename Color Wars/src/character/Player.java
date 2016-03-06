@@ -23,7 +23,7 @@ public class Player extends GameObject{
 	/*
 	 * a variable that represents how many hits the player can take before it is destroyed
 	 */
-	public int health = 1; 
+	public int health = 100; 
 	public int delay = 0;
 	
 	private int size = 40;
@@ -193,7 +193,7 @@ public class Player extends GameObject{
 		 	player.lineTo(x-size/6, y-size/2);  //6
 		 	player.lineTo(x-size/8, y+size/4);  //7
 		 	player.lineTo(x+size/8, y+size/4);  //8
-		 	player.lineTo(x+size/6, y-size/2);  //1
+		 	//player.lineTo(x+size/6, y-size/2);  //1
 			g2d.setColor(this.color);
 		 	
 		 	//Variables used for rotating
@@ -252,22 +252,7 @@ public class Player extends GameObject{
 	public void playerShoot(double x, double y, Projectiles p){
 		if(this.getDelay()==20){
 			
-			//Variables used for rotating
-		 	double xLength = this.x-Game.mouseX;
-		 	double yLength = this.y-Game.mouseY;
-		 	double hyp = Math.sqrt(Math.pow(xLength, 2)+Math.pow(yLength,2));
-		 	double theta = 0;
-		 	
-		 	//variables used to rotate
-		 	if(xLength > 0)
-		 		theta = Math.asin(yLength/hyp);
-		 	if(xLength <= 0)
-		 		theta = Math.PI - Math.asin(yLength/hyp);
-			
-		 	double xStart = 8*Math.cos(theta);
-		 	double yStart = 8*Math.sin(theta);
-		 	
-			p.add(new Projectile(this.x-xStart-5,this.y-yStart+9,x,y, this.color));
+			p.add(new Projectile(this.x-5,this.y-5,x,y, this.color));
 			this.setDelay(0);
 			
 			if(Game.DebugEnvironment==true)

@@ -42,9 +42,10 @@ public class Hub extends GeneralPathWrapper implements Shape{
 		g2d.drawString("Score "+ score, 0, 35);
 	}
 
-	public void update(int playerHealth, int score) {
+	public void update(int playerHealth, int score, Wave wave) {
 		this.playerHealth=playerHealth;
 		this.score=score;
+		this.wave = wave;
 		
 	}
 
