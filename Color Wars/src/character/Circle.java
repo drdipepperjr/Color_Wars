@@ -32,6 +32,12 @@ public class Circle extends Enemy {
 		g2d.setColor(this.color);
 		g2d.draw(circle);
 		g2d.fill(circle);
+		if(this.isHit==true){
+			Ellipse2D.Double circle2 = new Ellipse2D.Double(x,y,size,size);
+			g2d.setColor(Color.WHITE);
+			g2d.draw(circle2);
+			g2d.fill(circle2);
+		}
 	}
 	
 	/*
@@ -60,4 +66,7 @@ public class Circle extends Enemy {
 		return "Circle";
 	}
 	
+	public void flicker(){
+		
+	}
 }

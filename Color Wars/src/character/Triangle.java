@@ -42,6 +42,11 @@ public class Triangle extends Enemy{
 		Shape t2 = ShapeTransforms.rotatedCopyOf(triangle, theta-Math.PI/2);
 	 	g2d.draw(t2);
 	 	g2d.fill(t2);
+	 	if(this.isHit==true){
+			g2d.setColor(Color.WHITE);
+			g2d.draw(t2);
+			g2d.fill(t2);
+	 	}
 	}
 	
 	/*

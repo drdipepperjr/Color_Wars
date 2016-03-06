@@ -25,6 +25,8 @@ public abstract class Enemy extends GameObject{
 	int points=10;
 	protected int size = 30;
 	protected int delay;
+	public boolean isHit = false;
+	public int flickerDelay;
 	
 	/*
 	 * Constructor for objects of class Enemy

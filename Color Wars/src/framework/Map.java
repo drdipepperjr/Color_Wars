@@ -126,6 +126,7 @@ public class Map extends JPanel{
 		waveList.get(currentWave).checkForCollisions(waveList.get(currentWave));
 		waveList.get(currentWave).checkForCollisions(player);
 		waveList.get(currentWave).checkForCollisions(proj);
+		waveList.get(currentWave).resetIsHit();
 		
 	}
 

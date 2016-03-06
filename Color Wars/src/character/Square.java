@@ -30,6 +30,11 @@ public class Square extends Enemy {
 		g2d.setColor(this.color);
 		g2d.draw(square);
 		g2d.fill(square);
+		if(this.isHit==true){
+			g2d.setColor(Color.WHITE);
+			g2d.draw(square);
+			g2d.fill(square);
+		}
 	}
 
 	/*

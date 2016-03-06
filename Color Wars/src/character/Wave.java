@@ -200,6 +200,7 @@ public class Wave extends ArrayList<Enemy> {
 					//now that it's collided, check to see if the color matches
 					if(this.get(i).getColor()==p.get(j).getColor()){
 						this.get(i).health--;
+						this.get(i).isHit = true;
 						if(this.get(i).health == 0)
 							this.get(i).destroy();
 					}
@@ -225,6 +226,19 @@ public class Wave extends ArrayList<Enemy> {
 				Map.score+=this.get(i).getPoints();
 				this.remove(i);
 				numEnemies --;
+			}
+		}
+	}
+
+	public void resetIsHit(){
+		
+		for(int i=0;i<numEnemies;i++){
+			if (this.get(i).isHit==true){
+				if(this.get(i).flickerDelay > 20){
+					this.get(i).isHit=false;
+					this.get(i).flickerDelay = 0;
+				}
+				else this.get(i).flickerDelay++;
 			}
 		}
 	}
