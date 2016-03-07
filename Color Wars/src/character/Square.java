@@ -81,6 +81,7 @@ public class Square extends Enemy {
 					x+xMove<=playerX+45&&
 					y+yMove<=playerY+45&&
 					y+yMove>=playerY-45){
+				
 				System.err.println("going to hit");
 				xMove=0;
 				yMove=0;
