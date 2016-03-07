@@ -6,8 +6,8 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseMotionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -314,7 +314,7 @@ public class Game implements Runnable {
 	/*
 	 * A class that listens for mouse input from the player during the game.
 	 */
-	public class shootListener extends MouseMotionAdapter{
+	public class shootListener extends MouseAdapter {
 		
 		//Aims for the tip of the mouse
 		public void mouseMoved(MouseEvent e){
@@ -323,9 +323,9 @@ public class Game implements Runnable {
 			mouseY=e.getY() - 30;
 
 			if(DebugEnvironment==true)
-				System.err.println("click coord " +mouseX +", "+mouseY);
-			
+				System.err.println("click coord " +mouseX +", "+mouseY);		
 		}	
+		
 	}
 	/*
 	 * A class that listens for the leaderBoard button to be pressed

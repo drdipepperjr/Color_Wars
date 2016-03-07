@@ -283,7 +283,7 @@ public class Player extends GameObject{
 	/*
 	 * Methods for changing the color of the player
 	 */
-	private void changeColorForward(){
+	public void changeColorForward(){
 		if(this.color == Color.RED)
 			this.color = Color.BLUE;
 		else if(this.color == Color.BLUE)

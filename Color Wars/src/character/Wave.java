@@ -144,7 +144,7 @@ public class Wave extends ArrayList<Enemy> {
 	 * @param the current wave
 	 */
 	public void checkForCollisions(Wave w){
-		int z = random.nextInt(50);
+		//int z = random.nextInt(50);
 		for(int i=0;i<numEnemies;i++){
 			for(int j=0;j<numEnemies;j++){
 				if(i!=j){
@@ -205,24 +205,28 @@ public class Wave extends ArrayList<Enemy> {
 	 * 
 	 * @param a Projectiles object
 	 */
-	public void checkForCollisions(Projectiles p){
+	public void checkForCollisions(Projectiles proj){
 		for(int i=0;i<numEnemies;i++){
-			for(int j=0;j<p.size();j++){
-				if(this.get(i).isCollidedWith(p.get(j))){
+			for(int j=0;j<proj.size();j++){
+				Enemy e = this.get(i);
+				Projectile p = proj.get(j);
+				if(e.isCollidedWith(p)){
 					if(Game.DebugEnvironment==true){
-						System.err.println("Enemy "+ this.get(i).getType()+ " colided with projectile "+ j);
+						System.err.println("Enemy "+ e.getType()+ " colided with projectile "+ j);
 					}
-					p.get(j).destroy();
+					p.destroy();
 					
 					//now that it's collided, check to see if the color matches
-					if(this.get(i).getColor()==p.get(j).getColor()){
-						this.get(i).health--;
-						this.get(i).isHit = true;
-						if(this.get(i).health == 0)
-							this.get(i).destroy();
+					if(this.get(i).getColor()==p.getColor()){
+						e.health--;
+						e.isHit = true;
+						if(e.health == 0){
+							e.destroy();
+							Map.score+=this.get(i).getPoints();
+						}
 					}
 					else{
-						p.get(j).blockedAudio();
+						p.blockedAudio();
 					}
 				}
 			}
@@ -240,7 +244,7 @@ public class Wave extends ArrayList<Enemy> {
 		for(int i=0;i<numEnemies;i++){
 			this.get(i).update(playerX, playerY);
 			if(!this.get(i).isAlive()){
-				Map.score+=this.get(i).getPoints();
+				
 				this.remove(i);
 				numEnemies --;
 			}
