@@ -53,31 +53,15 @@ public class Circle extends Enemy {
 		this.xMove=xLength/length;
 		this.yMove=yLength/length;
 		
-		
 		if(length > 300){
 			this.x+=xMove*3;
 			this.y+=yMove*3;
 		}
-		if(length < 300){
+		if(length <= 310){
 			this.x-=xMove*3;
 			this.y-=yMove*3;
 		}
-		/*
-		if(Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0)) > 300)
-			{
-			if (this.x < playerX) this.x+=3;			
-			if (this.x > playerX) this.x-=3;
-			if (this.y < playerY) this.y+=3;
-			if (this.y > playerY) this.y-=3;
-			}
-		if(Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0)) < 300)
-			{
-			if (this.x < playerX) this.x-=3;
-			if (this.x > playerX) this.x+=3;
-			if (this.y < playerY) this.y-=3;
-			if (this.y > playerY) this.y+=3;	
-			}
-			*/
+		
 	}
 
 	@Override
