@@ -157,14 +157,14 @@ public class Player extends GameObject{
 				keys[5] = false;
 			}
 			// hard coded boundaries
-			if(x>= Game.WIDTH-15)
-				x = Game.WIDTH-15;
-			if(x<=9)
-				x = 9;
+			if(x>= Game.WIDTH-27)
+				x = Game.WIDTH-27;
+			if(x<=20)
+				x = 20;
 			if(y>=Game.HEIGHT-50)
 				y = Game.HEIGHT-50;
-			if(y<=16)
-				y = 16;
+			if(y<=35)
+				y = 35;
 	}
 	
 	/*
@@ -219,6 +219,7 @@ public class Player extends GameObject{
 		 	g2d.setColor(this.color);
 		 	g2d.setStroke(new BasicStroke(2));
 		 	g2d.draw(p2);
+		 	/*
 		 	if(this.isHit==true){
 				g2d.setColor(Color.WHITE);
 				g2d.draw(p2);
@@ -229,6 +230,7 @@ public class Player extends GameObject{
 				}
 				else flickerDelay++;
 		 	}
+		 	*/
 	}
 	
 	@Override
