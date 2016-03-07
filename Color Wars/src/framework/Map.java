@@ -22,7 +22,7 @@ import character.Wave;
 public class Map extends JPanel{
 	public static int score=0;
 	JFrame window;
-	ImageIcon img = new ImageIcon("res/Map.png");
+	ImageIcon img = new ImageIcon("res/background.png");
 	
 	/*
 	 * Creates the one and only instance of Player
