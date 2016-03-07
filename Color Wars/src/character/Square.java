@@ -75,8 +75,18 @@ public class Square extends Enemy {
 			int sign=randomNum.nextInt(2);
 			double xOffset=randomNum.nextInt(25)*Math.pow(-1, sign);
 			double yOffset=randomNum.nextInt(25)*Math.pow(-1, sign);
-			this.setX(x+xMove*weight+xOffset);
-			this.setY(y+yMove*weight+yOffset);
+			xMove=xMove*weight+xOffset;
+			yMove=+yMove*weight+yOffset;
+			if(x+xMove>=playerX-45&&
+					x+xMove<=playerX+45&&
+					y+yMove<=playerY+45&&
+					y+yMove>=playerY-45){
+				System.err.println("going to hit");
+				xMove=0;
+				yMove=0;
+			}
+			this.setX(x+xMove);
+			this.setY(y+yMove);
 			//System.err.println("("+x+","+y+")");
 			/*
 			Random randomNum = new Random();
