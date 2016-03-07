@@ -110,7 +110,7 @@ public class Map extends JPanel{
 		
 		
 		player.playerShoot(Game.mouseX,Game.mouseY,proj);
-		circleShoot(waveList.get(currentWave));
+		enemyPatterns(waveList.get(currentWave));
 		
 		if(waveList.get(currentWave).numEnemies == 0){
 			currentWave++;
@@ -132,10 +132,10 @@ public class Map extends JPanel{
 
 	/*
 	 * Makes the circles shoot at the player in random intervals
-	 *
+	 * Makes Squares teleport
 	 * @param wave the current wave
 	 */
-	public void circleShoot(Wave wave){
+	public void enemyPatterns(Wave wave){
 		for(int i=0;i<wave.numEnemies;i++){
 			if(wave.get(i).getType() == "Circle"){
 				if(wave.get(i).getDelay() == 100){

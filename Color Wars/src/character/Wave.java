@@ -148,10 +148,25 @@ public class Wave extends ArrayList<Enemy> {
 		for(int i=0;i<numEnemies;i++){
 			for(int j=0;j<numEnemies;j++){
 				if(i!=j){
-					if(this.get(i).isCollidedWith(this.get(j))){
+					Enemy e1 = this.get(i);
+					Enemy e2 = this.get(j);
+					if(e1.isCollidedWith(e2)){
 						//Attempt to move away from other enemy
-						if (this.get(i).getType()=="Square") {this.get(i).x+=z; this.get(i).y+=z; }
-						if (this.get(i).getType()=="Circle") {this.get(i).x ++; this.get(i).y++;}
+						if (e1.getType()=="Square") {e1.x+=z; e1.y+=z; }
+						
+						if (e1.getType()=="Circle" || e1.getType() == "Triangle"){
+							if(e1.x > e2.x){ 
+								e1.x ++;
+								e2.x --;
+							}
+							if(e1.y > e2.y){
+								e1.y++;
+								e2.y--;
+							}
+						}
+							
+							//this.get(i).x ++; this.get(i).y++;}
+						
 					}
 				}
 			}
