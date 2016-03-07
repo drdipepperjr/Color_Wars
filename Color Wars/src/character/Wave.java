@@ -182,12 +182,13 @@ public class Wave extends ArrayList<Enemy> {
 	 */
 	public void checkForCollisions(Player p){
 		for(int i=0;i<numEnemies;i++){
-			if(this.get(i).isCollidedWith(p)){
+			Enemy e = this.get(i);
+			if(e.isCollidedWith(p)){
 				if(Game.DebugEnvironment==true){
-					System.err.println("Enemy "+ this.get(i).getType()+ " colided with player");
+					System.err.println("Enemy "+ e.getType()+ " colided with player");
 				}
-				this.get(i).destroy();
-				p.health--;
+				e.destroy();
+				p.health -= e.health;
 				p.isHit = true;
 				if(Game.DebugEnvironment==true){
 					System.err.println("PlayerHealth = " + p.health);
