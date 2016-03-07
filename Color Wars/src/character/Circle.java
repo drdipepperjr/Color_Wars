@@ -9,6 +9,8 @@ import java.util.Random;
 public class Circle extends Enemy {
 
 	private Random random = new Random();
+	private double xMove;
+	private double yMove;
 	
 	/*
 	 * Constructor for objects of class Circle
@@ -45,6 +47,22 @@ public class Circle extends Enemy {
 	 */
 	@Override
 	void attack(double playerX, double playerY) {
+		double xLength = playerX-x;
+		double yLength = playerY-y;
+		double length= Math.sqrt(Math.pow(xLength, 2)+Math.pow(yLength, 2));
+		this.xMove=xLength/length;
+		this.yMove=yLength/length;
+		
+		
+		if(length > 300){
+			this.x+=xMove*3;
+			this.y+=yMove*3;
+		}
+		if(length < 300){
+			this.x-=xMove*3;
+			this.y-=yMove*3;
+		}
+		/*
 		if(Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0)) > 300)
 			{
 			if (this.x < playerX) this.x+=3;			
@@ -59,6 +77,7 @@ public class Circle extends Enemy {
 			if (this.y < playerY) this.y-=3;
 			if (this.y > playerY) this.y+=3;	
 			}
+			*/
 	}
 
 	@Override
