@@ -38,6 +38,11 @@ public class Player extends GameObject{
 	private double accel = 0.3;
 	
 	/*
+	 * boolean to control when player should flicker and stop flickering when hit
+	 */
+	public boolean isHit = false;
+	public int flickerDelay;
+	/*
 	 * Constructor for objects of class Player
 	 */
 	public Player(double x, double y, Color color){
@@ -214,6 +219,16 @@ public class Player extends GameObject{
 		 	g2d.setColor(this.color);
 		 	g2d.setStroke(new BasicStroke(2));
 		 	g2d.draw(p2);
+		 	if(this.isHit==true){
+				g2d.setColor(Color.WHITE);
+				g2d.draw(p2);
+				g2d.fill(p2);
+				if(flickerDelay > 50){
+					isHit=false;
+					flickerDelay = 0;
+				}
+				else flickerDelay++;
+		 	}
 	}
 	
 	@Override

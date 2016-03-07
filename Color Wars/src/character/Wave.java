@@ -173,6 +173,7 @@ public class Wave extends ArrayList<Enemy> {
 				}
 				this.get(i).destroy();
 				p.health--;
+				p.isHit = true;
 				if(Game.DebugEnvironment==true){
 					System.err.println("PlayerHealth = " + p.health);
 				}
