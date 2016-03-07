@@ -59,6 +59,7 @@ public class Map extends JPanel{
 	 */
 	public Map(JFrame window){
 		this.window = window;
+		score=0;
 		initializeWaves();
 	}
 	
