@@ -33,10 +33,10 @@ public class LeaderBoard extends JPanel{
 		super.paintComponent(g);
 		g.drawImage(img.getImage(),0,0,window.getWidth(),window.getHeight(),this);
 		g.setColor(Color.white);
-		g.setFont(new Font("TimesRoman",Font.ITALIC,28));
+		g.setFont(new Font("TimesRoman",Font.PLAIN,28));
 		g.drawString("Name", 365-5, 261-2);
 		g.drawString("Score", 580-5, 261-2);
-		g.setFont(new Font("TimesRoman",Font.PLAIN,20));
+		g.setFont(new Font("TimesRoman",Font.ITALIC,20));
 		for(int i=0;i<10;i++){
 			g.drawString((i+1)+". "+highScores.getName(i), 350-5, 261+29*(i+1));
 			g.drawString(""+ highScores.getScore(i), 580-5, 261+29*(i+1));
