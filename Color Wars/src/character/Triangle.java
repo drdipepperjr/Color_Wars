@@ -15,6 +15,8 @@ public class Triangle extends Enemy{
  	double hyp;
  	double theta;
 	
+ 	private double xMove;
+	private double yMove;
 	private double sideLength = 2*size/Math.sqrt(3);
 	
 	/*
@@ -54,19 +56,27 @@ public class Triangle extends Enemy{
 	 */
 	@Override 
 	void attack(double playerX, double playerY) {
+		double xLength = playerX-x;
+		double yLength = playerY-y;
+		double length= Math.sqrt(Math.pow(xLength, 2)+Math.pow(yLength, 2));
+		this.xMove=xLength/length;
+		this.yMove=yLength/length;
+		/*
 		if (this.x < playerX) this.x+=3;
 		if (this.x > playerX) this.x-=3;
 		if (this.y < playerY) this.y+=3;
 		if (this.y > playerY) this.y-=3;
-		xLength = x-playerX;
-	 	yLength = y-playerY;
+		*/
+		this.x+=xMove*5;
+		this.y+=yMove*5;
+		
 	 	hyp = Math.sqrt(Math.pow(xLength, 2)+Math.pow(yLength,2));
 	 	theta = 0;
 	 	
 	 	if(xLength > 0)
 	 		theta = Math.asin(yLength/hyp);
 	 	if(xLength <= 0)
-	 		theta = Math.PI - Math.asin(yLength/hyp);
+	 		theta = Math.PI + Math.asin(yLength/hyp);
 	}
 
 	@Override
