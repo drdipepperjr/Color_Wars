@@ -8,6 +8,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
 public class Square extends Enemy {
+	int distanceFromPlayer;
 
 	/*
 	 * Constructor for objects of class Square
@@ -16,6 +17,8 @@ public class Square extends Enemy {
 		super(x, y, color);
 		this.health = 5;
 		this.delay = 149;
+		this.distanceFromPlayer=600;
+		
 	}
 	
 	/*
@@ -59,22 +62,37 @@ public class Square extends Enemy {
 	 */
 	@Override
 	void attack(double playerX, double playerY) {
-		//double distanceFromPlayer = Math.sqrt(Math.pow(this.x-playerX,2.0)+Math.pow(this.y-playerY,2.0));
-		if(this.getDelay()==150)
-			{
-				Random randomNum = new Random();
-				int ranNum = randomNum.nextInt(4);
-				int ranNum2 = randomNum.nextInt(50) +100;
-				if(ranNum==0)
-					this.x = playerX+ranNum2;
-				if(ranNum==1)
-					this.y = playerY+ranNum2;
-				if(ranNum==2)
-					this.x = playerX-ranNum2;
-				if(ranNum==3)
-					this.y = playerY-ranNum2;
-			}
-		
+		if(this.getDelay()==150){
+			double xLength = playerX-x;
+			double yLength = playerY-y;
+			double length= Math.sqrt(Math.pow(xLength, 2)+Math.pow(yLength, 2));
+			if(length<0)
+				length=1;
+			Random randomNum = new Random();
+			double weight=randomNum.nextInt((int)length);
+			double xMove=xLength/length;
+			double yMove=yLength/length;
+			int sign=randomNum.nextInt(2);
+			double xOffset=randomNum.nextInt(25)*Math.pow(-1, sign);
+			double yOffset=randomNum.nextInt(25)*Math.pow(-1, sign);
+			this.setX(x+xMove*weight+xOffset);
+			this.setY(y+yMove*weight+yOffset);
+			//System.err.println("("+x+","+y+")");
+			/*
+			Random randomNum = new Random();
+			double xCoor=randomNum.nextInt(distanceFromPlayer);
+			double yCoor=distanceFromPlayer-xCoor;
+			int sign=randomNum.nextInt(2);
+			xCoor=xCoor*Math.pow(-1, sign);
+			sign=randomNum.nextInt(2);
+			yCoor=yCoor*Math.pow(-1, sign);
+			
+
+			distanceFromPlayer-=randomNum.nextInt(150);
+			if (distanceFromPlayer<0){	
+				distanceFromPlayer=1;
+			}*/
+		}		
 	}
 
 	@Override

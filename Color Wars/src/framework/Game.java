@@ -122,7 +122,7 @@ public class Game implements Runnable {
 	}
 	
 	public void displayGameOver(){
-		highScores.add(Map.score);
+		highScores.add(PlayMenu.score);
 		window.getContentPane().removeAll();
 		gameover = new GameOver(window);
 		gameover.mainmenu.addActionListener(new MainMenuListener());

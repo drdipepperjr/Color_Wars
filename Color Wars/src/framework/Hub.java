@@ -18,6 +18,7 @@ public class Hub extends GeneralPathWrapper implements Shape{
 	protected int maxHealth; 
 	protected Wave wave;
 	protected int score;
+	int currentWave;
 	
 	public Hub(int playerHealth, Wave wave) {
 		this.x=Game.WIDTH;
@@ -40,12 +41,14 @@ public class Hub extends GeneralPathWrapper implements Shape{
 		g2d.setColor(Color.WHITE);
 		g2d.drawString("Remaining Enemies " + wave.numEnemies, 0, 25);
 		g2d.drawString("Score "+ score, 0, 35);
+		g2d.drawString("Current wave: " + currentWave,0,45);
 	}
 
-	public void update(int playerHealth, int score, Wave wave) {
+	public void update(int playerHealth, int score, Wave wave,int currentWave) {
 		this.playerHealth=playerHealth;
 		this.score=score;
 		this.wave = wave;
+		this.currentWave=currentWave;
 		
 	}
 

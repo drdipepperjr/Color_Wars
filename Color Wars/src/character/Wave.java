@@ -152,7 +152,7 @@ public class Wave extends ArrayList<Enemy> {
 					Enemy e2 = this.get(j);
 					if(e1.isCollidedWith(e2)){
 						//Attempt to move away from other enemy
-						if (e1.getType()=="Square") {e1.x+=z; e1.y+=z; }
+						//if (e1.getType()=="Square") {e1.x+=z; e1.y+=z; }
 						
 						if (e1.getType()=="Circle" || e1.getType() == "Triangle"){
 							if(e1.x > e2.x){ 
