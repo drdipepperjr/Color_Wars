@@ -219,18 +219,20 @@ public class Player extends GameObject{
 		 	g2d.setColor(this.color);
 		 	g2d.setStroke(new BasicStroke(2));
 		 	g2d.draw(p2);
-		 	/*
+		 	
 		 	if(this.isHit==true){
 				g2d.setColor(Color.WHITE);
 				g2d.draw(p2);
 				g2d.fill(p2);
-				if(flickerDelay > 50){
+				
+				if(flickerDelay > 10){
 					isHit=false;
 					flickerDelay = 0;
 				}
 				else flickerDelay++;
+				
 		 	}
-		 	*/
+		 	
 	}
 	
 	@Override

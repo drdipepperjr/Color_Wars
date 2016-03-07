@@ -8,6 +8,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import character.Enemy;
 import character.Player;
 import character.Projectile;
 import character.Projectiles;
@@ -138,19 +139,19 @@ public class Map extends JPanel{
 	 */
 	public void enemyPatterns(Wave wave){
 		for(int i=0;i<wave.numEnemies;i++){
-			if(wave.get(i).getType() == "Circle"){
-				if(wave.get(i).getDelay() == 100){
-					proj2.add( new Projectile(wave.get(i).getX(),wave.get(i).getY(),pX,pY, wave.get(i).getColor()));
+			Enemy e = wave.get(i);
+			if(e.getType() == "Circle"){
+				if(e.getDelay() == 100){
+					proj2.add( new Projectile(e.getX(),e.getY(),pX,pY,Color.BLACK));
 					wave.get(i).setDelay(0);
 				}
-				wave.get(i).setDelay(wave.get(i).getDelay() + 1);
+				e.setDelay(e.getDelay() + 1);
 			}
-			if(wave.get(i).getType() == "Square"){
-				if(wave.get(i).getDelay() > 150){
-					//proj2.add( new Projectile(wave.get(i).getX(),wave.get(i).getY(),pX,pY, wave.get(i).getColor()));
-					wave.get(i).setDelay(0);
+			if(e.getType() == "Square"){
+				if(e.getDelay() > 150){
+					e.setDelay(0);
 				}
-				wave.get(i).setDelay(wave.get(i).getDelay() + 1);
+				e.setDelay(e.getDelay() + 1);
 			}
 		}
 	}
