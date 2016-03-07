@@ -1,6 +1,8 @@
 package framework;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -10,12 +12,13 @@ import javax.swing.JPanel;
 public class MainMenu extends JPanel{
 	CustomButton play;
 	CustomButton leaderBoard;
+	CustomButton instructions;
 	JFrame window;
 	ImageIcon img;
 	public boolean started = false;
 	public MainMenu(JFrame window){
 		this.window = window;
-		img = new ImageIcon("res/MainMenu.png");
+		img = new ImageIcon("res/MainMenu.jpg");
 		
 		this.setLayout(null);
 		
@@ -31,6 +34,10 @@ public class MainMenu extends JPanel{
 		leaderBoard = new CustomButton("LeaderBoard",395,42);
 		leaderBoard.setBounds(510,576,395,42);
 		add(leaderBoard);
+		
+		instructions = new CustomButton("f",389,56);
+		instructions.setBounds(510,673,389,56);
+		add(instructions);
 		//add(Box.createHorizontalGlue());
 		//add(Box.createVerticalGlue());
 
@@ -44,7 +51,10 @@ public class MainMenu extends JPanel{
 	public void paintComponent(Graphics g)
 	{
 		super.paintComponent(g);
+		Graphics2D g2d = (Graphics2D)g;
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
 		if(!started)
-			g.drawImage(img.getImage(),0,0,window.getWidth(),window.getHeight(),this);
+			g2d.drawImage(img.getImage(),0,0,window.getWidth(),window.getHeight(),this);
 	}
 }

@@ -38,7 +38,8 @@ public class Game implements Runnable {
 	private Map PlayMenu;
 	private GameOver gameover;
 	private HighScores highScores;
-	private LeaderBoard leaderBoard; //TO BE IMPLEMENTED AT A LATER TIME
+	private LeaderBoard leaderBoard;
+	private Instructions instr;
 
 	public static boolean DebugEnvironment =false;
 
@@ -104,10 +105,9 @@ public class Game implements Runnable {
 		mainMenu = new MainMenu(window); 
 		mainMenu.play.addActionListener(new playListener());
 		mainMenu.leaderBoard.addActionListener(new LeaderBoardListener());
-
+		mainMenu.instructions.addActionListener(new instructionsListener());
 		window.setVisible(true);
 		//this.window.getContentPane().add(mainMenu);
-
 	}	
 	
 	/*
@@ -117,6 +117,14 @@ public class Game implements Runnable {
 		window.getContentPane().removeAll();
 		leaderBoard = new LeaderBoard(window,highScores); 
 		leaderBoard.mainMenu.addActionListener(new MainMenuListener());
+		window.setVisible(true);
+		//this.window.getContentPane().add(mainMenu);
+	}
+	
+	public void displayInstructions(){
+		window.getContentPane().removeAll();
+		instr = new Instructions(window); 
+		instr.mainMenu.addActionListener(new MainMenuListener());
 		window.setVisible(true);
 		//this.window.getContentPane().add(mainMenu);
 	}
@@ -319,5 +327,20 @@ public class Game implements Runnable {
 			
 		}	
 	}
+	/*
+	 * A class that listens for the leaderBoard button to be pressed
+	 * Currently does nothing
+	 */
+	class instructionsListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+
+			displayInstructions();
+
+			if(DebugEnvironment==true)
+				System.err.println("Instructions pressed");
+
+		}
+	}	
 
 }
