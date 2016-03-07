@@ -70,8 +70,7 @@ public class Map extends JPanel{
 		waveList.add(wave3);
 		
 		//WAVE 1
-		for(int i=0;i<wave1.numEnemies-1;i++) wave1.addTriangle();
-		wave1.addCircle();
+		for(int i=0;i<wave1.numEnemies;i++) wave1.addTriangle();
 		//WAVE 2
 		for(int i=0;i<3;i++) wave2.addTriangle();
 		for(int i=3;i<wave2.numEnemies;i++) wave2.addSquare();
@@ -144,7 +143,7 @@ public class Map extends JPanel{
 			if(e.getType() == "Circle"){
 				if(e.getDelay() == 100){
 					proj2.add( new Projectile(e.getX()+10,e.getY()+10,pX,pY,Color.BLACK));
-					wave.get(i).setDelay(0);
+					e.setDelay(0);
 				}
 				e.setDelay(e.getDelay() + 1);
 			}
