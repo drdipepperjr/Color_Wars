@@ -235,7 +235,7 @@ public class Wave extends ArrayList<Enemy> {
 		
 		for(int i=0;i<numEnemies;i++){
 			if (this.get(i).isHit==true){
-				if(this.get(i).flickerDelay > 20){
+				if(this.get(i).flickerDelay > 5){
 					this.get(i).isHit=false;
 					this.get(i).flickerDelay = 0;
 				}
