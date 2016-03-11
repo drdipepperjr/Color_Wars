@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Color Wars" default="run" basedir=".">
+	
+	<path id="project.class.path">             
+		<pathelement location="build"/> 
+		<pathelement location="lib/junit-4.8.2.jar"/>    
+	</path>
+
+	
+	<target name="compile" description="compile my code">
+		<mkdir dir="build" />
+		<javac srcdir="src" destdir="build" includeantruntime="false" debug="true" debuglevel="lines,vars,source">
+			<classpath refid="project.class.path" />   
+	    </javac>
+	  </target>
+	
+	<target name="clean" description="delete unnecessary files and directories">
+	    <delete dir="build" quiet="true" />
+	</target>
+	
+	<target name="test" depends="compile" description="uses test class">
+		<junit haltonerror="no" haltonfailure="no">
+	    <classpath refid="project.class.path" />   
+	    <batchtest>
+		<fileset dir="src">
+		  <!-- this will pick up every class with a name ending in Test -->
+		<include name="**/*Test.java"/>
+		</fileset>
+	    </batchtest>
+	     <formatter type="plain" usefile="false" />        
+	    </junit>
+	</target>
+	
+	<target name="run" depends="compile" description="runs the class MineGUI for graphical minesweeper">
+	    <java classname="framework.Game" fork="true" classpath="build" />
+	</target>	
+	
+</project>
