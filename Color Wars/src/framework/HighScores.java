@@ -22,11 +22,16 @@ public class HighScores implements Serializable{
 		JFrame frame = new JFrame("InputDialog Example #1");
 		
 		// prompt the user to enter their name
-		String curName = JOptionPane.showInputDialog(frame, "You got a High score!  What's your name?");
+		String name = JOptionPane.showInputDialog(frame, "You got a High score!  What's your name?");
 		
 		// get the user's input. note that if they press Cancel, 'name' will be null
-		System.out.printf("The user's name is '%s'.\n", curName);
+		System.out.printf("The user's name is '%s'.\n", name);
+		add(score,name);
+		save();
+	}
+	public void add(int score, String name){
 		int curScore=score;
+		String curName=name;
 		for (int i=0;i<10;i++){
 			if (scores[i]<curScore){
 				int tmpS=curScore;
@@ -37,7 +42,6 @@ public class HighScores implements Serializable{
 				names[i]=tmpN;
 			}
 		}
-		save();
 	}
 	public String getName(int place){
 		return names[place];

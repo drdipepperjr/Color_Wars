@@ -19,11 +19,11 @@ import framework.Game;
  * A GameObject that is controlled by the User
  */
 public class Player extends GameObject{	
-	
+	private static boolean DebugEnvironment=false;
 	/*
 	 * a variable that represents how many hits the player can take before it is destroyed
 	 */
-	public int health = 100; 
+	public int health = 50; 
 	public int delay = 0;
 	
 	private int size = 40;
@@ -275,7 +275,7 @@ public class Player extends GameObject{
 			p.add(new Projectile(this.x-5,this.y-5,x,y, this.color));
 			this.setDelay(0);
 			
-			if(Game.DebugEnvironment==true)
+			if(DebugEnvironment==true)
 				System.err.println("proj size "+ p.size());
 		}
 	}

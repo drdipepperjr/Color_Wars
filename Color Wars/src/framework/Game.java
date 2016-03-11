@@ -41,7 +41,7 @@ public class Game implements Runnable {
 	private LeaderBoard leaderBoard;
 	private Instructions instr;
 
-	public static boolean DebugEnvironment =false;
+	private static boolean DebugEnvironment =false;
 
 	private boolean isRunning= false;
 	private Thread thread;
@@ -101,6 +101,8 @@ public class Game implements Runnable {
 	 * Displays the main menu and creates buttons to access various parts of the game.
 	 */
 	public void displayMainMenu(){
+		if (Game.DebugEnvironment)
+			System.err.println("displaying main menu");
 		window.getContentPane().removeAll();
 		mainMenu = new MainMenu(window); 
 		mainMenu.play.addActionListener(new playListener());
@@ -114,6 +116,8 @@ public class Game implements Runnable {
 	 * Displays the leader board 
 	 */
 	public void displayLeaderBoard(){
+		if (Game.DebugEnvironment)
+			System.err.println("displaying leader Board");
 		window.getContentPane().removeAll();
 		leaderBoard = new LeaderBoard(window,highScores); 
 		leaderBoard.mainMenu.addActionListener(new MainMenuListener());
@@ -122,6 +126,8 @@ public class Game implements Runnable {
 	}
 	
 	public void displayInstructions(){
+		if (Game.DebugEnvironment)
+			System.err.println("displaying instructions");
 		window.getContentPane().removeAll();
 		instr = new Instructions(window); 
 		instr.mainMenu.addActionListener(new MainMenuListener());
@@ -130,6 +136,8 @@ public class Game implements Runnable {
 	}
 	
 	public void displayGameOver(){
+		if (Game.DebugEnvironment)
+			System.err.println("displaying gameOver");
 		highScores.add(PlayMenu.score);
 		window.getContentPane().removeAll();
 		gameover = new GameOver(window);
@@ -143,6 +151,8 @@ public class Game implements Runnable {
 	 * Self-explanatory. Starts the gameplay aspect of the game.
 	 */
 	public void playGame(){
+		if (Game.DebugEnvironment)
+			System.err.println("playing Game");
 		soundPlayer.stop();
 		soundPlayer.setClip("res/MoodyLoop.wav");
 		soundPlayer.loop();
@@ -288,12 +298,9 @@ public class Game implements Runnable {
 	class LeaderBoardListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-
-			displayLeaderBoard();
-
 			if(DebugEnvironment==true)
 				System.err.println("LeaderBoard pressed");
-
+			displayLeaderBoard();
 		}
 	}	
 	/*
@@ -303,12 +310,9 @@ public class Game implements Runnable {
 	class MainMenuListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-
-			displayMainMenu();
-
 			if(DebugEnvironment==true)
 				System.err.println("MainMenu pressed");
-
+			displayMainMenu();
 		}
 	}	
 	/*
@@ -318,12 +322,10 @@ public class Game implements Runnable {
 		
 		//Aims for the tip of the mouse
 		public void mouseMoved(MouseEvent e){
-
+			if(DebugEnvironment==true)
+				System.err.println("click coord " +mouseX +", "+mouseY);
 			mouseX=e.getX() - 5;
 			mouseY=e.getY() - 30;
-
-			if(DebugEnvironment==true)
-				System.err.println("click coord " +mouseX +", "+mouseY);		
 		}	
 		
 	}
@@ -334,12 +336,9 @@ public class Game implements Runnable {
 	class instructionsListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-
-			displayInstructions();
-
 			if(DebugEnvironment==true)
 				System.err.println("Instructions pressed");
-
+			displayInstructions();
 		}
 	}	
 

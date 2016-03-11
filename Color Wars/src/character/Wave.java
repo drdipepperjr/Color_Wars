@@ -13,7 +13,7 @@ import framework.Map;
  */
 @SuppressWarnings("serial")
 public class Wave extends ArrayList<Enemy> {
-
+	private static boolean DebugEnvironment=false;
 	/*
 	 * The number of enemies that are currently alive
 	 */
@@ -184,13 +184,13 @@ public class Wave extends ArrayList<Enemy> {
 		for(int i=0;i<numEnemies;i++){
 			Enemy e = this.get(i);
 			if(e.isCollidedWith(p)){
-				if(Game.DebugEnvironment==true){
+				if(DebugEnvironment){
 					System.err.println("Enemy "+ e.getType()+ " colided with player");
 				}
 				e.destroy();
 				p.health -= e.health;
 				p.isHit = true;
-				if(Game.DebugEnvironment==true){
+				if(DebugEnvironment==true){
 					System.err.println("PlayerHealth = " + p.health);
 				}
 			}
@@ -211,7 +211,7 @@ public class Wave extends ArrayList<Enemy> {
 				Enemy e = this.get(i);
 				Projectile p = proj.get(j);
 				if(e.isCollidedWith(p)){
-					if(Game.DebugEnvironment==true){
+					if(DebugEnvironment==true){
 						System.err.println("Enemy "+ e.getType()+ " colided with projectile "+ j);
 					}
 					p.destroy();

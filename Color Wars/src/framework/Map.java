@@ -72,12 +72,14 @@ public class Map extends JPanel{
 		//WAVE 1
 		for(int i=0;i<wave1.numEnemies;i++) wave1.addTriangle();
 		//WAVE 2
-		for(int i=0;i<3;i++) wave2.addTriangle();
-		for(int i=3;i<wave2.numEnemies;i++) wave2.addSquare();
+		//for(int i=0;i<3;i++) wave2.addTriangle();
+		//for(int i=3;i<wave2.numEnemies;i++) wave2.addSquare();
+		for(int i=0;i<wave2.numEnemies;i++) wave2.addSquare();
 		//WAVE 3
-		for(int i=0;i<3;i++) wave3.addTriangle();
-		for(int i=3;i<7;i++) wave3.addCircle();
-		for(int i=0;i<wave3.numEnemies;i++) wave3.addSquare();
+		//for(int i=0;i<3;i++) wave3.addTriangle();
+		//for(int i=3;i<7;i++) wave3.addCircle();
+		//for(int i=0;i<wave3.numEnemies;i++) wave3.addSquare();
+		for(int i=0;i<wave3.numEnemies;i++) wave3.addCircle();
 	}
 	
 	public void addWave(int currentWave){
