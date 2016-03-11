@@ -27,15 +27,15 @@ public class MainMenu extends JPanel{
 		//add(Box.createHorizontalStrut(10));
 		//add(new Box.Filler(200,200,200));
 		
-		play = new CustomButton("Play",178,42);
+		play = new CustomButton();
 		play.setBounds(510,480,178,42);
 		add(play);
 		
-		leaderBoard = new CustomButton("LeaderBoard",395,42);
+		leaderBoard = new CustomButton();
 		leaderBoard.setBounds(510,576,395,42);
 		add(leaderBoard);
 		
-		instructions = new CustomButton("f",389,56);
+		instructions = new CustomButton();
 		instructions.setBounds(510,673,389,56);
 		add(instructions);
 		//add(Box.createHorizontalGlue());

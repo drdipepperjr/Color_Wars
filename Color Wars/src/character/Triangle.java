@@ -8,7 +8,10 @@ import java.awt.Shape;
 import java.awt.geom.Path2D;
 
 import utilities.ShapeTransforms;
-
+/*
+ * An enemy that will attempt to run into the player, causing the player to
+ * be damaged
+ */
 public class Triangle extends Enemy{
  
  	private double theta = 0;
@@ -64,15 +67,6 @@ public class Triangle extends Enemy{
 		this.y+=yMove*5;
 		
 		theta += Math.PI/30;
-		/*
-	 	hyp = Math.sqrt(Math.pow(xLength, 2)+Math.pow(yLength,2));
-	 	theta = 0;
-	 	
-	 	if(xLength > 0)
-	 		theta = Math.asin(yLength/hyp);
-	 	if(xLength <= 0)
-	 		theta = Math.PI/2 - Math.asin(yLength/hyp);
-		*/
 	}
 
 	@Override

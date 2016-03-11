@@ -26,8 +26,7 @@ public class Wave extends ArrayList<Enemy> {
 	
 	/*
 	 * Constructor for objects of class Wave
-	 * This creates a wave of enemies
-	 * All of them are randomly generated
+	 * This creates an empty wave of enemies
 	 * @param numEnemies the number of enemies in the current wave
 	 */
 	public Wave(int numEnemies){
@@ -218,7 +217,7 @@ public class Wave extends ArrayList<Enemy> {
 					
 					//now that it's collided, check to see if the color matches
 					if(this.get(i).getColor()==p.getColor()){
-						e.health--;
+						e.health --;
 						e.isHit = true;
 						if(e.health == 0){
 							e.destroy();
@@ -251,6 +250,9 @@ public class Wave extends ArrayList<Enemy> {
 		}
 	}
 
+	/*
+	 * Handles setting the delay of flickering for all enemies when they are hit
+	 */
 	public void resetIsHit(){
 		
 		for(int i=0;i<numEnemies;i++){

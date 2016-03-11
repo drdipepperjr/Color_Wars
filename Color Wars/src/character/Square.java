@@ -7,6 +7,10 @@ import java.awt.RenderingHints;
 import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
+/*
+ * An Enemy that will teleport closer to the player in infrequent intervals
+ * to attempt to block the Player or block shots for other Enemies
+ */
 public class Square extends Enemy {
 	int distanceFromPlayer;
 
@@ -24,6 +28,7 @@ public class Square extends Enemy {
 	/*
 	 * Draws a square to the screen at the current position
 	 * and with the Square's color
+	 * Also draws cracks in the square when it is damaged
 	 */
 	@Override
 	public void render(Graphics g) {
@@ -34,14 +39,14 @@ public class Square extends Enemy {
 		g2d.setColor(this.color);
 		g2d.draw(square);
 		g2d.fill(square);
-		if(this.health < 4){
+		if(this.health< 4){
 			g2d.setColor(Color.BLACK);
 			Line2D.Double line = new Line2D.Double(x+15,y,x+20,y+20);
 			g2d.draw(line);
-			if(health <3){
+			if(this.health < 3){
 				Line2D.Double line2 = new Line2D.Double(x+20,y+20,x+15,y+30); 
 				g2d.draw(line2);
-				if(health<2){
+				if(this.health < 2){
 					Line2D.Double line3 = new Line2D.Double(x+20,y+10,x+5,y+25); 
 					g2d.draw(line3);
 				}
@@ -87,21 +92,6 @@ public class Square extends Enemy {
 			}
 			this.setX(x+xMove);
 			this.setY(y+yMove);
-			//System.err.println("("+x+","+y+")");
-			/*
-			Random randomNum = new Random();
-			double xCoor=randomNum.nextInt(distanceFromPlayer);
-			double yCoor=distanceFromPlayer-xCoor;
-			int sign=randomNum.nextInt(2);
-			xCoor=xCoor*Math.pow(-1, sign);
-			sign=randomNum.nextInt(2);
-			yCoor=yCoor*Math.pow(-1, sign);
-			
-
-			distanceFromPlayer-=randomNum.nextInt(150);
-			if (distanceFromPlayer<0){	
-				distanceFromPlayer=1;
-			}*/
 		}		
 	}
 

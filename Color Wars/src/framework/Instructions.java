@@ -16,7 +16,7 @@ public class Instructions extends JPanel{
 		this.window = window;
 		
 		this.setLayout(null);
-		mainMenu = new CustomButton("Play",247,37);
+		mainMenu = new CustomButton();
 		mainMenu.setBounds(372,679,247,37);
 		add(mainMenu);
 		

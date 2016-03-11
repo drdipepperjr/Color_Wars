@@ -101,6 +101,9 @@ public class Projectile extends GameObject{
 		return "Projectile";
 	}
 
+	/*
+	 * plays a sound when the projectile is blocked
+	 */
 	public void blockedAudio() {
 		Clip clip;
 		String soundName="res/blocked.wav";  
