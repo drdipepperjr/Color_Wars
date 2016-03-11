@@ -11,9 +11,6 @@ How to Play:
 --- Use command "ant compile" to compile
 --- Use command "ant clean" to clean build
 --- Use command "ant test" to run unit tests
-- Use Color Wars.jar
--- Go into /Color_Wars/
--- There will be a file Color Wars.jar run it.  
 
 Gameplay:
 
