@@ -25,6 +25,7 @@ public class Projectile extends GameObject{
 	private double xMove;
 	private double yMove;
 	private int size = 10;
+	private static boolean DebugEnvironment=false;
 	
 	/*
 	 * Constructor for objects of class projectile
@@ -72,8 +73,12 @@ public class Projectile extends GameObject{
 	public void update(double playerX, double playerY) {
 		x+=xMove*5;
 		y+=yMove*5;
-		if(outOfBounds())
+		if(outOfBounds()){
+			if(DebugEnvironment){
+				System.err.println("projectile moved out of bounds");
+			}
 			destroy();
+		}
 	}
 	
 	/*

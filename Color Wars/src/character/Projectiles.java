@@ -11,7 +11,7 @@ import framework.Game;
  */
 @SuppressWarnings("serial")
 public class Projectiles extends ArrayList<Projectile> {
-	
+	private static boolean DebugEnvironment=false;
 	/*
 	 * Calls the render method of each projectile
 	 */
@@ -32,10 +32,10 @@ public class Projectiles extends ArrayList<Projectile> {
 				this.get(i).destroy();
 				p.health --;
 				p.isHit=true;
-				if(Game.DebugEnvironment==true){
+				if(DebugEnvironment==true){
 					System.err.println("Projectile "+ i+ " colided with player");
+					System.out.println("Player health = " + p.health);
 				}
-				System.out.println("Player health = " + p.health);
 			}
 		}
 	}

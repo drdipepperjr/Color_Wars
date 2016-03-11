@@ -12,6 +12,7 @@ import java.util.Random;
  * to attempt to block the Player or block shots for other Enemies
  */
 public class Square extends Enemy {
+	private static boolean DebugEnvironment=false;
 	int distanceFromPlayer;
 
 	/*
@@ -86,7 +87,9 @@ public class Square extends Enemy {
 					x+xMove<=playerX+45&&
 					y+yMove<=playerY+45&&
 					y+yMove>=playerY-45){
-				System.err.println("going to hit");
+				if(DebugEnvironment){
+					System.err.println("was going to hit");
+				}
 				xMove=0;
 				yMove=0;
 			}
