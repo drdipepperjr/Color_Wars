@@ -153,7 +153,7 @@ public class Game implements Runnable {
 	public void displayGameOver(){
 		if (Game.DebugEnvironment)
 			System.err.println("displaying gameOver");
-		highScores.add(PlayMenu.score);
+		highScores.add(Map.score);
 		window.getContentPane().removeAll();
 		gameover = new GameOver(window);
 		gameover.mainmenu.addActionListener(new MainMenuListener());
