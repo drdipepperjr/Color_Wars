@@ -8,6 +8,7 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 import java.util.Random;
 public class Square extends Enemy {
+	private static boolean DebugEnvironment=false;
 	int distanceFromPlayer;
 
 	/*
@@ -81,27 +82,14 @@ public class Square extends Enemy {
 					x+xMove<=playerX+45&&
 					y+yMove<=playerY+45&&
 					y+yMove>=playerY-45){
-				System.err.println("going to hit");
+				if(DebugEnvironment){
+					System.err.println("was going to hit");
+				}
 				xMove=0;
 				yMove=0;
 			}
 			this.setX(x+xMove);
 			this.setY(y+yMove);
-			//System.err.println("("+x+","+y+")");
-			/*
-			Random randomNum = new Random();
-			double xCoor=randomNum.nextInt(distanceFromPlayer);
-			double yCoor=distanceFromPlayer-xCoor;
-			int sign=randomNum.nextInt(2);
-			xCoor=xCoor*Math.pow(-1, sign);
-			sign=randomNum.nextInt(2);
-			yCoor=yCoor*Math.pow(-1, sign);
-			
-
-			distanceFromPlayer-=randomNum.nextInt(150);
-			if (distanceFromPlayer<0){	
-				distanceFromPlayer=1;
-			}*/
 		}		
 	}
 

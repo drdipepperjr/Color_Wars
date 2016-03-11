@@ -17,7 +17,6 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * destroy the player
  */
 public abstract class Enemy extends GameObject{
-	private static boolean DebugEnvironment=false;
 	/*
 	 * a variable that represents how many hits the enemy can take before it is destroyed
 	 */
