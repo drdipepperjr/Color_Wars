@@ -54,7 +54,7 @@ public class Game implements Runnable {
 	/*
 	 * variable that turns the debug Environment on and off
 	 */
-	private static boolean DebugEnvironment =false;
+	private static boolean DebugEnvironment =true;
 
 	private boolean isRunning= false;
 	private Thread thread;
