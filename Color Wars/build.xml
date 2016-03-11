@@ -24,7 +24,7 @@
 	    <batchtest>
 		<fileset dir="src">
 		  <!-- this will pick up every class with a name ending in Test -->
-		<include name="**/*Test.java"/>
+		<include name="UnitTests.java"/>
 		</fileset>
 	    </batchtest>
 	     <formatter type="plain" usefile="false" />        
