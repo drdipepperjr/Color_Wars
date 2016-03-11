@@ -51,14 +51,10 @@ public class Game implements Runnable {
 	private LeaderBoard leaderBoard;
 	private Instructions instr;
 
-<<<<<<< HEAD
 	/*
 	 * variable that turns the debug Environment on and off
 	 */
-	public static boolean DebugEnvironment =false;
-=======
 	private static boolean DebugEnvironment =false;
->>>>>>> 7762dea95f81627ef1e02dec8dee400d8302f9ca
 
 	private boolean isRunning= false;
 	private Thread thread;
@@ -318,14 +314,8 @@ public class Game implements Runnable {
 			displayMainMenu();
 		}
 	}	
-<<<<<<< HEAD
 
-	private class instructionsListener implements ActionListener{
-=======
-	/*
-	 * A class that listens for mouse input from the player during the game.
-	 */
-	public class shootListener extends MouseAdapter {
+	private class shootListener extends MouseAdapter {
 		
 		//Aims for the tip of the mouse
 		public void mouseMoved(MouseEvent e){
@@ -340,27 +330,14 @@ public class Game implements Runnable {
 	 * A class that listens for the leaderBoard button to be pressed
 	 * Currently does nothing
 	 */
-	class instructionsListener implements ActionListener{
->>>>>>> 7762dea95f81627ef1e02dec8dee400d8302f9ca
+	private class instructionsListener implements ActionListener{
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
 			if(DebugEnvironment==true)
 				System.err.println("Instructions pressed");
 			displayInstructions();
+		
 		}
-	}	
-
-	private class shootListener extends MouseAdapter {
-		
-		//Aims for the tip of the mouse
-		public void mouseMoved(MouseEvent e){
-
-			mouseX=e.getX() - 5;
-			mouseY=e.getY() - 30;
-
-			if(DebugEnvironment==true)
-				System.err.println("click coord " +mouseX +", "+mouseY);		
-		}	
-		
 	}
+
 }

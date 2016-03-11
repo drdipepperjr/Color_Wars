@@ -46,9 +46,11 @@ public class UnitTests {
 		assertEquals(0,t.getY(),0.1);
 	}
 	
-	@Test public void testWaveConstructor(){
-		Wave W = new Wave(5);
-		assertEquals(5,W.size(),0);
+	@Test public void testWave(){
+		Wave w = new Wave(5);
+		assertEquals(5,w.numEnemies,0);
+		w.autoPopulate();
+		assertEquals(5,w.size(),0);
 	}
 	
 	@Test public void testProjectilesConstructor(){
@@ -61,10 +63,10 @@ public class UnitTests {
 	
 	@Test public void testHighScores(){
 		HighScores hs= new HighScores();
-		hs.add( 1);
+		hs.add( 1, "alex");
 		assertEquals("alex",hs.getName(0));
 		assertEquals(1, hs.getScore(0));
-		hs.add( 2);
+		hs.add( 2, "dom");
 		assertEquals("dom",hs.getName(0));
 		assertEquals(2, hs.getScore(0));
 

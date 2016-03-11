@@ -13,6 +13,7 @@ import framework.Map;
  */
 @SuppressWarnings("serial")
 public class Wave extends ArrayList<Enemy> {
+	
 	private static boolean DebugEnvironment=false;
 	/*
 	 * The number of enemies that are currently alive

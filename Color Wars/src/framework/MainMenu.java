@@ -8,6 +8,9 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/*
+ * The main menu screen
+ */
 @SuppressWarnings("serial")
 public class MainMenu extends JPanel{
 	CustomButton play;
@@ -16,16 +19,17 @@ public class MainMenu extends JPanel{
 	JFrame window;
 	ImageIcon img;
 	public boolean started = false;
+	
+	/*
+	 * Constructor for mainMenu
+	 * 
+	 * @param window the game window
+	 */
 	public MainMenu(JFrame window){
 		this.window = window;
 		img = new ImageIcon("res/MainMenu.jpg");
 		
 		this.setLayout(null);
-		
-		
-		//add(Box.createVerticalStrut(350));
-		//add(Box.createHorizontalStrut(10));
-		//add(new Box.Filler(200,200,200));
 		
 		play = new CustomButton();
 		play.setBounds(510,480,178,42);
@@ -38,13 +42,8 @@ public class MainMenu extends JPanel{
 		instructions = new CustomButton();
 		instructions.setBounds(510,673,389,56);
 		add(instructions);
-		//add(Box.createHorizontalGlue());
-		//add(Box.createVerticalGlue());
 
 		window.getContentPane().add(this);
-		
-
-
 	}
 	
 	@Override

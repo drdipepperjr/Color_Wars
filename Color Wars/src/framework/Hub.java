@@ -11,6 +11,9 @@ import java.awt.Shape;
 import character.Wave;
 import utilities.GeneralPathWrapper;
 
+/*
+ * The Heads-up-display for the game
+ */
 public class Hub extends GeneralPathWrapper implements Shape{
 	protected int x; 
 	protected int y;
@@ -20,6 +23,12 @@ public class Hub extends GeneralPathWrapper implements Shape{
 	protected int score;
 	int currentWave;
 	
+	/*
+	 * Constructor for Hub
+	 * 
+	 * @param playerHealth How much health the player has left
+	 * @param wave The current wave of enemies
+	 */
 	public Hub(int playerHealth, Wave wave) {
 		this.x=Game.WIDTH;
 		this.y=Game.HEIGHT;
@@ -28,6 +37,9 @@ public class Hub extends GeneralPathWrapper implements Shape{
 		this.score=2;
 	}
 
+	/*
+	 * Draws all components of Hub to the screen
+	 */
 	public void render(Graphics g) {
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
@@ -44,6 +56,9 @@ public class Hub extends GeneralPathWrapper implements Shape{
 		g2d.drawString("Current wave: " + currentWave,0,45);
 	}
 
+	/*
+	 * Updates the Hub
+	 */
 	public void update(int playerHealth, int score, Wave wave,int currentWave) {
 		this.playerHealth=playerHealth;
 		this.score=score;

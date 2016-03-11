@@ -22,11 +22,9 @@ public class HighScores implements Serializable{
 		this.names=new String[10];
 		this.scores = new int[10];
 	}
-	
+		
 	/*
-	 * Add a score to the list, only if it is in the top 10 scores
-	 * 
-	 * @param score the score to be entered
+	 * Makes the GUI that allows the user to add their score
 	 */
 	public void add(int score){
 		// a jframe here isn't strictly necessary, but it makes the example a little more real
@@ -40,6 +38,12 @@ public class HighScores implements Serializable{
 		add(score,name);
 		save();
 	}
+	
+	/*
+	 * Add a score to the list, only if it is in the top 10 scores
+	 * 
+	 * @param score the score to be entered
+	 */
 	public void add(int score, String name){
 		int curScore=score;
 		String curName=name;

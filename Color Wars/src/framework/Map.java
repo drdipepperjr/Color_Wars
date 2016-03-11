@@ -41,6 +41,7 @@ public class Map extends JPanel{
 	Wave wave3 = new Wave(10);
 	
 	private int currentWave = 0;
+	
 	/*
 	 * Creates the Projectiles objects.
 	 * proj represents the player's projectiles
@@ -54,6 +55,7 @@ public class Map extends JPanel{
 	 * creates player hub
 	 */
 	Hub hub = new Hub(player.health, wave1);
+	
 	/*
 	 * Overridden paint method
 	 * Calls render methods for Player, Wave, and projectiles
@@ -64,6 +66,9 @@ public class Map extends JPanel{
 		initializeWaves();
 	}
 	
+	/*
+	 * Initializes the first 3 waves of enemies
+	 */
 	public void initializeWaves(){
 		waveList.add(wave1);
 		waveList.add(wave2);
@@ -72,18 +77,18 @@ public class Map extends JPanel{
 		//WAVE 1
 		for(int i=0;i<wave1.numEnemies;i++) wave1.addTriangle();
 		//WAVE 2
-		//for(int i=0;i<3;i++) wave2.addTriangle();
-		//for(int i=3;i<wave2.numEnemies;i++) wave2.addSquare();
 		for(int i=0;i<wave2.numEnemies;i++) wave2.addSquare();
 		//WAVE 3
-		//for(int i=0;i<3;i++) wave3.addTriangle();
-		//for(int i=3;i<7;i++) wave3.addCircle();
-		//for(int i=0;i<wave3.numEnemies;i++) wave3.addSquare();
 		for(int i=0;i<wave3.numEnemies;i++) wave3.addCircle();
 	}
 	
+	/*
+	 * Adds a randomly generated wave to the Map
+	 * 
+	 * @param currentWave the current wave (used to determine the amount of enemies for this next wave)
+	 */
 	public void addWave(int currentWave){
-		Wave newWave = new Wave(currentWave);
+		Wave newWave = new Wave((currentWave+1)*3+1);
 		newWave.autoPopulate();
 		waveList.add(newWave);
 	}
@@ -101,31 +106,34 @@ public class Map extends JPanel{
 	
 	/*
 	 * Calls update methods for Player, Wave, and Projectiles
-	 * Also checks for all collisions between all GameObjects
-	 * Currently ends the game if the Player is no longer alive
+	 * Checks for all collisions between all GameObjects
+	 * Calls special enemy attack methods
+	 * Updates the Hub
 	 */
 	public void update(){
 		player.update();
-		if(!player.isAlive()){
-			//System.exit(1);
-		}
 		pX = player.getX();
 		pY = player.getY();		
-		
-		
 		player.playerShoot(Game.mouseX,Game.mouseY,proj);
-		enemyPatterns(waveList.get(currentWave));
 		
+		//If the current wave is gone, spawn a new, bigger one
 		if(waveList.get(currentWave).numEnemies == 0){
 			currentWave++;
-			if(currentWave > 2) addWave((currentWave+1)*3+1);
+			if(currentWave > 2) addWave(currentWave);
 		}
 		
+		//update enemies
+		enemyPatterns(waveList.get(currentWave));
 		waveList.get(currentWave).update(pX, pY);
+		
+		//update proj
 		proj.update(pX,pY);
-		proj2.update(pX,pY);	
+		proj2.update(pX,pY);
+		
+		//update the Hub
 		hub.update(player.health,score, waveList.get(currentWave),currentWave+1);
 		
+		//Checks for collisions
 		proj2.checkForCollisions(player);
 		waveList.get(currentWave).checkForCollisions(waveList.get(currentWave));
 		waveList.get(currentWave).checkForCollisions(player);

@@ -6,12 +6,21 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/*
+ * The instructions screen 
+ */
 @SuppressWarnings("serial")
 public class Instructions extends JPanel{
 	CustomButton mainMenu;
 	JFrame window;
 	ImageIcon img = new ImageIcon("res/instructions.jpg");;
 	public boolean started = false;
+	
+	/*
+	 * Constructor for Instructions
+	 * 
+	 * @param window the game window
+	 */
 	public Instructions(JFrame window){
 		this.window = window;
 		

@@ -8,6 +8,7 @@ import java.awt.Shape;
 import java.awt.geom.Path2D;
 
 import utilities.ShapeTransforms;
+
 /*
  * An enemy that will attempt to run into the player, causing the player to
  * be damaged
