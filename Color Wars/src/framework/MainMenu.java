@@ -27,7 +27,7 @@ public class MainMenu extends JPanel{
 	 */
 	public MainMenu(JFrame window){
 		this.window = window;
-		img = new ImageIcon("res/MainMenu.jpg");
+		img = new ImageIcon("res/mainmenu.jpg");
 		
 		this.setLayout(null);
 		
