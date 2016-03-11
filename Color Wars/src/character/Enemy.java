@@ -20,8 +20,9 @@ public abstract class Enemy extends GameObject{
 	/*
 	 * a variable that represents how many hits the enemy can take before it is destroyed
 	 */
-	int health; 
-	int points=10;
+	protected int health; 
+
+	private int points=10;
 	protected int size = 30;
 	protected int delay;
 	public boolean isHit = false;
@@ -42,6 +43,9 @@ public abstract class Enemy extends GameObject{
 	
 	/*
 	 * Specifies how the enemy will attempt to attack the player
+	 * 
+	 * @param playerX the player's current x-coordinate
+	 * @param playerY the player's current y-coordinate
 	 */
 	abstract void attack(double playerX, double playerY); //how the enemy will attempt to attack you	
 	
@@ -83,10 +87,22 @@ public abstract class Enemy extends GameObject{
 	
 	/*
 	 * gets points for killing enemy
+	 * 
+	 * @return points the number of points the enemy is worth
 	 */
 	public int getPoints(){
 		return points;
 	}
+	
+	@Override
+	public void destroy(){
+		deathAudio();
+		super.destroy();
+	}
+	
+	/*
+	 * plays a sound when an enemy is killed
+	 */
 	public void deathAudio(){
 		Clip clip;
 		String soundName="res/explosion.wav";  
@@ -104,8 +120,5 @@ public abstract class Enemy extends GameObject{
 		}
 	}
 	
-	public void destroy(){
-		deathAudio();
-		super.destroy();
-	}
+
 }

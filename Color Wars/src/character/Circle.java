@@ -6,6 +6,10 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 import java.awt.geom.Ellipse2D;
 import java.util.Random;
+/*
+ * An Enemy that will try to stay a certain distance away from
+ * the Player and shoot at the Player
+ */
 public class Circle extends Enemy {
 
 	private Random random = new Random();
@@ -68,8 +72,5 @@ public class Circle extends Enemy {
 	public String getType(){
 		return "Circle";
 	}
-	
-	public void flicker(){
-		
-	}
+
 }

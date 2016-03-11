@@ -3,8 +3,6 @@ package character;
 import java.awt.Graphics;
 import java.util.ArrayList;
 
-import framework.Game;
-
 /*
  * A class used for handling projectiles.
  * A Projectiles object can be used by the Player or by Enemies

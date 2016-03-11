@@ -8,26 +8,32 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-
-
 /*
  * A class that holds the high scores of past players and allows us to add new ones
  */
 @SuppressWarnings("serial")
 public class LeaderBoard extends JPanel{
-	CustomButton mainMenu;
-	JFrame window;
-	HighScores highScores;
-	ImageIcon img = new ImageIcon("res/leaderboard.jpg");
+	CustomButton mainMenu; //the main menu button
+	private JFrame window;
+	private HighScores highScores;
+	private ImageIcon img = new ImageIcon("res/leaderboard.jpg");
+	
+	/*
+	 * Constructor for leaderBoard
+	 * 
+	 * @param window the game window
+	 * @param highScores The list of high scores
+	 */
 	public LeaderBoard(JFrame window, HighScores highScores){
 		this.window=window;
 		this.setLayout(null);
-		mainMenu = new CustomButton("Main Menu",317,34);
+		mainMenu = new CustomButton();
 		mainMenu.setBounds(340,625,317,34);
 		this.add(mainMenu);
 		this.highScores=highScores;
 		window.getContentPane().add(this);
 		}
+	
 	@Override
 	public void paintComponent(Graphics g){
 		super.paintComponent(g);

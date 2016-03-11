@@ -29,8 +29,8 @@ public class Player extends GameObject{
 	private int size = 40;
 	private boolean[] keys = new boolean[6];
 
-	private double vX = 0;
-	private double vY = 0;
+	private double velX = 0;
+	private double velY = 0;
 	
 	private double xMax = 7;
 	private double yMax = 7;
@@ -42,6 +42,7 @@ public class Player extends GameObject{
 	 */
 	public boolean isHit = false;
 	public int flickerDelay;
+	
 	/*
 	 * Constructor for objects of class Player
 	 */
@@ -94,57 +95,60 @@ public class Player extends GameObject{
 		    }
 		 KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
 	        manager.addKeyEventDispatcher(new MyDispatcher());
+	      
+	        //All of this is for calculating speed and acceleration
+	        
 	        //if w pressed
 	    	if(keys[0]){
-	    		if(vY >= -yMax)
-	    			vY = vY - accel;
-	    		y += vY;
+	    		if(velY >= -yMax)
+	    			velY = velY - accel;
+	    		y += velY;
 	    	}
 	    	else{
-	    		if(vY < 0){
-	    			vY = vY + accel;
-	    			if(vY > 0) vY = 0;
+	    		if(velY < 0){
+	    			velY = velY + accel;
+	    			if(velY > 0) velY = 0;
 	    		}
-	    		y += vY;
+	    		y += velY;
 	    	}
 	    	//if a pressed
 			if(keys[1]){
-				if(vX >= -xMax)
-					vX = vX - accel;
-				x += vX;
+				if(velX >= -xMax)
+					velX = velX - accel;
+				x += velX;
 			}
 			else{
-				if(vX < 0){
-					vX = vX + accel;
-					if(vX > 0) vX = 0;
+				if(velX < 0){
+					velX = velX + accel;
+					if(velX > 0) velX = 0;
 				}
-				x += vX;
+				x += velX;
 			}
 			//if s pressed
 			if(keys[2]){
-				if(vY <= yMax)
-	    			vY = vY + accel;
-	    		y += vY;
+				if(velY <= yMax)
+	    			velY = velY + accel;
+	    		y += velY;
 			}
 			else{
-				if(vY > 0){
-	    			vY = vY - accel;
-	    			if(vY < 0) vY = 0;
+				if(velY > 0){
+	    			velY = velY - accel;
+	    			if(velY < 0) velY = 0;
 				}
-	    		y += vY;
+	    		y += velY;
 			}
 			//if d pressed	
 			if(keys[3]){
-				if(vX <= xMax)
-					vX = vX + accel;
-				x += vX;
+				if(velX <= xMax)
+					velX = velX + accel;
+				x += velX;
 			}
 			else{
-				if(vX > 0){
-					vX = vX - accel;
-					if(vX < 0) vX = 0;
+				if(velX > 0){
+					velX = velX - accel;
+					if(velX < 0) velX = 0;
 				}
-				x += vX;
+				x += velX;
 			}
 			
 			if(keys[4]) {
@@ -283,7 +287,7 @@ public class Player extends GameObject{
 	/*
 	 * Methods for changing the color of the player
 	 */
-	public void changeColorForward(){
+	private void changeColorForward(){
 		if(this.color == Color.RED)
 			this.color = Color.BLUE;
 		else if(this.color == Color.BLUE)

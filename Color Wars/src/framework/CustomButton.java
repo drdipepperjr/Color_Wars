@@ -1,7 +1,6 @@
 package framework;
 import java.awt.BasicStroke;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -11,53 +10,54 @@ import java.awt.geom.Ellipse2D;
 
 import javax.swing.JButton;
 
-
+/*
+ * A custom button that is placed on the GUI
+ */
+@SuppressWarnings("serial")
 public class CustomButton extends JButton implements MouseListener{
-	private static final long serialVersionUID = 1L;
-	Dimension size;
-	private String name;
-	boolean click = false;
-	boolean hover = false;
-	int width;
-	int height;
 	
-	public CustomButton(String name, int width, int height)
+	private boolean click = false;
+	private boolean hover = false;
+	
+	/*
+	 * Constructor for objects of type CustomButton
+	 * 
+	 * @param width the width of the button
+	 * @param height the height of the button
+	 */
+	public CustomButton()
 	{	
 		super();
 		setVisible(true);
 		setFocusable(true);
 		setContentAreaFilled(false);
 		setBorderPainted(false);
-		// might need more stuff
 		addMouseListener(this);
-		this.name = name;
-		size = new Dimension(width, height);
-		this.width = width;
-		this.height = height;
 	}
-	public void setButtonText(String text)
-	{
-		this.name = text;
-	}
-	public String getButtonText()
-	{
-		return this.name;
-	}
+	
 	@Override
-	public Dimension getPreferredSize()
+	public void paint(Graphics g)
 	{
-		return size;
+
+		Graphics2D g2d = (Graphics2D) g;
+		Ellipse2D.Double circle = new Ellipse2D.Double(10,7,25,25);
+		super.paint(g2d);
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
+				RenderingHints.VALUE_ANTIALIAS_ON);
+		g2d.setStroke(new BasicStroke(2));
+		if(hover){
+			g2d.setColor(Color.WHITE);
+			g2d.draw(circle);
+		}
+
+		if(click)
+		{
+			g2d.fill(circle);
+		}
 	}
-	@Override
-	public Dimension getMaximumSize()
-	{
-		return size;
-	}
-	@Override
-	public Dimension getMinimumSize()
-	{
-		return size;
-	}
+	
+	
+	//Overriden stuff from MouseListener
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
 		click = true;
@@ -86,24 +86,4 @@ public class CustomButton extends JButton implements MouseListener{
 		click = false;	
 	}
 	
-	@Override
-	public void paint(Graphics g)
-	{
-
-		Graphics2D g2d = (Graphics2D) g;
-		Ellipse2D.Double circle = new Ellipse2D.Double(10,7,25,25);
-		super.paint(g2d);
-		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-				RenderingHints.VALUE_ANTIALIAS_ON);
-		g2d.setStroke(new BasicStroke(2));
-		if(hover){
-			g2d.setColor(Color.WHITE);
-			g2d.draw(circle);
-		}
-
-		if(click)
-		{
-			g2d.fill(circle);
-		}
-	}
 }

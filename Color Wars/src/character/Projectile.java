@@ -91,10 +91,7 @@ public class Projectile extends GameObject{
 			return true;
 		return false;
 	}
-	
-	/*
-	 * @return a Rectangle object which is used for detecting collisions
-	 */
+
 	@Override
 	public Rectangle getBounds(){
 		Rectangle r =  new Rectangle((int)this.getX(),(int)this.getY(),this.size,this.size);
@@ -106,6 +103,9 @@ public class Projectile extends GameObject{
 		return "Projectile";
 	}
 
+	/*
+	 * plays a sound when the projectile is blocked
+	 */
 	public void blockedAudio() {
 		Clip clip;
 		String soundName="res/blocked.wav";  
